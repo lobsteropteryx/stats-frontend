@@ -1,0 +1,15 @@
+{
+  "name": "trello-bugtracker",
+  "version": "1.0.0",
+  "description": "web app to count trello bug cards",
+  "main": "trello.js",
+  "scripts": {
+    "test": "test",
+    "dev": "ws"
+  },
+  "author": "Ian Firkin",
+  "license": "MIT",
+  "devDependencies": {
+    "local-web-server": "^2.3.0"
+  }
+}
