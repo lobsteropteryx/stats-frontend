@@ -1,8 +1,15 @@
-const display = (data) => {
-    var displayData = getBugs(data);
+const display = (cards) => {
+    var displayData = rollupByMonth(getBugs(cards));
     var pre = document.createElement('pre');
     pre.innerText = JSON.stringify(displayData, null, 4);
     document.body.appendChild(pre);
+};
+
+const rollupByMonth = (cards) => {
+    return d3.nest()
+        .key(d => d.date.format('YYYY-MM'))
+        .rollup(v => v.length)
+        .entries(cards);
 };
 
 const getBugs = (cards) => {
@@ -13,7 +20,7 @@ const getBugs = (cards) => {
         })
         .map((card) => {
             return {
-                date: getCreateDate(card.id).format('YYYY-MM-DD'),
+                date: getCreateDate(card.id),
                 url: card.url
             }
         })
