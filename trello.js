@@ -13,14 +13,14 @@ const getBugs = (cards) => {
         })
         .map((card) => {
             return {
-                date: getCreateDate(card.id),
+                date: getCreateDate(card.id).format('YYYY-MM-DD'),
                 url: card.url
             }
         })
 };
 
 const getCreateDate = (id) => {
-    return new Date(1000 * parseInt(id.substring(0, 8), 16));
+    return moment(1000 * parseInt(id.substring(0, 8), 16));
 };
 
 const authenticationSuccess = () => {
