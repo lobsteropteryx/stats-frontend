@@ -2,10 +2,11 @@
   "name": "trello-bugtracker",
   "version": "1.0.0",
   "description": "web app to count trello bug cards",
-  "main": "trello.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "dev": "ws"
+    "dev": "webpack-dev-server --hot --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "test": "jest"
   },
   "author": "Ian Firkin",
   "license": "MIT",
@@ -13,7 +14,18 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
     "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
-    "local-web-server": "^2.3.0"
+    "json-loader": "^0.5.7",
+    "local-web-server": "^2.3.0",
+    "nock": "^10.0.1",
+    "webpack": "^4.24.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
   }
 }

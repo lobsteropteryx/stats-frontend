@@ -1,7 +1,6 @@
-import * as trello from '../src/trello';
+import nock from 'nock';
+import * as trello from '../app/trello';
 
 describe("Getting data from Trello", () => {
-   it("Prompts the user to get a token", () => {
-        expect(1).toBe(1);
-   });
+
 });
