@@ -5,17 +5,11 @@ import PropTypes from 'prop-types';
 class AuthPortal extends React.PureComponent {
     constructor(props) {
         super(props);
-        console.log(props);
-        this.containerEl = null;
         this.externalWindow = null;
     }
 
     componentDidMount() {
-        // STEP 1: Create a new window, a div, and append it to the window. The div
-        // *MUST** be created by the window it is to be appended to (Edge only)
         this.externalWindow = this.getAuthorizationWindow(this.props.apiKey);
-        //this.containerEl = this.externalWindow.document.createElement('div');
-        //this.externalWindow.document.body.appendChild(this.containerEl);
         window.addEventListener('message', this.getAuthorization.bind(this), false);
     }
 
@@ -41,22 +35,11 @@ class AuthPortal extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        // STEP 2: This will fire when this.state.showWindowPortal in the parent component
-        // becomes false so we tidy up by just closing the window
         this.externalWindow.removeEventListener('message', this.getAuthorization, false);
         this.externalWindow.close();
     }
 
     render() {
-        console.log('render!');
-        // STEP 3: The first render occurs before componentDidMount (where we open the
-        // new window) so container may be null, in this case render nothing.
-        //if (!this.containerEl) {
-        //    return null;
-        //}
-
-
-        // STEP 4: Append props.children to the container <div> in the new window
         return (<div></div>);
     }
 }
