@@ -1,15 +1,26 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AuthPortal} from './AuthPortal';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import { trelloAuth } from './AuthPortal/reducer';
+import AuthPortalContainer from './AuthPortal/AuthPortalContainer';
+
+const app = combineReducers({
+    trelloAuth
+});
+
+const store = createStore(app);
 
 const App = () => {
     return (
-        <AuthPortal apiKey = {'e052546597a829919aae4fbd2a6e4095'} />
+        <AuthPortalContainer />
     );
 };
 
 ReactDOM.render(
-    <App/>,
+    <Provider store={store}>
+        <App/>
+    </Provider>,
     document.getElementById('root')
 );
