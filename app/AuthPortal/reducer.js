@@ -8,7 +8,7 @@ export function trelloAuth(state = defaultState, action) {
     switch (action.type) {
         case SET_TRELLO_TOKEN:
             return Object.assign({}, state, {
-                trelloToken: action.token
+                token: action.token
             });
         default:
             return state

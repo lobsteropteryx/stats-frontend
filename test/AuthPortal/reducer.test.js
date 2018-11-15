@@ -12,6 +12,6 @@ describe("Reducer", () => {
         const state = {};
         const token = 'abc';
         const action = setTrelloToken(token);
-        expect(trelloAuth(state, action)).toEqual({trelloToken: token});
+        expect(trelloAuth(state, action)).toEqual({token});
     });
 });
