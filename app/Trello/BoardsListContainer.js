@@ -4,7 +4,7 @@ import BoardsList from './BoardsList';
 
 const mapStateToProps = state => {
     return {
-        boards: state.trelloData.boards
+        boards: state.trello.boards
     }
 };
 

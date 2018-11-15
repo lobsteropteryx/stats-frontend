@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-import { setTrelloToken } from '../actions';
+import { initializeData } from '../actions';
 import AuthPortal from './AuthPortal';
 
 const mapStateToProps = state => {
     return {
-        apiKey: state.trelloAuth.apiKey
+        apiKey: state.trello.apiKey
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onAuthorization: token => {
-            dispatch(setTrelloToken(token))
+            dispatch(initializeData(token))
         }
     }
 };

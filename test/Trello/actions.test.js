@@ -2,6 +2,7 @@ import nock from 'nock';
 import { mockStore } from '../mockStore';
 
 import {
+    initializeData,
     setTrelloToken,
     getBoards,
     selectBoard,
@@ -18,6 +19,25 @@ describe("Trello Auth", () => {
         expect(setTrelloToken('abc')).toEqual({
             type: SET_TRELLO_TOKEN, token: 'abc'
         });
+    });
+
+    it("initializes data", async () => {
+        const boards = [{id: 1, name: 'my board'}];
+        const token = 'abc';
+        const store = mockStore({trello: {}});
+
+        nock('https://api.trello.com')
+            .get('/1/members/me/boards')
+            .query(true)
+            .reply(200, boards);
+
+        const expectedBoards = [{value: 1, label: 'my board'}];
+
+        await store.dispatch(initializeData(token));
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual({type: SET_TRELLO_TOKEN, token: token});
+        expect(actions[1]).toEqual({type: GET_BOARDS, boards: expectedBoards});
     });
 });
 
@@ -46,8 +66,10 @@ describe("Trello Boards", () => {
             .query(true)
             .reply(200, boards);
 
+        const expectedBoards = [{value: 1, label: 'my board'}];
+
         await store.dispatch(fetchBoards('apiKey', 'token'));
         const actions = store.getActions();
-        expect(actions[0]).toEqual({type: GET_BOARDS, boards});
+        expect(actions[0]).toEqual({type: GET_BOARDS, boards: expectedBoards});
     });
 });
