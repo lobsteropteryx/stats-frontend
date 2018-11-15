@@ -3,8 +3,8 @@ import { getBoards } from '../../app/Trello/actions';
 
 describe("Reducer", () => {
     it("sets the default state", () => {
-        const state = {foo: 'bar'};
+        const state = {boards: []};
         const action = { type: 'test' };
-        expect(trelloAuth(state, action)).toEqual(state);
+        expect(trelloData(state, action)).toEqual(state);
     });
 });

@@ -1,7 +1,7 @@
 import { GET_BOARDS, SELECT_BOARD } from './actions';
 
 const defaultState = {
-
+    boards: []
 };
 
 export function trelloData(state = defaultState, action) {
