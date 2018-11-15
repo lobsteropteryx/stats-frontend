@@ -32,10 +32,6 @@ export function fetchBoards(apiKey, token) {
         const trello = new Trello(apiKey, token);
 
         return trello.getBoards('me')
-            .then(boards => {
-                dispatch(getBoards(boards.map(board => {
-                    return {value: board.id, label: board.name}
-                })))
-            });
+            .then(boards => dispatch(getBoards(boards)));
     }
 }

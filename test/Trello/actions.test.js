@@ -31,13 +31,11 @@ describe("Trello Auth", () => {
             .query(true)
             .reply(200, boards);
 
-        const expectedBoards = [{value: 1, label: 'my board'}];
-
         await store.dispatch(initializeData(token));
         const actions = store.getActions();
 
         expect(actions[0]).toEqual({type: SET_TRELLO_TOKEN, token: token});
-        expect(actions[1]).toEqual({type: GET_BOARDS, boards: expectedBoards});
+        expect(actions[1]).toEqual({type: GET_BOARDS, boards});
     });
 });
 
@@ -66,10 +64,8 @@ describe("Trello Boards", () => {
             .query(true)
             .reply(200, boards);
 
-        const expectedBoards = [{value: 1, label: 'my board'}];
-
         await store.dispatch(fetchBoards('apiKey', 'token'));
         const actions = store.getActions();
-        expect(actions[0]).toEqual({type: GET_BOARDS, boards: expectedBoards});
+        expect(actions[0]).toEqual({type: GET_BOARDS, boards});
     });
 });
