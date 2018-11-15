@@ -25,6 +25,10 @@ export function trello(state = defaultState, action) {
             return Object.assign({}, state, {
                 isFetching: true
             });
+        case SELECT_BOARD:
+            return Object.assign({}, state, {
+               selectedBoard: action.board
+            });
         default:
             return state
     }

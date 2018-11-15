@@ -1,5 +1,10 @@
 import { trello } from '../../app/Trello/reducer';
-import { setTrelloToken, getBoards, FETCH_BOARDS } from '../../app/Trello/actions';
+import {
+    setTrelloToken,
+    getBoards,
+    selectBoard,
+    FETCH_BOARDS
+} from '../../app/Trello/actions';
 
 describe("Authentication", () => {
     it("sets the trello token", () => {
@@ -33,4 +38,14 @@ describe("Getting boards", () => {
         };
         expect(trello(state, action)).toEqual(expectedState);
     });
+});
+
+describe("Selecting a board", () => {
+   it("Sets the selected board", () => {
+       const state = {};
+       const selectedBoard = {id: 1, name: 'selectedBoard'};
+       const expectedState = {selectedBoard: selectedBoard};
+       const action = selectBoard(selectedBoard);
+       expect(trello(state, action)).toEqual(expectedState);
+   }) ;
 });
