@@ -25,5 +25,8 @@ module.exports = {
             title: 'Development',
             template: 'index.html'
         })
-    ]
+    ],
+    node: {
+        fs: 'empty'
+    }
 };
