@@ -14,7 +14,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-
 const App = () => {
     return (
         <div>
