@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setTrelloToken } from './actions';
+import { setTrelloToken } from '../actions';
 import AuthPortal from './AuthPortal';
 
 const mapStateToProps = state => {

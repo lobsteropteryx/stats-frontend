@@ -2,13 +2,24 @@ import nock from 'nock';
 import { mockStore } from '../mockStore';
 
 import {
+    setTrelloToken,
     getBoards,
     selectBoard,
     fetchBoards,
+    SET_TRELLO_TOKEN,
     GET_BOARDS,
     SELECT_BOARD,
     FETCH_BOARDS
 } from '../../app/Trello/actions';
+
+
+describe("Trello Auth", () => {
+    it("sets a trello token", () => {
+        expect(setTrelloToken('abc')).toEqual({
+            type: SET_TRELLO_TOKEN, token: 'abc'
+        });
+    });
+});
 
 describe("Trello Boards", () => {
     it("gets a list of trello boards", () => {

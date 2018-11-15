@@ -2,19 +2,25 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
-import { trelloAuth } from './AuthPortal/reducer';
-import AuthPortalContainer from './AuthPortal/AuthPortalContainer';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk'
+import { trello } from './Trello/reducer';
+import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
+import BoardsListContainer from './Trello/BoardsListContainer';
 
-const app = combineReducers({
-    trelloAuth
+const rootReducer = combineReducers({
+    trello
 });
 
-const store = createStore(app);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
 
 const App = () => {
     return (
-        <AuthPortalContainer />
+        <div>
+            <AuthPortalContainer />
+            <BoardsListContainer />
+        </div>
     );
 };
 

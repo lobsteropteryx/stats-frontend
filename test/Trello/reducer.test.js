@@ -1,11 +1,20 @@
-import { trelloData } from '../../app/Trello/reducer';
-import { getBoards, FETCH_BOARDS } from '../../app/Trello/actions';
+import { trello } from '../../app/Trello/reducer';
+import { setTrelloToken, getBoards, FETCH_BOARDS } from '../../app/Trello/actions';
+
+describe("Authentication", () => {
+    it("sets the trello token", () => {
+        const state = {};
+        const token = 'abc';
+        const action = setTrelloToken(token);
+        expect(trello(state, action)).toEqual({token});
+    });
+});
 
 describe("Getting boards", () => {
     it("sets the default state", () => {
         const state = {boards: []};
         const action = { type: 'test' };
-        expect(trelloData(state, action)).toEqual(state);
+        expect(trello(state, action)).toEqual(state);
     });
 
     it("sets the list of boards", () => {
@@ -13,7 +22,7 @@ describe("Getting boards", () => {
         const boards = [{name: "a board"}];
         const expectedState = {isFetching: false, boards};
         const action = getBoards(boards);
-        expect(trelloData(state, action)).toEqual(expectedState);
+        expect(trello(state, action)).toEqual(expectedState);
     });
 
     it("requests boards", async () => {
@@ -22,6 +31,6 @@ describe("Getting boards", () => {
         const action = {
             type: FETCH_BOARDS
         };
-        expect(trelloData(state, action)).toEqual(expectedState);
+        expect(trello(state, action)).toEqual(expectedState);
     });
 });
