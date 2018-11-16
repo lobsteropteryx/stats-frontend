@@ -4,23 +4,23 @@ import List from './List';
 
 const mapStateToProps = state => {
     return {
-        options: state.trello.boards.map(board => {
-            return {value: board.id, label: board.name}
+        options: state.trello.columns.map(column => {
+            return {value: column.id, label: column.name}
         })
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChange: board => {
-            dispatch(selectBoard(board))
+        onChange: column => {
+            dispatch(selectStartingColumn(column))
         }
     }
 };
 
-const BoardsList = connect(
+const StartingColumnsList = connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
 
-export default BoardsList
+export default StartingColumnsList
