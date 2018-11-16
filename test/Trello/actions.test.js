@@ -2,15 +2,18 @@ import nock from 'nock';
 import { mockStore } from '../mockStore';
 
 import {
+    INITIALIZE_DATA,
     initializeData,
-    setTrelloToken,
-    getBoards,
-    selectBoard,
-    fetchBoards,
     SET_TRELLO_TOKEN,
+    setTrelloToken,
     GET_BOARDS,
+    getBoards,
     SELECT_BOARD,
-    FETCH_BOARDS
+    selectBoard,
+    FETCH_BOARDS,
+    fetchBoards,
+    GET_CARDS,
+    getCards
 } from '../../app/Trello/actions';
 
 
@@ -67,5 +70,14 @@ describe("Trello Boards", () => {
         await store.dispatch(fetchBoards('apiKey', 'token'));
         const actions = store.getActions();
         expect(actions[0]).toEqual({type: GET_BOARDS, boards});
+    });
+});
+
+describe("Trello Cards", () => {
+    it("gets a list of trello cards", () => {
+        const cards = [];
+        expect(getCards(cards)).toEqual({
+            type: GET_CARDS, cards
+        });
     });
 });
