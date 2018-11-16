@@ -4,7 +4,8 @@ import {
     FETCH_BOARDS,
     SELECT_BOARD,
     GET_COLUMNS,
-    FETCH_COLUMNS
+    FETCH_COLUMNS,
+    SELECT_STARTING_COLUMN
 } from './actions';
 
 const defaultState = {
@@ -39,6 +40,10 @@ export function trello(state = defaultState, action) {
         case FETCH_COLUMNS:
             return Object.assign({}, state, {
                 isFetching: true
+            });
+        case SELECT_STARTING_COLUMN:
+            return Object.assign({}, state, {
+                startingColumn: action.column
             });
         default:
             return state

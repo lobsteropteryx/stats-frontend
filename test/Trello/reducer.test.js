@@ -5,7 +5,8 @@ import {
     selectBoard,
     FETCH_BOARDS,
     FETCH_COLUMNS,
-    getColumns
+    getColumns,
+    selectStartingColumn
 } from '../../app/Trello/actions';
 
 describe("Authentication", () => {
@@ -75,4 +76,14 @@ describe("Getting columns", () => {
         };
         expect(trello(state, action)).toEqual(expectedState);
     });
+});
+
+describe("Selecting a starting column", () => {
+    it("Sets the selected column", () => {
+        const state = {};
+        const selectedColumn = {id: 1, name: 'selectedColumn'};
+        const expectedState = {startingColumn: selectedColumn};
+        const action = selectStartingColumn(selectedColumn);
+        expect(trello(state, action)).toEqual(expectedState);
+    }) ;
 });
