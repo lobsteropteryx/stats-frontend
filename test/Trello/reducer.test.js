@@ -2,7 +2,7 @@ import { trello } from '../../app/Trello/reducer';
 import {
     setTrelloToken,
     getBoards,
-    selectBoard,
+    setBoard,
     FETCH_BOARDS,
     FETCH_COLUMNS,
     getColumns,
@@ -48,7 +48,7 @@ describe("Selecting a board", () => {
        const state = {};
        const selectedBoard = {id: 1, name: 'selectedBoard'};
        const expectedState = {selectedBoard: selectedBoard};
-       const action = selectBoard(selectedBoard);
+       const action = setBoard(selectedBoard);
        expect(trello(state, action)).toEqual(expectedState);
    }) ;
 });

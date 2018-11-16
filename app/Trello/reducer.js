@@ -2,7 +2,7 @@ import {
     SET_TRELLO_TOKEN,
     GET_BOARDS,
     FETCH_BOARDS,
-    SELECT_BOARD,
+    SET_BOARD,
     GET_COLUMNS,
     FETCH_COLUMNS,
     SELECT_STARTING_COLUMN
@@ -10,7 +10,10 @@ import {
 
 const defaultState = {
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
-    boards: []
+    boards: [],
+    board: null,
+    columns: [],
+    startingColumn: null
 };
 
 export function trello(state = defaultState, action) {
@@ -28,7 +31,7 @@ export function trello(state = defaultState, action) {
             return Object.assign({}, state, {
                 isFetching: true
             });
-        case SELECT_BOARD:
+        case SET_BOARD:
             return Object.assign({}, state, {
                selectedBoard: action.board
             });

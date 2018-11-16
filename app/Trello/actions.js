@@ -19,9 +19,18 @@ export function getBoards(boards) {
     return {type: GET_BOARDS, boards}
 }
 
+export const SET_BOARD = "SET_BOARD";
+export function setBoard(board) {
+    return {type: SET_BOARD, board}
+}
+
 export const SELECT_BOARD = "SELECT_BOARD";
 export function selectBoard(board) {
-    return {type: SELECT_BOARD, board}
+    return (dispatch, getState) => {
+        const state = getState();
+        dispatch(setBoard(board));
+        return dispatch(fetchColumns(state.trello.apiKey, state.trello.token, board.value))
+    }
 }
 
 export const FETCH_BOARDS = "FETCH_BOARDS";

@@ -8,6 +8,8 @@ import {
     setTrelloToken,
     GET_BOARDS,
     getBoards,
+    SET_BOARD,
+    setBoard,
     SELECT_BOARD,
     selectBoard,
     FETCH_BOARDS,
@@ -54,11 +56,32 @@ describe("Trello Boards", () => {
         });
     });
 
-    it("selects a board", () => {
+    it("sets a board", () => {
         const board = {name: 'myBoard'};
-        expect(selectBoard(board)).toEqual({
-            type: SELECT_BOARD, board
+        expect(setBoard(board)).toEqual({
+            type: SET_BOARD, board
         });
+    });
+
+    it("selects a board", async () => {
+        const board = {value: 'boardId', label: 'my board'};
+        const columns = [{id: 1, name: 'my column'}];
+        const store = mockStore({trello: {
+            apiKey: 'apiKey',
+            token: 'token',
+            selectedBoard: board
+        }});
+
+        nock('https://api.trello.com')
+            .get('/1/boards/boardId/lists')
+            .query(true)
+            .reply(200, columns);
+
+        await store.dispatch(selectBoard(board));
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual({type: SET_BOARD, board});
+        expect(actions[1]).toEqual({type: GET_COLUMNS, columns});
     });
 
     it("requests boards", async () => {
@@ -100,7 +123,7 @@ describe("Trello Columns", () => {
         expect(actions[0]).toEqual({type: GET_COLUMNS, columns});
     });
 
-    it("selects a starting column", () => {
+    it("sets the starting column", () => {
         const column = {name: 'myBoard'};
         expect(selectStartingColumn(column)).toEqual({
             type: SELECT_STARTING_COLUMN, column
