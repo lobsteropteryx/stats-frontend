@@ -21,8 +21,8 @@ const App = () => {
     return (
         <div>
             <AuthPortalContainer />
-            <BoardsList />
-            <StartingColumnsList />
+            <BoardsList label="Boards" />
+            <StartingColumnsList label="Start Column" />
         </div>
     );
 };

@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 
 const List = (props) => {
     return (
-        <Select
-            options={props.options}
-            onChange={props.onChange}
-        />
+        <div>
+            <label>{props.label}</label>
+            <Select
+                options={props.options}
+                onChange={props.onChange}
+            />
+        </div>
     );
 };
 
