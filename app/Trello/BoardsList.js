@@ -1,19 +1,26 @@
-import React from 'react';
-import Select from 'react-select';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { selectBoard } from './actions';
+import List from './List';
 
-const BoardsList = (props) => {
-    return (
-        <Select
-            options={props.boards}
-            onChange={props.onBoardChange}
-        />
-    );
+const mapStateToProps = state => {
+    return {
+        options: state.trello.boards.map(board => {
+            return {value: board.id, label: board.name}
+        })
+    }
 };
 
-BoardsList.propTypes = {
-    boards: PropTypes.array.isRequired,
-    onBoardChange: PropTypes.func.isRequired
+const mapDispatchToProps = dispatch => {
+    return {
+        onChange: board => {
+            dispatch(selectBoard(board))
+        }
+    }
 };
 
-export default BoardsList;
+const BoardsList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(List);
+
+export default BoardsList

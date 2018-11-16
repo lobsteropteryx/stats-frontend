@@ -6,7 +6,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import { trello } from './Trello/reducer';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
-import BoardsListContainer from './Trello/BoardsListContainer';
+import BoardsList from './Trello/BoardsList';
 
 const rootReducer = combineReducers({
     trello
@@ -20,7 +20,7 @@ const App = () => {
     return (
         <div>
             <AuthPortalContainer />
-            <BoardsListContainer />
+            <BoardsList />
         </div>
     );
 };
