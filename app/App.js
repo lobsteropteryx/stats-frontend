@@ -8,6 +8,7 @@ import { trello } from './Trello/reducer';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import BoardsList from './Trello/BoardsList';
 import StartingColumnsList from './Trello/StartingColumnsList';
+import EndingColumnsList from './Trello/EndingColumnsList';
 
 const rootReducer = combineReducers({
     trello
@@ -23,6 +24,7 @@ const App = () => {
             <AuthPortalContainer />
             <BoardsList label="Boards" />
             <StartingColumnsList label="Start Column" />
+            <EndingColumnsList label="End Column" />
         </div>
     );
 };
