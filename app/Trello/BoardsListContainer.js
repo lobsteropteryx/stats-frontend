@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getBoards } from './actions';
+import { selectBoard } from './actions';
 import BoardsList from './BoardsList';
 
 const mapStateToProps = state => {
@@ -10,9 +10,17 @@ const mapStateToProps = state => {
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onBoardChange: board => {
+            dispatch(selectBoard(board))
+        }
+    }
+};
 
 const BoardsListContainer = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(BoardsList);
 
 export default BoardsListContainer
