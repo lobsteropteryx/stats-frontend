@@ -5,7 +5,8 @@ import {
     SET_BOARD,
     GET_COLUMNS,
     FETCH_COLUMNS,
-    SELECT_STARTING_COLUMN
+    SELECT_STARTING_COLUMN,
+    SELECT_ENDING_COLUMN
 } from './actions';
 
 const defaultState = {
@@ -47,6 +48,10 @@ export function trello(state = defaultState, action) {
         case SELECT_STARTING_COLUMN:
             return Object.assign({}, state, {
                 startingColumn: action.column
+            });
+        case SELECT_ENDING_COLUMN:
+            return Object.assign({}, state, {
+                endingColumn: action.column
             });
         default:
             return state
