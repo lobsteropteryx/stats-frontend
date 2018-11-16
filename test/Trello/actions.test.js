@@ -19,7 +19,9 @@ import {
     FETCH_COLUMNS,
     fetchColumns,
     SELECT_STARTING_COLUMN,
-    selectStartingColumn
+    selectStartingColumn,
+    SELECT_ENDING_COLUMN,
+    selectEndingColumn
 } from '../../app/Trello/actions';
 
 
@@ -124,9 +126,16 @@ describe("Trello Columns", () => {
     });
 
     it("sets the starting column", () => {
-        const column = {name: 'myBoard'};
+        const column = {name: 'myColumn'};
         expect(selectStartingColumn(column)).toEqual({
             type: SELECT_STARTING_COLUMN, column
+        });
+    });
+
+    it("sets the ending column", () => {
+        const column = {name: 'myColumn'};
+        expect(selectEndingColumn(column)).toEqual({
+            type: SELECT_ENDING_COLUMN, column
         });
     });
 });

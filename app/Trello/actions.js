@@ -62,3 +62,8 @@ export const SELECT_STARTING_COLUMN = "SELECT_STARTING_COLUMN";
 export function selectStartingColumn(column) {
     return {type: SELECT_STARTING_COLUMN, column}
 }
+
+export const SELECT_ENDING_COLUMN = "SELECT_ENDING_COLUMN";
+export function selectEndingColumn(column) {
+    return {type: SELECT_ENDING_COLUMN, column}
+}
