@@ -2,7 +2,9 @@ import {
     SET_TRELLO_TOKEN,
     GET_BOARDS,
     FETCH_BOARDS,
-    SELECT_BOARD
+    SELECT_BOARD,
+    GET_LISTS,
+    FETCH_LISTS
 } from './actions';
 
 const defaultState = {
@@ -28,6 +30,15 @@ export function trello(state = defaultState, action) {
         case SELECT_BOARD:
             return Object.assign({}, state, {
                selectedBoard: action.board
+            });
+        case GET_LISTS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                lists: action.lists
+            });
+        case FETCH_LISTS:
+            return Object.assign({}, state, {
+                isFetching: true
             });
         default:
             return state

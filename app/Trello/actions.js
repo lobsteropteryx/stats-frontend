@@ -34,18 +34,17 @@ export function fetchBoards(apiKey, token) {
     }
 }
 
-export const GET_CARDS = "GET_CARDS";
-export function getCards(cards) {
-    return {type: GET_CARDS, cards}
+export const GET_LISTS = "GET_LISTS";
+export function getLists(lists) {
+    return {type: GET_LISTS, lists}
 }
 
-export const FETCH_CARDS = "FETCH_CARDS";
-export function fetchCards(apiKey, token) {
-    return (dispatch, getState) => {
-        const state = getState();
+export const FETCH_LISTS = "FETCH_LISTS";
+export function fetchLists(apiKey, token, boardId) {
+    return (dispatch) => {
         const trello = new Trello(apiKey, token);
 
-        return trello.getCards(state.trello.selectedBoard.value)
-            .then(boards => dispatch(getCards(boards)));
+        return trello.getListsOnBoard(boardId)
+            .then(boards => dispatch(getLists(boards)));
     }
 }
