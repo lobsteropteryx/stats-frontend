@@ -13,7 +13,9 @@ import {
     FETCH_BOARDS,
     fetchBoards,
     GET_CARDS,
-    getCards
+    getCards,
+    FETCH_CARDS,
+    fetchCards
 } from '../../app/Trello/actions';
 
 
@@ -79,5 +81,20 @@ describe("Trello Cards", () => {
         expect(getCards(cards)).toEqual({
             type: GET_CARDS, cards
         });
+    });
+
+    it("requests cards", async () => {
+        const cards = [{id: 1, name: 'my card'}];
+
+        const store = mockStore();
+
+        nock('https://api.trello.com')
+            .get('/1/boards/abc/cards')
+            .query(true)
+            .reply(200, cards);
+
+        await store.dispatch(fetchCards('apiKey', 'token'));
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({type: GET_CARDS, cards});
     });
 });
