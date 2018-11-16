@@ -34,17 +34,17 @@ export function fetchBoards(apiKey, token) {
     }
 }
 
-export const GET_LISTS = "GET_LISTS";
-export function getLists(lists) {
-    return {type: GET_LISTS, lists}
+export const GET_COLUMNS = "GET_COLUMNS";
+export function getColumns(columns) {
+    return {type: GET_COLUMNS, columns}
 }
 
-export const FETCH_LISTS = "FETCH_LISTS";
-export function fetchLists(apiKey, token, boardId) {
+export const FETCH_COLUMNS = "FETCH_COLUMNS";
+export function fetchColumns(apiKey, token, boardId) {
     return (dispatch) => {
         const trello = new Trello(apiKey, token);
 
         return trello.getListsOnBoard(boardId)
-            .then(boards => dispatch(getLists(boards)));
+            .then(columns => dispatch(getColumns(columns)));
     }
 }

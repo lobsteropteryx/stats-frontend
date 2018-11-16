@@ -3,8 +3,8 @@ import {
     GET_BOARDS,
     FETCH_BOARDS,
     SELECT_BOARD,
-    GET_LISTS,
-    FETCH_LISTS
+    GET_COLUMNS,
+    FETCH_COLUMNS
 } from './actions';
 
 const defaultState = {
@@ -31,12 +31,12 @@ export function trello(state = defaultState, action) {
             return Object.assign({}, state, {
                selectedBoard: action.board
             });
-        case GET_LISTS:
+        case GET_COLUMNS:
             return Object.assign({}, state, {
                 isFetching: false,
-                lists: action.lists
+                columns: action.columns
             });
-        case FETCH_LISTS:
+        case FETCH_COLUMNS:
             return Object.assign({}, state, {
                 isFetching: true
             });

@@ -4,8 +4,8 @@ import {
     getBoards,
     selectBoard,
     FETCH_BOARDS,
-    FETCH_LISTS,
-    getLists
+    FETCH_COLUMNS,
+    getColumns
 } from '../../app/Trello/actions';
 
 describe("Authentication", () => {
@@ -52,26 +52,26 @@ describe("Selecting a board", () => {
    }) ;
 });
 
-describe("Getting lists", () => {
+describe("Getting columns", () => {
     it("sets the default state", () => {
-        const state = {lists: []};
+        const state = {columns: []};
         const action = { type: 'test' };
         expect(trello(state, action)).toEqual(state);
     });
 
-    it("sets the list of lists", () => {
+    it("sets the list of columns", () => {
         const state = {};
-        const lists = [{name: "a list"}];
-        const expectedState = {isFetching: false, lists};
-        const action = getLists(lists);
+        const columns = [{name: "a list"}];
+        const expectedState = {isFetching: false, columns};
+        const action = getColumns(columns);
         expect(trello(state, action)).toEqual(expectedState);
     });
 
-    it("requests lists", async () => {
+    it("requests columns", async () => {
         const state = {selectedBoard: {value: 1}};
         const expectedState = {isFetching: true, selectedBoard: {value: 1}};
         const action = {
-            type: FETCH_LISTS
+            type: FETCH_COLUMNS
         };
         expect(trello(state, action)).toEqual(expectedState);
     });

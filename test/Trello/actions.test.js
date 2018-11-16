@@ -12,10 +12,10 @@ import {
     selectBoard,
     FETCH_BOARDS,
     fetchBoards,
-    GET_LISTS,
-    getLists,
-    FETCH_LISTS,
-    fetchLists
+    GET_COLUMNS,
+    getColumns,
+    FETCH_COLUMNS,
+    fetchColumns
 } from '../../app/Trello/actions';
 
 
@@ -75,26 +75,26 @@ describe("Trello Boards", () => {
     });
 });
 
-describe("Trello Lists", () => {
-    it("gets a list of trello lists", () => {
-        const lists = [];
-        expect(getLists(lists)).toEqual({
-            type: GET_LISTS, lists
+describe("Trello Columns", () => {
+    it("gets a list of trello columns", () => {
+        const columns = [];
+        expect(getColumns(columns)).toEqual({
+            type: GET_COLUMNS, columns
         });
     });
 
-    it("requests lists", async () => {
-        const lists = [{id: 1, name: 'my list'}];
+    it("requests columns", async () => {
+        const columns = [{id: 1, name: 'my list'}];
 
         const store = mockStore();
 
         nock('https://api.trello.com')
             .get('/1/boards/abc/lists')
             .query(true)
-            .reply(200, lists);
+            .reply(200, columns);
 
-        await store.dispatch(fetchLists('apiKey', 'token', 'abc'));
+        await store.dispatch(fetchColumns('apiKey', 'token', 'abc'));
         const actions = store.getActions();
-        expect(actions[0]).toEqual({type: GET_LISTS, lists});
+        expect(actions[0]).toEqual({type: GET_COLUMNS, columns});
     });
 });
