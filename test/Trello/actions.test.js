@@ -15,7 +15,9 @@ import {
     GET_COLUMNS,
     getColumns,
     FETCH_COLUMNS,
-    fetchColumns
+    fetchColumns,
+    SELECT_STARTING_COLUMN,
+    selectStartingColumn
 } from '../../app/Trello/actions';
 
 
@@ -96,5 +98,12 @@ describe("Trello Columns", () => {
         await store.dispatch(fetchColumns('apiKey', 'token', 'abc'));
         const actions = store.getActions();
         expect(actions[0]).toEqual({type: GET_COLUMNS, columns});
+    });
+
+    it("selects a starting column", () => {
+        const column = {name: 'myBoard'};
+        expect(selectStartingColumn(column)).toEqual({
+            type: SELECT_STARTING_COLUMN, column
+        });
     });
 });

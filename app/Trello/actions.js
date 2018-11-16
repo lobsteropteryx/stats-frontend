@@ -48,3 +48,8 @@ export function fetchColumns(apiKey, token, boardId) {
             .then(columns => dispatch(getColumns(columns)));
     }
 }
+
+export const SELECT_STARTING_COLUMN = "SELECT_STARTING_COLUMN";
+export function selectStartingColumn(column) {
+    return {type: SELECT_STARTING_COLUMN, column}
+}
