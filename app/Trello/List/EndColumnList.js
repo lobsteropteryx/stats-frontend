@@ -4,7 +4,8 @@ import List from './List';
 
 const mapStateToProps = state => {
     return {
-        value: state.trello.endingColumn,
+        label: "End Column",
+        value: state.trello.endColumn,
         options: state.trello.columns.map(column => {
             return {value: column.id, label: column.name}
         })
@@ -19,9 +20,9 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-const EndingColumnsList = connect(
+const EndColumnList = connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
 
-export default EndingColumnsList
+export default EndColumnList

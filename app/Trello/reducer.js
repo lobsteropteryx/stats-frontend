@@ -15,8 +15,7 @@ const defaultState = {
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
     board: null,
-    columns: [],
-    startingColumn: null
+    columns: []
 };
 
 export function trello(state = defaultState, action) {

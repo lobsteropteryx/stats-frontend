@@ -4,7 +4,8 @@ import List from './List';
 
 const mapStateToProps = state => {
     return {
-        value: state.trello.startingColumn,
+        label: "Start Column",
+        value: state.trello.startColumn,
         options: state.trello.columns.map(column => {
             return {value: column.id, label: column.name}
         })
@@ -19,9 +20,9 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-const StartingColumnsList = connect(
+const StartColumnList = connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
 
-export default StartingColumnsList
+export default StartColumnList

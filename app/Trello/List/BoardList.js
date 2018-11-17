@@ -4,6 +4,7 @@ import List from './List';
 
 const mapStateToProps = state => {
     return {
+        label: "Board",
         options: state.trello.boards.map(board => {
             return {value: board.id, label: board.name}
         })
