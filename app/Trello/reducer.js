@@ -34,7 +34,9 @@ export function trello(state = defaultState, action) {
             });
         case SET_BOARD:
             return Object.assign({}, state, {
-               selectedBoard: action.board
+                selectedBoard: action.board,
+                startingColumn: null,
+                endingColumn: null
             });
         case GET_COLUMNS:
             return Object.assign({}, state, {

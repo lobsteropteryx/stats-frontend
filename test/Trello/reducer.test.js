@@ -22,7 +22,7 @@ describe("Authentication", () => {
 describe("Getting boards", () => {
     it("sets the default state", () => {
         const state = {boards: []};
-        const action = { type: 'test' };
+        const action = {type: 'test'};
         expect(trello(state, action)).toEqual(state);
     });
 
@@ -45,19 +45,23 @@ describe("Getting boards", () => {
 });
 
 describe("Selecting a board", () => {
-   it("Sets the selected board", () => {
-       const state = {};
-       const selectedBoard = {id: 1, name: 'selectedBoard'};
-       const expectedState = {selectedBoard: selectedBoard};
-       const action = setBoard(selectedBoard);
-       expect(trello(state, action)).toEqual(expectedState);
-   }) ;
+    it("Sets the board and resets the selected columns", () => {
+        const state = {startingColumn: 'start', endingColumn: 'ending'};
+        const selectedBoard = {id: 1, name: 'selectedBoard'};
+        const expectedState = {
+            selectedBoard: selectedBoard,
+            startingColumn: null,
+            endingColumn: null
+        };
+        const action = setBoard(selectedBoard);
+        expect(trello(state, action)).toEqual(expectedState);
+    });
 });
 
 describe("Getting columns", () => {
     it("sets the default state", () => {
         const state = {columns: []};
-        const action = { type: 'test' };
+        const action = {type: 'test'};
         expect(trello(state, action)).toEqual(state);
     });
 
@@ -94,5 +98,5 @@ describe("Selecting columns", () => {
         const expectedState = {endingColumn: selectedColumn};
         const action = selectEndingColumn(selectedColumn);
         expect(trello(state, action)).toEqual(expectedState);
-    }) ;
+    });
 });

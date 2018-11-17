@@ -7,6 +7,7 @@ const List = (props) => {
         <div>
             <label>{props.label}</label>
             <Select
+                value={props.value}
                 options={props.options}
                 onChange={props.onChange}
             />

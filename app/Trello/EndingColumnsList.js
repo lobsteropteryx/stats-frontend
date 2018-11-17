@@ -4,6 +4,7 @@ import List from './List';
 
 const mapStateToProps = state => {
     return {
+        value: state.trello.endingColumn,
         options: state.trello.columns.map(column => {
             return {value: column.id, label: column.name}
         })
