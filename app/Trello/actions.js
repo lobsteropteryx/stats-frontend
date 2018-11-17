@@ -38,7 +38,7 @@ export function fetchBoards(apiKey, token) {
     return (dispatch) => {
         const trello = new Trello(apiKey, token);
 
-        return trello.getBoards('me')
+        return trello.makeRequest('get', '/1/members/me/boards', {filter: 'open'})
             .then(boards => dispatch(getBoards(boards)));
     }
 }
