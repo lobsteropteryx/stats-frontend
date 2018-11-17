@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 import { trello } from './Trello/reducer';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import Boards from './Trello/List/Boards';
-import StartColumnList from './Trello/List/StartColumnList';
+import StartColumns from './Trello/List/StartColumns';
 import EndColumns from './Trello/List/EndColumns';
 import StartDate from './Trello/Date/StartDate';
 import EndDate from './Trello/Date/EndDate';
@@ -27,7 +27,7 @@ const App = () => {
             <StartDate />
             <EndDate />
             <Boards />
-            <StartColumnList />
+            <StartColumns />
             <EndColumns />
         </div>
     );
