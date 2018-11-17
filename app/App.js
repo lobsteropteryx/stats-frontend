@@ -6,7 +6,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import { trello } from './Trello/reducer';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
-import BoardList from './Trello/List/BoardList';
+import Boards from './Trello/List/Boards';
 import StartColumnList from './Trello/List/StartColumnList';
 import EndColumnList from './Trello/List/EndColumnList';
 import StartDate from './Trello/Date/StartDate';
@@ -26,7 +26,7 @@ const App = () => {
             <AuthPortalContainer />
             <StartDate />
             <EndDate />
-            <BoardList />
+            <Boards />
             <StartColumnList />
             <EndColumnList />
         </div>
