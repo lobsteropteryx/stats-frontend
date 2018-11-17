@@ -21,7 +21,9 @@ import {
     SELECT_STARTING_COLUMN,
     selectStartingColumn,
     SELECT_ENDING_COLUMN,
-    selectEndingColumn
+    selectEndingColumn,
+    SET_START_DATE,
+    setStartDate
 } from '../../app/Trello/actions';
 
 
@@ -136,6 +138,15 @@ describe("Trello Columns", () => {
         const column = {name: 'myColumn'};
         expect(selectEndingColumn(column)).toEqual({
             type: SELECT_ENDING_COLUMN, column
+        });
+    });
+});
+
+describe("Filtering by Date", () => {
+    it("sets the start date", () => {
+        const date = new Date('Jan 1, 2000');
+        expect(setStartDate(date)).toEqual({
+            type: SET_START_DATE, date
         });
     });
 });

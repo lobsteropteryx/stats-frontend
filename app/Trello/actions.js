@@ -67,3 +67,8 @@ export const SELECT_ENDING_COLUMN = "SELECT_ENDING_COLUMN";
 export function selectEndingColumn(column) {
     return {type: SELECT_ENDING_COLUMN, column}
 }
+
+export const SET_START_DATE = "SET_START_DATE";
+export function setStartDate(date) {
+    return {type: SET_START_DATE, date}
+}
