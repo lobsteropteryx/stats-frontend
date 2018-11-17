@@ -8,7 +8,7 @@ import { trello } from './Trello/reducer';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import Boards from './Trello/List/Boards';
 import StartColumnList from './Trello/List/StartColumnList';
-import EndColumnList from './Trello/List/EndColumnList';
+import EndColumns from './Trello/List/EndColumns';
 import StartDate from './Trello/Date/StartDate';
 import EndDate from './Trello/Date/EndDate';
 
@@ -28,7 +28,7 @@ const App = () => {
             <EndDate />
             <Boards />
             <StartColumnList />
-            <EndColumnList />
+            <EndColumns />
         </div>
     );
 };

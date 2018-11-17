@@ -20,9 +20,9 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-const EndColumnList = connect(
+const EndColumns = connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
 
-export default EndColumnList
+export default EndColumns
