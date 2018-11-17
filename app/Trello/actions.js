@@ -72,3 +72,8 @@ export const SET_START_DATE = "SET_START_DATE";
 export function setStartDate(date) {
     return {type: SET_START_DATE, date}
 }
+
+export const SET_END_DATE = "SET_END_DATE";
+export function setEndDate(date) {
+    return {type: SET_END_DATE, date}
+}
