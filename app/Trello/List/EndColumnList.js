@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectEndingColumn } from './../actions';
+import { setEndColumn } from './../actions';
 import List from './List';
 
 const mapStateToProps = state => {
@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onChange: column => {
-            dispatch(selectEndingColumn(column))
+            dispatch(setEndColumn(column))
         }
     }
 };

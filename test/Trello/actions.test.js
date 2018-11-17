@@ -18,10 +18,10 @@ import {
     getColumns,
     FETCH_COLUMNS,
     fetchColumns,
-    SELECT_STARTING_COLUMN,
-    selectStartingColumn,
-    SELECT_ENDING_COLUMN,
-    selectEndingColumn,
+    SET_START_COLUMN,
+    setStartColumn,
+    SET_END_COLUMN,
+    setEndColumn,
     SET_START_DATE,
     setStartDate,
     SET_END_DATE,
@@ -131,15 +131,15 @@ describe("Trello Columns", () => {
 
     it("sets the starting column", () => {
         const column = {name: 'myColumn'};
-        expect(selectStartingColumn(column)).toEqual({
-            type: SELECT_STARTING_COLUMN, column
+        expect(setStartColumn(column)).toEqual({
+            type: SET_START_COLUMN, column
         });
     });
 
     it("sets the ending column", () => {
         const column = {name: 'myColumn'};
-        expect(selectEndingColumn(column)).toEqual({
-            type: SELECT_ENDING_COLUMN, column
+        expect(setEndColumn(column)).toEqual({
+            type: SET_END_COLUMN, column
         });
     });
 });

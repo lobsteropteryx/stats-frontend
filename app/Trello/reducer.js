@@ -5,8 +5,8 @@ import {
     SET_BOARD,
     GET_COLUMNS,
     FETCH_COLUMNS,
-    SELECT_STARTING_COLUMN,
-    SELECT_ENDING_COLUMN,
+    SET_START_COLUMN,
+    SET_END_COLUMN,
     SET_START_DATE,
     SET_END_DATE
 } from './actions';
@@ -37,8 +37,8 @@ export function trello(state = defaultState, action) {
         case SET_BOARD:
             return Object.assign({}, state, {
                 selectedBoard: action.board,
-                startingColumn: null,
-                endingColumn: null
+                startColumn: null,
+                endColumn: null
             });
         case GET_COLUMNS:
             return Object.assign({}, state, {
@@ -49,13 +49,13 @@ export function trello(state = defaultState, action) {
             return Object.assign({}, state, {
                 isFetching: true
             });
-        case SELECT_STARTING_COLUMN:
+        case SET_START_COLUMN:
             return Object.assign({}, state, {
-                startingColumn: action.column
+                startColumn: action.column
             });
-        case SELECT_ENDING_COLUMN:
+        case SET_END_COLUMN:
             return Object.assign({}, state, {
-                endingColumn: action.column
+                endColumn: action.column
             });
         case SET_START_DATE:
             return Object.assign({}, state, {

@@ -58,14 +58,14 @@ export function fetchColumns(apiKey, token, boardId) {
     }
 }
 
-export const SELECT_STARTING_COLUMN = "SELECT_STARTING_COLUMN";
-export function selectStartingColumn(column) {
-    return {type: SELECT_STARTING_COLUMN, column}
+export const SET_START_COLUMN = "SET_START_COLUMN";
+export function setStartColumn(column) {
+    return {type: SET_START_COLUMN, column}
 }
 
-export const SELECT_ENDING_COLUMN = "SELECT_ENDING_COLUMN";
-export function selectEndingColumn(column) {
-    return {type: SELECT_ENDING_COLUMN, column}
+export const SET_END_COLUMN = "SET_ENDING_COLUMN";
+export function setEndColumn(column) {
+    return {type: SET_END_COLUMN, column}
 }
 
 export const SET_START_DATE = "SET_START_DATE";

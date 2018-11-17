@@ -6,8 +6,8 @@ import {
     FETCH_BOARDS,
     FETCH_COLUMNS,
     getColumns,
-    selectStartingColumn,
-    selectEndingColumn,
+    setStartColumn,
+    setEndColumn,
     setStartDate,
     setEndDate
 } from '../../app/Trello/actions';
@@ -48,12 +48,12 @@ describe("Getting boards", () => {
 
 describe("Selecting a board", () => {
     it("Sets the board and resets the selected columns", () => {
-        const state = {startingColumn: 'start', endingColumn: 'ending'};
+        const state = {startColumn: 'start', endColumn: 'ending'};
         const selectedBoard = {id: 1, name: 'selectedBoard'};
         const expectedState = {
             selectedBoard: selectedBoard,
-            startingColumn: null,
-            endingColumn: null
+            startColumn: null,
+            endColumn: null
         };
         const action = setBoard(selectedBoard);
         expect(trello(state, action)).toEqual(expectedState);
@@ -89,16 +89,16 @@ describe("Selecting columns", () => {
     it("Sets the selected start column", () => {
         const state = {};
         const selectedColumn = {id: 1, name: 'selectedColumn'};
-        const expectedState = {startingColumn: selectedColumn};
-        const action = selectStartingColumn(selectedColumn);
+        const expectedState = {startColumn: selectedColumn};
+        const action = setStartColumn(selectedColumn);
         expect(trello(state, action)).toEqual(expectedState);
     });
 
     it("Sets the selected end column", () => {
         const state = {};
         const selectedColumn = {id: 1, name: 'selectedColumn'};
-        const expectedState = {endingColumn: selectedColumn};
-        const action = selectEndingColumn(selectedColumn);
+        const expectedState = {endColumn: selectedColumn};
+        const action = setEndColumn(selectedColumn);
         expect(trello(state, action)).toEqual(expectedState);
     });
 });
