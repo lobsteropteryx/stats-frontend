@@ -6,7 +6,9 @@ import {
     GET_COLUMNS,
     FETCH_COLUMNS,
     SELECT_STARTING_COLUMN,
-    SELECT_ENDING_COLUMN
+    SELECT_ENDING_COLUMN,
+    SET_START_DATE,
+    SET_END_DATE
 } from './actions';
 
 const defaultState = {
@@ -54,6 +56,14 @@ export function trello(state = defaultState, action) {
         case SELECT_ENDING_COLUMN:
             return Object.assign({}, state, {
                 endingColumn: action.column
+            });
+        case SET_START_DATE:
+            return Object.assign({}, state, {
+                startDate: action.date
+            });
+        case SET_END_DATE:
+            return Object.assign({}, state, {
+                endDate: action.date
             });
         default:
             return state

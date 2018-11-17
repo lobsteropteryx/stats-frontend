@@ -7,7 +7,9 @@ import {
     FETCH_COLUMNS,
     getColumns,
     selectStartingColumn,
-    selectEndingColumn
+    selectEndingColumn,
+    setStartDate,
+    setEndDate
 } from '../../app/Trello/actions';
 
 describe("Authentication", () => {
@@ -97,6 +99,24 @@ describe("Selecting columns", () => {
         const selectedColumn = {id: 1, name: 'selectedColumn'};
         const expectedState = {endingColumn: selectedColumn};
         const action = selectEndingColumn(selectedColumn);
+        expect(trello(state, action)).toEqual(expectedState);
+    });
+});
+
+describe("Dates", () => {
+    it("sets the start date", () => {
+        const state = {};
+        const date = new Date('Jan 1, 2000');
+        const action = setStartDate(date);
+        const expectedState = {startDate: date};
+        expect(trello(state, action)).toEqual(expectedState);
+    });
+
+    it("sets the end date", () => {
+        const state = {};
+        const date = new Date('Jan 1, 2000');
+        const action = setEndDate(date);
+        const expectedState = {endDate: date};
         expect(trello(state, action)).toEqual(expectedState);
     });
 });
