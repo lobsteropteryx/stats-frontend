@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectStartingColumn } from './actions';
+import { selectStartingColumn } from './../actions';
 import List from './List';
 
 const mapStateToProps = state => {

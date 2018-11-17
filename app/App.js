@@ -6,9 +6,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import { trello } from './Trello/reducer';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
-import BoardsList from './Trello/BoardsList';
-import StartingColumnsList from './Trello/StartingColumnsList';
-import EndingColumnsList from './Trello/EndingColumnsList';
+import BoardsList from './Trello/List/BoardList';
+import StartingColumnsList from './Trello/List/StartColumnList';
+import EndingColumnsList from './Trello/List/EndColumnList';
 import StartDate from './Trello/Date/StartDate';
 import EndDate from './Trello/Date/EndDate';
 
