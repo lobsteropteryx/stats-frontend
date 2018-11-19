@@ -30,6 +30,7 @@ export function selectBoard(board) {
         const state = getState();
         dispatch(setBoard(board));
         return dispatch(fetchColumns(state.trello.apiKey, state.trello.token, board.value))
+            .then(dispatch(fetchCards(state.trello.apiKey, state.trello.token, board.value)))
     }
 }
 
@@ -76,4 +77,19 @@ export function setStartDate(date) {
 export const SET_END_DATE = "SET_END_DATE";
 export function setEndDate(date) {
     return {type: SET_END_DATE, date}
+}
+
+export const GET_CARDS = "GET_CARDS";
+export function getCards(cards) {
+    return {type: GET_CARDS, cards}
+}
+
+export const FETCH_CARDS = "FETCH_CARDS";
+export function fetchCards(apiKey, token, boardId) {
+    return (dispatch) => {
+        const trello = new Trello(apiKey, token);
+
+        return trello.makeRequest('get', `/1/boards/${boardId}/cards`, {filter: 'open'})
+            .then(cards => dispatch(getCards(cards)));
+    }
 }

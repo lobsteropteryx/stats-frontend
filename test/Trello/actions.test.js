@@ -25,7 +25,11 @@ import {
     SET_START_DATE,
     setStartDate,
     SET_END_DATE,
-    setEndDate
+    setEndDate,
+    GET_CARDS,
+    getCards,
+    FETCH_CARDS,
+    fetchCards,
 } from '../../app/Trello/actions';
 
 
@@ -72,6 +76,7 @@ describe("Trello Boards", () => {
     it("selects a board", async () => {
         const board = {value: 'boardId', label: 'my board'};
         const columns = [{id: 1, name: 'my column'}];
+        const cards = [{id: 1, name: 'my card'}];
         const store = mockStore({trello: {
             apiKey: 'apiKey',
             token: 'token',
@@ -83,11 +88,17 @@ describe("Trello Boards", () => {
             .query(true)
             .reply(200, columns);
 
+        nock('https://api.trello.com')
+            .get('/1/boards/boardId/cards')
+            .query(true)
+            .reply(200, cards);
+
         await store.dispatch(selectBoard(board));
         const actions = store.getActions();
 
         expect(actions[0]).toEqual({type: SET_BOARD, board});
         expect(actions[1]).toEqual({type: GET_COLUMNS, columns});
+        expect(actions[2]).toEqual({type: GET_CARDS, cards});
     });
 
     it("requests boards", async () => {
@@ -103,6 +114,30 @@ describe("Trello Boards", () => {
         await store.dispatch(fetchBoards('apiKey', 'token'));
         const actions = store.getActions();
         expect(actions[0]).toEqual({type: GET_BOARDS, boards});
+    });
+});
+
+describe("Trello Cards", () => {
+    it("gets a list of cards", () => {
+        const cards = [];
+        expect(getCards(cards)).toEqual({
+            type: GET_CARDS, cards
+        });
+    });
+
+    it("requests cards", async () => {
+        const cards = [{id: 1, name: 'my card'}];
+
+        const store = mockStore();
+
+        nock('https://api.trello.com')
+            .get('/1/boards/abc/cards')
+            .query(true)
+            .reply(200, cards);
+
+        await store.dispatch(fetchCards('apiKey', 'token', 'abc'));
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({type: GET_CARDS, cards});
     });
 });
 
