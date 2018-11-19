@@ -1,12 +1,19 @@
-
-.bar {
-    fill: steelblue;
+.trelloControl label {
+    display: block;
+    padding: 6px;
 }
 
-.bar:hover {
-    fill: brown;
+.trelloDatepicker {
+    height: 30px;
+    width: 300px;
+    border-radius: 4px;
+    border-width: 1px;
 }
 
-.axis--x path {
-    display: none;
+.trelloList {
+    width: 304px;
+}
+
+.trelloControl label {
+    font-weight: bolder;
 }

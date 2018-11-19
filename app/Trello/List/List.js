@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const List = (props) => {
     return (
-        <div>
+        <div className='trelloControl trelloList'>
             <label>{props.label}</label>
             <Select
                 value={props.value}

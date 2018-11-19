@@ -6,9 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Date = (props) => {
     return (
-        <div>
+        <div className='trelloControl'>
             <label>{props.label}</label>
             <DatePicker
+                className="trelloDatepicker"
                 selected={props.date}
                 onChange={props.onChange}
             />
