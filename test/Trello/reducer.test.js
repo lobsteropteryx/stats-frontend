@@ -5,6 +5,8 @@ import {
     setBoard,
     FETCH_BOARDS,
     FETCH_COLUMNS,
+    FETCH_CARDS,
+    getCards,
     getColumns,
     setStartColumn,
     setEndColumn,
@@ -80,6 +82,31 @@ describe("Getting columns", () => {
         const expectedState = {isFetching: true, selectedBoard: {value: 1}};
         const action = {
             type: FETCH_COLUMNS
+        };
+        expect(trello(state, action)).toEqual(expectedState);
+    });
+});
+
+describe("Getting cards", () => {
+    it("sets the default state", () => {
+        const state = {cards: []};
+        const action = {type: 'test'};
+        expect(trello(state, action)).toEqual(state);
+    });
+
+    it("sets the list of cards", () => {
+        const state = {};
+        const cards = [{name: "a card"}];
+        const expectedState = {isFetching: false, cards};
+        const action = getCards(cards);
+        expect(trello(state, action)).toEqual(expectedState);
+    });
+
+    it("requests cards", async () => {
+        const state = {selectedBoard: {value: 1}};
+        const expectedState = {isFetching: true, selectedBoard: {value: 1}};
+        const action = {
+            type: FETCH_CARDS
         };
         expect(trello(state, action)).toEqual(expectedState);
     });

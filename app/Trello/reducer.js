@@ -7,6 +7,8 @@ import {
     FETCH_COLUMNS,
     SET_START_COLUMN,
     SET_END_COLUMN,
+    GET_CARDS,
+    FETCH_CARDS,
     SET_START_DATE,
     SET_END_DATE
 } from './actions';
@@ -55,6 +57,15 @@ export function trello(state = defaultState, action) {
         case SET_END_COLUMN:
             return Object.assign({}, state, {
                 endColumn: action.column
+            });
+        case GET_CARDS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                cards: action.cards
+            });
+        case FETCH_CARDS:
+            return Object.assign({}, state, {
+                isFetching: true
             });
         case SET_START_DATE:
             return Object.assign({}, state, {
