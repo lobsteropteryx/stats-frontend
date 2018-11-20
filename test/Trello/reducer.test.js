@@ -6,8 +6,10 @@ import {
     FETCH_BOARDS,
     FETCH_COLUMNS,
     FETCH_CARDS,
+    FETCH_ACTIONS,
     getCards,
     getColumns,
+    getActions,
     setStartColumn,
     setEndColumn,
     setStartDate,
@@ -144,6 +146,31 @@ describe("Dates", () => {
         const date = new Date('Jan 1, 2000');
         const action = setEndDate(date);
         const expectedState = {endDate: date};
+        expect(trello(state, action)).toEqual(expectedState);
+    });
+});
+
+describe("Getting actions", () => {
+    it("sets the default state", () => {
+        const state = {actions: []};
+        const action = {type: 'test'};
+        expect(trello(state, action)).toEqual(state);
+    });
+
+    it("sets the list of actions", () => {
+        const state = {};
+        const actions = [{name: "an action"}];
+        const expectedState = {isFetching: false, actions};
+        const action = getActions(actions);
+        expect(trello(state, action)).toEqual(expectedState);
+    });
+
+    it("requests actions", async () => {
+        const state = {selectedBoard: {value: 1}};
+        const expectedState = {isFetching: true, selectedBoard: {value: 1}};
+        const action = {
+            type: FETCH_ACTIONS
+        };
         expect(trello(state, action)).toEqual(expectedState);
     });
 });

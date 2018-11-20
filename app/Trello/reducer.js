@@ -9,6 +9,8 @@ import {
     SET_END_COLUMN,
     GET_CARDS,
     FETCH_CARDS,
+    GET_ACTIONS,
+    FETCH_ACTIONS,
     SET_START_DATE,
     SET_END_DATE
 } from './actions';
@@ -64,6 +66,15 @@ export function trello(state = defaultState, action) {
                 cards: action.cards
             });
         case FETCH_CARDS:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case GET_ACTIONS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                actions: action.actions
+            });
+        case FETCH_ACTIONS:
             return Object.assign({}, state, {
                 isFetching: true
             });
