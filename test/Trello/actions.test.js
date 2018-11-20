@@ -81,6 +81,7 @@ describe("Trello Boards", () => {
         const board = {value: 'boardId', label: 'my board'};
         const columns = [{id: 1, name: 'my column'}];
         const cards = [{id: 1, name: 'my card'}];
+        const trelloActions = [{id: 1, name: 'my action'}];
         const store = mockStore({trello: {
             apiKey: 'apiKey',
             token: 'token',
@@ -97,12 +98,18 @@ describe("Trello Boards", () => {
             .query(true)
             .reply(200, cards);
 
+        nock('https://api.trello.com')
+            .get('/1/boards/boardId/actions')
+            .query(true)
+            .reply(200, trelloActions);
+
         await store.dispatch(selectBoard(board));
         const actions = store.getActions();
 
         expect(actions[0]).toEqual({type: SET_BOARD, board});
         expect(actions[1]).toEqual({type: GET_COLUMNS, columns});
         expect(actions[2]).toEqual({type: GET_CARDS, cards});
+        expect(actions[3]).toEqual({type: GET_ACTIONS, actions: trelloActions});
     });
 
     it("requests boards", async () => {

@@ -31,6 +31,7 @@ export function selectBoard(board) {
         dispatch(setBoard(board));
         return dispatch(fetchColumns(state.trello.apiKey, state.trello.token, board.value))
             .then(dispatch(fetchCards(state.trello.apiKey, state.trello.token, board.value)))
+            .then(dispatch(fetchActions(state.trello.apiKey, state.trello.token, board.value)))
     }
 }
 
@@ -104,7 +105,7 @@ export function fetchActions(apiKey, token, boardId) {
     return (dispatch) => {
         const trello = new Trello(apiKey, token);
 
-        return trello.makeRequest('get', `/1/boards/${boardId}/actions`, {filter: 'open'})
+        return trello.makeRequest('get', `/1/boards/${boardId}/actions`)
             .then(actions => dispatch(getActions(actions)));
     }
 }
