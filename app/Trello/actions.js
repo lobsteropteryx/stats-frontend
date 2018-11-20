@@ -93,3 +93,18 @@ export function fetchCards(apiKey, token, boardId) {
             .then(cards => dispatch(getCards(cards)));
     }
 }
+
+export const GET_ACTIONS = "GET_ACTIONS";
+export function getActions(actions) {
+    return {type: GET_ACTIONS, actions}
+}
+
+export const FETCH_ACTIONS = "FETCH_ACTIONS";
+export function fetchActions(apiKey, token, boardId) {
+    return (dispatch) => {
+        const trello = new Trello(apiKey, token);
+
+        return trello.makeRequest('get', `/1/boards/${boardId}/actions`, {filter: 'open'})
+            .then(actions => dispatch(getActions(actions)));
+    }
+}

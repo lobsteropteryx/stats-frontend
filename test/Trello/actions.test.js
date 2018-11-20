@@ -30,6 +30,10 @@ import {
     getCards,
     FETCH_CARDS,
     fetchCards,
+    GET_ACTIONS,
+    getActions,
+    FETCH_ACTIONS,
+    fetchActions
 } from '../../app/Trello/actions';
 
 
@@ -138,6 +142,30 @@ describe("Trello Cards", () => {
         await store.dispatch(fetchCards('apiKey', 'token', 'abc'));
         const actions = store.getActions();
         expect(actions[0]).toEqual({type: GET_CARDS, cards});
+    });
+});
+
+describe("Trello Actions", () => {
+    it("gets a list of actions for a board", () => {
+        const actions = [];
+        expect(getActions(actions)).toEqual({
+            type: GET_ACTIONS, actions
+        });
+    });
+
+    it("requests actions", async () => {
+        const trelloActions = [{id: 1, name: 'my action'}];
+
+        const store = mockStore();
+
+        nock('https://api.trello.com')
+            .get('/1/boards/abc/actions')
+            .query(true)
+            .reply(200, trelloActions);
+
+        await store.dispatch(fetchActions('apiKey', 'token', 'abc'));
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({type: GET_ACTIONS, actions: trelloActions});
     });
 });
 
