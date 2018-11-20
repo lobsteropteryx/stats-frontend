@@ -105,7 +105,10 @@ export function fetchActions(apiKey, token, boardId) {
     return (dispatch) => {
         const trello = new Trello(apiKey, token);
 
-        return trello.makeRequest('get', `/1/boards/${boardId}/actions`)
+        return trello.makeRequest('get', `/1/boards/${boardId}/actions`, {
+            fields: 'data,date',
+            filter: 'updateCard:idList'
+        })
             .then(actions => dispatch(getActions(actions)));
     }
 }
