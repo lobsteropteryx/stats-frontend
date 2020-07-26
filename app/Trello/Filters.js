@@ -10,11 +10,11 @@ const Filters = () => {
     return (
         <div className="filterGroup">
             <AuthPortalContainer />
-            <StartDate />
-            <EndDate />
             <Boards />
             <StartColumns />
             <EndColumns />
+            <StartDate />
+            <EndDate />
         </div>
     );
 };
