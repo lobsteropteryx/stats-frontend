@@ -55,7 +55,7 @@ export function fetchColumns(apiKey, token, boardId) {
     return (dispatch) => {
         const trello = new Trello(apiKey, token);
 
-        return trello.getListsOnBoard(boardId)
+        return trello.makeRequest('get', `/1/boards/${boardId}/lists`, {filter: 'all'})
             .then(columns => dispatch(getColumns(columns)));
     }
 }
