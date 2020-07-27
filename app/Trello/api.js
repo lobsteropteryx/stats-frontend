@@ -3,16 +3,22 @@ export async function fetchBoards(trelloClient) {
 }
 
 export async function fetchCardsForBoard(trelloClient, boardId) {
-    return trelloClient.makeRequest('get', `/1/boards/${boardId}/cards`, {filter: 'open'});
+    return boardId ?
+        trelloClient.makeRequest('get', `/1/boards/${boardId}/cards`, {filter: 'open'}) :
+        [];
 }
 
 export async function fetchActionsForBoard(trelloClient, boardId) {
-    return trelloClient.makeRequest('get', `/1/boards/${boardId}/actions`, {
-        fields: 'data,date',
-        filter: 'updateCard:idList'
-    });
+    return boardId ?
+        trelloClient.makeRequest('get', `/1/boards/${boardId}/actions`, {
+            fields: 'data,date',
+            filter: 'updateCard:idList'
+        }) : 
+        [];
 }
 
 export async function fetchColumnsForBoard(trelloClient, boardId) {
-    return trelloClient.makeRequest('get', `/1/boards/${boardId}/lists`, {filter: 'all'});
+    return boardId ?
+        trelloClient.makeRequest('get', `/1/boards/${boardId}/lists`, {filter: 'all'}) :
+        [];
 }
