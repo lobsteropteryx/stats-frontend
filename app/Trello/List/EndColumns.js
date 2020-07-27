@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { setEndColumn } from './../actions';
+import { setEndColumn } from '../filterSlice';
 import List from './List';
 
 const mapStateToProps = state => {
     return {
         label: "End Column",
-        value: state.trello.endColumn,
-        options: state.trello.columns.map(column => {
+        value: state.filter.endColumn,
+        options: state.filter.columns.map(column => {
             return {value: column.id, label: column.name}
         })
     }

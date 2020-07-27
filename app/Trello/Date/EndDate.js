@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { setEndDate } from '../actions';
+import { setEndDate } from '../filterSlice';
 import Date from './Date';
 
 const mapStateToProps = state => {
     return {
         label: 'End Date',
-        date: state.trello.endDate
+        date: state.filter.endDate
     }
 };
 

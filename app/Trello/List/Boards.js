@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
-import { selectBoard } from './../actions';
+import { selectBoard } from '../filterSlice';
+import { fetchColumnsForBoard } from '../filterSlice';
 import List from './List';
 
 const mapStateToProps = state => {
     return {
         label: "Board",
-        options: state.trello.boards.map(board => {
+        options: state.filter.boards.map(board => {
             return {value: board.id, label: board.name}
         })
     }
@@ -14,7 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onChange: board => {
-            dispatch(selectBoard(board))
+            dispatch(selectBoard(board));
+            dispatch(fetchColumnsForBoard(board.value));
         }
     }
 };

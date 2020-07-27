@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { setStartColumn } from './../actions';
+import { setStartColumn } from '../filterSlice';
 import List from './List';
 
 const mapStateToProps = state => {
     return {
         label: "Start Column",
-        value: state.trello.startColumn,
-        options: state.trello.columns.map(column => {
+        value: state.filter.startColumn,
+        options: state.filter.columns.map(column => {
             return {value: column.id, label: column.name}
         })
     }

@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
-import { trello } from './Trello/reducer';
+import filterSlice from './Trello/filterSlice';
 import Filters from './Trello/Filters';
 
 const rootReducer = combineReducers({
-    trello
+    filter: filterSlice
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
