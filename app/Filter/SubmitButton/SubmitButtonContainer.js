@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchActionsForBoard } from '../filterSlice';
-import ButtonDisplay from './ButtonDisplay';    
+import SubmitButton from './SubmitButton';    
 
 const mapStateToProps = state => {
     return {
@@ -25,10 +25,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     }
 }
 
-const Button = connect(
+const SubmitButtonContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
     mergeProps
-)(ButtonDisplay);
+)(SubmitButton);
 
-export default Button;
+export default SubmitButtonContainer;

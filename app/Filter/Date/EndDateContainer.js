@@ -1,25 +1,25 @@
 import { connect } from 'react-redux';
-import { setStartDate } from '../filterSlice';
+import { setEndDate } from '../filterSlice';
 import Date from './Date';
 
 const mapStateToProps = state => {
     return {
-        label: 'Start Date',
-        date: state.filter.startDate
+        label: 'End Date',
+        date: state.filter.endDate
     }
-};  
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         onChange: date => {
-            dispatch(setStartDate(date))
+            dispatch(setEndDate(date))
         }
     }
 };
 
-const StartDate = connect(
+const StartDateContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Date);
 
-export default StartDate
+export default StartDateContainer;

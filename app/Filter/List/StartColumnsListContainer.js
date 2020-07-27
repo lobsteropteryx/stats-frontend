@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { setEndColumn } from '../filterSlice';
+import { setStartColumn } from '../filterSlice';
 import List from './List';
 
 const mapStateToProps = state => {
     return {
-        label: "End Column",
-        value: state.filter.endColumn,
+        label: "Start Column",
+        value: state.filter.startColumn,
         options: state.filter.columns.map(column => {
             return {value: column.id, label: column.name}
         })
@@ -15,14 +15,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onChange: column => {
-            dispatch(setEndColumn(column))
+            dispatch(setStartColumn(column))
         }
     }
 };
 
-const EndColumns = connect(
+const StartColumnsListContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
 
-export default EndColumns
+export default StartColumnsListContainer;

@@ -21,9 +21,9 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-const Boards = connect(
+const BoardsListContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
 
-export default Boards
+export default BoardsListContainer;
