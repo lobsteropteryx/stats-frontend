@@ -7,7 +7,7 @@ const filterSlice = createSlice({
   initialState: {
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
-    board: null,
+    selectedBoard: {},
     columns: []
   },
   reducers: {
