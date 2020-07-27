@@ -1,5 +1,4 @@
 import React from 'react';
-import AuthPortalContainer from '../Trello/AuthPortal/AuthPortalContainer';
 import Boards from './List/Boards';
 import StartColumns from './List/StartColumns';
 import EndColumns from './List/EndColumns';
@@ -10,7 +9,6 @@ import Button from './Submit/Button';
 const Filters = () => {
     return (
         <div className="filterGroup">
-            <AuthPortalContainer />
             <Boards />
             <StartColumns />
             <EndColumns />

@@ -7,6 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import filterSlice from './Filter/filterSlice';
 import Filters from './Filter/Filters';
+import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 
 const rootReducer = combineReducers({
     filter: filterSlice
@@ -19,6 +20,7 @@ window.store = store;
 const App = () => {
     return (
         <div>
+            <AuthPortalContainer />
             <Filters />
         </div>
     );
