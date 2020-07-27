@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
-import filterSlice from './Trello/filterSlice';
-import Filters from './Trello/Filters';
+import filterSlice from './Filter/filterSlice';
+import Filters from './Filter/Filters';
 
 const rootReducer = combineReducers({
     filter: filterSlice

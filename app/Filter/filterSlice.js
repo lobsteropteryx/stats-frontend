@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Trello from "trello";
-import * as api from './api';
+import * as api from '../Trello/api';
 
 const filterSlice = createSlice({
   name: 'filter',

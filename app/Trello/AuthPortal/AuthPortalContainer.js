@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AuthPortal from './AuthPortal';
-import { setTrelloToken } from '../filterSlice';
-import { fetchBoards } from '../filterSlice';
+import { setTrelloToken } from '../../Filter/filterSlice';
+import { fetchBoards } from '../../Filter/filterSlice';
 
 const mapStateToProps = state => {
     return {

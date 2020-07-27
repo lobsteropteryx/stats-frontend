@@ -1,4 +1,4 @@
-import reducer from '../../app/Trello/filterSlice';
+import reducer from '../../app/Filter/filterSlice';
 import {
     setTrelloToken,
     fetchPending,
@@ -12,7 +12,7 @@ import {
     setEndColumn,
     setStartDate,
     setEndDate
-} from '../../app/Trello/filterSlice';
+} from '../../app/Filter/filterSlice';
 
 describe("Authentication", () => {
     it("sets the trello token", () => {
