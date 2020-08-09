@@ -51,7 +51,7 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("handles two actions out of order", () => {
+    it("returns correct duration for two actions out of order", () => {
         const actions = [
             {
                 "card": {
@@ -150,7 +150,7 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("filters out cards that are still in progress", () => {
+    it("sets duration to null for cards that are still in progress", () => {
         const actions = [
             {
                 "card": {
@@ -168,13 +168,16 @@ describe("Parsing actions", () => {
                 "date":"2020-04-02T16:00:00.000Z"
             }
         ];
-        const expected = [];
+        const expected = [{
+            id: "1",
+            duration: null   
+        }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
     
-    it("handles cards that were moved back", () => {
+    it("sets duration to null cards that were moved back", () => {
         const actions = [
             {
                 "card": {
@@ -222,7 +225,10 @@ describe("Parsing actions", () => {
                 "date":"2020-04-04T16:00:00.000Z",
             }
         ];
-        const expected = [];
+        const expected = [{
+            id: "1",
+            duration: null   
+        }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
         expect(actual).toEqual(expected);
