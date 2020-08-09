@@ -33,6 +33,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@nivo/scatterplot": "^0.62.0",
     "@reduxjs/toolkit": "^1.4.0",
     "lodash": "^4.17.19",
     "react": "^16.13.1",
