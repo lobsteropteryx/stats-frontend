@@ -107,4 +107,28 @@ describe("Parsing actions", () => {
         const actual = parse(actions);;
         expect(actual).toEqual(expected);
     });
+    
+    it("filters out cards that are still in progress", () => {
+        const actions = [
+            {
+                "card": {
+                    "id":"1",
+                    "name":"Card 1",
+                },
+                "listBefore": {
+                    "id":"0",
+                    "name":"ToDo"
+                },
+                "listAfter": {
+                    "id":"1",
+                    "name":"Doing"
+                },
+                "date":"2020-04-02T16:00:00.000Z"
+            }
+        ];
+        const expected = [];
+        const parse = createActionParser("1", "2");
+        const actual = parse(actions);;
+        expect(actual).toEqual(expected);
+    });
 })
