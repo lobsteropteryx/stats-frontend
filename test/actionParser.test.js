@@ -1,4 +1,5 @@
 import {createActionParser} from "../app/actionParser";
+import moment from 'moment';
 
 describe("Parsing actions", () => {
     it("returns an empty list given no actions", () => {
@@ -49,7 +50,7 @@ describe("Parsing actions", () => {
         const expected = [{
             id: "1",
             duration: 86400000,
-            completionDate: new Date("2020-04-03T16:00:00.000Z")
+            completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
@@ -96,7 +97,7 @@ describe("Parsing actions", () => {
         const expected = [{
             id: "1",
             duration: 86400000,
-            completionDate: new Date("2020-04-03T16:00:00.000Z")   
+            completionDate: moment("2020-04-03T16:00:00.000Z")   
         }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
@@ -160,7 +161,7 @@ describe("Parsing actions", () => {
         const expected = [{
             id: "1",
             duration: 86400000,
-            completionDate: new Date("2020-04-03T16:00:00.000Z")
+            completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);

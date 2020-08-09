@@ -1,4 +1,5 @@
 import { groupBy, first, last } from 'lodash';
+import moment from 'moment';
 
 export function createActionParser(startId, endId) {
 
@@ -19,8 +20,8 @@ export function createActionParser(startId, endId) {
 
             return (isComplete(filteredActions)) ? { 
                 id: id,
-                completionDate: new Date(last(filteredActions).date),
-                duration: new Date(last(filteredActions).date) - new Date(first(filteredActions).date) 
+                completionDate: moment(last(filteredActions).date),
+                duration: moment(last(filteredActions).date) - moment(first(filteredActions).date) 
             } : null;
         }
         
