@@ -55,8 +55,8 @@ describe("Selecting a board", () => {
         const selectedBoard = {id: 1, name: 'selectedBoard'};
         const expectedState = {
             selectedBoard: selectedBoard,
-            startColumn: null,
-            endColumn: null
+            startColumn: {},
+            endColumn: {} 
         };
         const action = selectBoard(selectedBoard);
         expect(reducer(state, action)).toEqual(expectedState);
