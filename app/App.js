@@ -20,7 +20,7 @@ window.store = store;
 
 const App = () => {
     return (
-        <div height="400px">
+        <div style={{height: "400px"}}>
             <AuthPortalContainer />
             <Filters />
             <ScatterPlotContainer />

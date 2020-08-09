@@ -3,13 +3,16 @@ import ScatterPlot from './ScatterPlot';
 
 const mapStateToProps = state => {
     return {
-        id: "Cards Completed",
-        data: state.filter.actions.map(action => {
-            return {
-                x: action.completionDate.format,
-                y: action.duration
-            };
-        })
+        data: [{
+            id: "Cards Completed",
+            data: state.filter.actions.map(action => {
+                return {
+                    id: action.id,
+                    x: action.completionDate.format("YYYY-MM-DD"),
+                    y: action.duration
+                };
+            })
+        }]
     };
 };
 

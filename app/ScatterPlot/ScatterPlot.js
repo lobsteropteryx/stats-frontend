@@ -5,19 +5,18 @@ const ScatterPlot = (props) => (
     <ResponsiveScatterPlot
         data={props.data}
         margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
-        xScale={{ type: 'linear', min: 0, max: 'auto' }}
-        xFormat={function(e){return e+" kg"}}
+        xScale={{
+            type: 'time',
+            format: '%Y-%m-%d',
+            precision: 'day',
+        }}
+        xFormat="time:%Y-%m-%d"
         yScale={{ type: 'linear', min: 0, max: 'auto' }}
         yFormat={function(e){return e+" cm"}}
         blendMode="multiply"
         axisBottom={{
-            orient: 'bottom',
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'weight',
-            legendPosition: 'middle',
-            legendOffset: 46
+            format: '%b %d',
+            tickValues: 'every 2 days',
         }}
         axisLeft={{
             orient: 'left',
