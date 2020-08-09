@@ -48,7 +48,8 @@ describe("Parsing actions", () => {
         ];
         const expected = [{
             id: "1",
-            duration: 86400000   
+            duration: 86400000,
+            completionDate: new Date("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
@@ -94,7 +95,8 @@ describe("Parsing actions", () => {
         ];
         const expected = [{
             id: "1",
-            duration: 86400000   
+            duration: 86400000,
+            completionDate: new Date("2020-04-03T16:00:00.000Z")   
         }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
@@ -157,7 +159,8 @@ describe("Parsing actions", () => {
         ];
         const expected = [{
             id: "1",
-            duration: 86400000   
+            duration: 86400000,
+            completionDate: new Date("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
@@ -190,7 +193,7 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("sets duration to null for cards that are still in progress", () => {
+    it("filters out cards that are still in progress", () => {
         const actions = [
             {
                 "data": {
@@ -210,16 +213,13 @@ describe("Parsing actions", () => {
                 "date":"2020-04-02T16:00:00.000Z"
             }
         ];
-        const expected = [{
-            id: "1",
-            duration: null   
-        }];
+        const expected = [];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
     
-    it("sets duration to null cards that were moved back", () => {
+    it("filters out cards that were moved back", () => {
         const actions = [
             {
                 "data": {
@@ -273,10 +273,7 @@ describe("Parsing actions", () => {
                 "date":"2020-04-04T16:00:00.000Z",
             }
         ];
-        const expected = [{
-            id: "1",
-            duration: null   
-        }];
+        const expected = [];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
         expect(actual).toEqual(expected);
