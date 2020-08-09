@@ -9,7 +9,7 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("returns a single item, give two actions", () => {
+    it("returns a single item, given two actions", () => {
         const actions = [
             {
                 "card": {
@@ -47,7 +47,7 @@ describe("Parsing actions", () => {
             duration: 86400000   
         }];
         const parse = createActionParser("1", "2");
-        const actual = parse(actions);;
+        const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
     
@@ -104,7 +104,7 @@ describe("Parsing actions", () => {
             duration: 86400000   
         }];
         const parse = createActionParser("1", "2");
-        const actual = parse(actions);;
+        const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
     
@@ -128,7 +128,7 @@ describe("Parsing actions", () => {
         ];
         const expected = [];
         const parse = createActionParser("1", "2");
-        const actual = parse(actions);;
+        const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
 })
