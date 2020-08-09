@@ -1,11 +1,11 @@
-import ActionParser from "../app/actionParser";
+import {createActionParser} from "../app/actionParser";
 
 describe("Parsing actions", () => {
     it("returns an empty list given no actions", () => {
         const actions = [];
         const expected = [];
-        const actionParser = new ActionParser("1", "2");
-        const actual = actionParser.parse(actions);
+        const parse = createActionParser("1", "2");
+        const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
     
@@ -17,11 +17,11 @@ describe("Parsing actions", () => {
                     "name":"Card 1",
                 },
                 "listBefore": {
-                    "id":"1",
+                    "id":"0",
                     "name":"ToDo"
                 },
                 "listAfter": {
-                    "id":"2",
+                    "id":"1",
                     "name":"Doing"
                 },
                 "date":"2020-04-02T16:00:00.000Z",
@@ -32,11 +32,11 @@ describe("Parsing actions", () => {
                     "name":"Card 1",
                 },
                 "listBefore": {
-                    "id":"2",
+                    "id":"1",
                     "name":"Doing"
                 },
                 "listAfter": {
-                    "id":"3",
+                    "id":"2",
                     "name":"Done"
                 },
                 "date":"2020-04-03T16:00:00.000Z",
@@ -46,8 +46,65 @@ describe("Parsing actions", () => {
             id: "1",
             duration: 86400000   
         }];
-        const actionParser = new ActionParser("1", "2");
-        const actual = actionParser.parse(actions);;
+        const parse = createActionParser("1", "2");
+        const actual = parse(actions);;
+        expect(actual).toEqual(expected);
+    });
+    
+    it("filters out items from other columns", () => {
+        const actions = [
+            {
+                "card": {
+                    "id":"1",
+                    "name":"Card 1",
+                },
+                "listBefore": {
+                    "id":"0",
+                    "name":"ToDo"
+                },
+                "listAfter": {
+                    "id":"1",
+                    "name":"Doing"
+                },
+                "date":"2020-04-02T16:00:00.000Z",
+            },
+            {
+                "card": {
+                    "id":"1",
+                    "name":"Card 1",
+                },
+                "listBefore": {
+                    "id":"1",
+                    "name":"Doing"
+                },
+                "listAfter": {
+                    "id":"2",
+                    "name":"Done"
+                },
+                "date":"2020-04-03T16:00:00.000Z",
+            },
+            {
+                "card": {
+                    "id":"1",
+                    "name":"Card 1",
+                },
+                "listBefore": {
+                    "id":"2",
+                    "name":"Done"
+                },
+                "listAfter": {
+                    "id":"3",
+                    "name":"Demo'd"
+                },
+                "date":"2020-04-04T16:00:00.000Z",
+            }
+        ];
+        const expected = [{
+            id: "1",
+            duration: 86400000   
+        }];
+        const parse = createActionParser("1", "2");
+        const actual = parse(actions);;
         expect(actual).toEqual(expected);
     });
 })

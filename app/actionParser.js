@@ -1,22 +1,21 @@
 import { groupBy, first, last } from 'lodash';
 
-export default class ActionParser {
-    contructor(startId, endId) {
-        this.startId = startId;
-        this.endId = endId;
-    }
+export function createActionParser(startId, endId) {
 
-    parse(actions) {
+    return (actions) => {
 
         function getDuration(actions) {
-            return new Date(last(actions).date) - new Date(first(actions).date);
+            const actionsInColumns = actions.filter(
+                x => x.listAfter.id === startId || x.listAfter.id === endId
+            );
+            return new Date(last(actionsInColumns).date) - new Date(first(actionsInColumns).date);
         }
         
         const groups = groupBy(actions, x => x.card.id );
-        
+
         return Object.entries(groups).map(
             ([id, actions]) => ({ id: id, duration: getDuration(actions) })
         );
-    }
+    };
 
 }
