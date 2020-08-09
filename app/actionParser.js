@@ -10,10 +10,14 @@ export function createActionParser(startId, endId) {
                 .sort(x => x.data.listAfter.id === startId ? -1 : 1)
         }
 
+        function isComplete(actions) {
+            return filteredActions.length > 0 && filteredActions.length % 2 == 0
+        }
+
         function getDuration(id, actions) {
             const filteredActions = filterActions(actions);
 
-            return (filteredActions.length > 0 && filteredActions.length % 2 == 0) ? { 
+            return (isComplete(filterActions)) ? { 
                 id: id,
                 completionDate: new Date(last(filteredActions).date),
                 duration: new Date(last(filteredActions).date) - new Date(first(filteredActions).date) 
