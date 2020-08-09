@@ -12,32 +12,36 @@ describe("Parsing actions", () => {
     it("returns a single item, given two actions", () => {
         const actions = [
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"0",
-                    "name":"ToDo"
-                },
-                "listAfter": {
-                    "id":"1",
-                    "name":"Doing"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"0",
+                        "name":"ToDo"
+                    },
+                    "listAfter": {
+                        "id":"1",
+                        "name":"Doing"
+                    }
                 },
                 "date":"2020-04-02T16:00:00.000Z",
             },
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"1",
-                    "name":"Doing"
-                },
-                "listAfter": {
-                    "id":"2",
-                    "name":"Done"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"1",
+                        "name":"Doing"
+                    },
+                    "listAfter": {
+                        "id":"2",
+                        "name":"Done"
+                    }
                 },
                 "date":"2020-04-03T16:00:00.000Z",
             }
@@ -54,32 +58,36 @@ describe("Parsing actions", () => {
     it("returns correct duration for two actions out of order", () => {
         const actions = [
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"1",
-                    "name":"Doing"
-                },
-                "listAfter": {
-                    "id":"2",
-                    "name":"Done"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"1",
+                        "name":"Doing"
+                    },
+                    "listAfter": {
+                        "id":"2",
+                        "name":"Done"
+                    }
                 },
                 "date":"2020-04-03T16:00:00.000Z",
             },
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"0",
-                    "name":"ToDo"
-                },
-                "listAfter": {
-                    "id":"1",
-                    "name":"Doing"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"0",
+                        "name":"ToDo"
+                    },
+                    "listAfter": {
+                        "id":"1",
+                        "name":"Doing"
+                    }
                 },
                 "date":"2020-04-02T16:00:00.000Z",
             }
@@ -96,47 +104,53 @@ describe("Parsing actions", () => {
     it("filters out items from other columns", () => {
         const actions = [
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"0",
-                    "name":"ToDo"
-                },
-                "listAfter": {
-                    "id":"1",
-                    "name":"Doing"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"0",
+                        "name":"ToDo"
+                    },
+                    "listAfter": {
+                        "id":"1",
+                        "name":"Doing"
+                    }
                 },
                 "date":"2020-04-02T16:00:00.000Z",
             },
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"1",
-                    "name":"Doing"
-                },
-                "listAfter": {
-                    "id":"2",
-                    "name":"Done"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"1",
+                        "name":"Doing"
+                    },
+                    "listAfter": {
+                        "id":"2",
+                        "name":"Done"
+                    }
                 },
                 "date":"2020-04-03T16:00:00.000Z",
             },
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"2",
-                    "name":"Done"
-                },
-                "listAfter": {
-                    "id":"3",
-                    "name":"Demo'd"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"2",
+                        "name":"Done"
+                    },
+                    "listAfter": {
+                        "id":"3",
+                        "name":"Demo'd"
+                    }
                 },
                 "date":"2020-04-04T16:00:00.000Z",
             }
@@ -150,20 +164,48 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
+    it("returns an empty list when all actions are on other columns", () => {
+        const actions = [
+            {
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"2",
+                        "name":"Done"
+                    },
+                    "listAfter": {
+                        "id":"3",
+                        "name":"Demo'd"
+                    }
+                },
+                "date":"2020-04-02T16:00:00.000Z",
+            }
+        ];
+        const expected = [];
+        const parse = createActionParser("1", "2");
+        const actual = parse(actions);
+        expect(actual).toEqual(expected);
+    });
+    
     it("sets duration to null for cards that are still in progress", () => {
         const actions = [
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"0",
-                    "name":"ToDo"
-                },
-                "listAfter": {
-                    "id":"1",
-                    "name":"Doing"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"0",
+                        "name":"ToDo"
+                    },
+                    "listAfter": {
+                        "id":"1",
+                        "name":"Doing"
+                    }
                 },
                 "date":"2020-04-02T16:00:00.000Z"
             }
@@ -180,47 +222,53 @@ describe("Parsing actions", () => {
     it("sets duration to null cards that were moved back", () => {
         const actions = [
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"0",
-                    "name":"ToDo"
-                },
-                "listAfter": {
-                    "id":"1",
-                    "name":"Doing"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"0",
+                        "name":"ToDo"
+                    },
+                    "listAfter": {
+                        "id":"1",
+                        "name":"Doing"
+                    }
                 },
                 "date":"2020-04-02T16:00:00.000Z"
             },
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"1",
-                    "name":"Doing"
-                },
-                "listAfter": {
-                    "id":"2",
-                    "name":"Done"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"1",
+                        "name":"Doing"
+                    },
+                    "listAfter": {
+                        "id":"2",
+                        "name":"Done"
+                    }
                 },
                 "date":"2020-04-03T16:00:00.000Z",
             },
             {
-                "card": {
-                    "id":"1",
-                    "name":"Card 1",
-                },
-                "listBefore": {
-                    "id":"2",
-                    "name":"Done"
-                },
-                "listAfter": {
-                    "id":"1",
-                    "name":"Doing"
+                "data": {
+                    "card": {
+                        "id":"1",
+                        "name":"Card 1",
+                    },
+                    "listBefore": {
+                        "id":"2",
+                        "name":"Done"
+                    },
+                    "listAfter": {
+                        "id":"1",
+                        "name":"Doing"
+                    }
                 },
                 "date":"2020-04-04T16:00:00.000Z",
             }

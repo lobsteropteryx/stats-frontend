@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Trello from "trello";
 import * as api from '../Trello/api';
+import { createActionParser } from "../actionParser";
 
 const filterSlice = createSlice({
   name: 'filter',
@@ -85,10 +86,12 @@ export const fetchColumnsForBoard = (boardId) => async (dispatch, getState) => {
     dispatch(fetchComplete());
 }
 
-export const fetchActionsForBoard = (boardId) => async (dispatch, getState) => {
+export const fetchActionsForBoard = (boardId, startColumn, endColumn) => async (dispatch, getState) => {
     const client = getTrelloClient(getState().filter);
     dispatch(fetchPending());
-    dispatch(setActions(await api.fetchActionsForBoard(client, boardId)));
+    const parse = createActionParser(startColumn, endColumn);
+    const actions = await api.fetchActionsForBoard(client, boardId);
+    dispatch(setActions(parse(actions)));
     dispatch(fetchComplete());
 }
 

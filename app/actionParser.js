@@ -6,20 +6,22 @@ export function createActionParser(startId, endId) {
 
         function filterActions(actions) {
             return actions
-                .filter(x => x.listAfter.id === startId || x.listAfter.id === endId)
-                .sort(x => x.listAfter.id === startId ? -1 : 1)
+                .filter(x => x.data.listAfter.id === startId || x.data.listAfter.id === endId)
+                .sort(x => x.data.listAfter.id === startId ? -1 : 1)
         }
 
         function getDuration(id, actions) {
             const filteredActions = filterActions(actions);
-            const duration = filteredActions.length % 2 == 0 ?
-                new Date(last(filteredActions).date) - new Date(first(filteredActions).date) :
-                null;
 
-            return  { id, duration };
+            return filteredActions.length > 0 ? { 
+                id: id, 
+                duration: filteredActions.length % 2 == 0 ?
+                    new Date(last(filteredActions).date) - new Date(first(filteredActions).date) :
+                    null
+            } : null;
         }
         
-        const groups = groupBy(actions, x => x.card.id );
+        const groups = groupBy(actions, x => x.data.card.id );
 
         return Object.entries(groups)
             .map( ([id, actions]) => getDuration(id, actions))
