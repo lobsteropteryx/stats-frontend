@@ -11,7 +11,7 @@ export function createActionParser(startId, endId) {
 
         function getDuration(id, actions) {
             const filteredActions = filterActions(actions);
-            return filteredActions.length > 1 ? 
+            return filteredActions.length % 2 == 0 ? 
                 { 
                     id: id, 
                     duration: new Date(last(filteredActions).date) - new Date(first(filteredActions).date) 
