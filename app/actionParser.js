@@ -11,13 +11,13 @@ export function createActionParser(startId, endId) {
         }
 
         function isComplete(actions) {
-            return filteredActions.length > 0 && filteredActions.length % 2 == 0
+            return actions.length > 0 && actions.length % 2 == 0;
         }
 
         function getDuration(id, actions) {
             const filteredActions = filterActions(actions);
 
-            return (isComplete(filterActions)) ? { 
+            return (isComplete(filteredActions)) ? { 
                 id: id,
                 completionDate: new Date(last(filteredActions).date),
                 duration: new Date(last(filteredActions).date) - new Date(first(filteredActions).date) 

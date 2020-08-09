@@ -5,15 +5,15 @@ import SubmitButton from './SubmitButton';
 const mapStateToProps = state => {
     return {
         selectedBoardId: state.filter.selectedBoard.value,
-        startColumnId: state.filter.startColumnId,
-        endColumnId: state.filter.endColumnId
+        startColumnId: state.filter.startColumn.value,
+        endColumnId: state.filter.endColumn.value
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (event, selectedBoardId) => {
-            dispatch(fetchActionsForBoard(selectedBoardId));
+        onClick: (event, selectedBoardId, startColumnId, endColumnId) => {
+            dispatch(fetchActionsForBoard(selectedBoardId, startColumnId, endColumnId));
         }
     }
 };

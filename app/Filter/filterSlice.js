@@ -9,7 +9,10 @@ const filterSlice = createSlice({
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
     selectedBoard: {},
-    columns: []
+    startColumn: {},
+    endColumn: {},
+    columns: [],
+    actions: []
   },
   reducers: {
     fetchPending: state => {
@@ -26,8 +29,8 @@ const filterSlice = createSlice({
     },
     selectBoard: (state, action) => {
         state.selectedBoard = action.payload;
-        state.startColumn = null;
-        state.endColumn = null;
+        state.startColumn = {};
+        state.endColumn = {};
     },
     setColumns: (state, action) => {
         state.columns = action.payload;
@@ -91,7 +94,8 @@ export const fetchActionsForBoard = (boardId, startColumn, endColumn) => async (
     dispatch(fetchPending());
     const parse = createActionParser(startColumn, endColumn);
     const actions = await api.fetchActionsForBoard(client, boardId);
-    dispatch(setActions(parse(actions)));
+    const parsedActions = parse(actions);
+    dispatch(setActions(parsedActions));
     dispatch(fetchComplete());
 }
 
