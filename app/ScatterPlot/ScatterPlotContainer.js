@@ -9,7 +9,7 @@ const mapStateToProps = state => {
                 return {
                     id: action.id,
                     x: action.completionDate.format("YYYY-MM-DD"),
-                    y: action.duration
+                    y: parseFloat(action.duration.asDays(), 1).toPrecision(1)
                 };
             })
         }]
