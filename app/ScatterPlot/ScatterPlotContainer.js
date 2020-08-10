@@ -8,6 +8,7 @@ const mapStateToProps = state => {
             data: state.filter.actions.map(action => {
                 return {
                     id: action.id,
+                    name: action.name,
                     x: action.completionDate.format("YYYY-MM-DD"),
                     y: parseFloat(action.duration.asDays(), 1).toPrecision(1)
                 };
