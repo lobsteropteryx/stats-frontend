@@ -9,6 +9,7 @@ import filterSlice from './Filter/filterSlice';
 import Filters from './Filter/Filters';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
+import StatsContainer from './Stats/StatsContainer';
 
 const rootReducer = combineReducers({
     filter: filterSlice
@@ -23,6 +24,7 @@ const App = () => {
         <div style={{height: "400px"}}>
             <AuthPortalContainer />
             <Filters />
+            <StatsContainer />
             <ScatterPlotContainer />
         </div>
     );
