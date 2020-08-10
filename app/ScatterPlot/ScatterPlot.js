@@ -4,6 +4,7 @@ import { ResponsiveScatterPlot } from '@nivo/scatterplot';
 const ScatterPlot = (props) => (
     <ResponsiveScatterPlot
         data={props.data}
+        onClick={props.onClick}
         colors={{ scheme: 'dark2' }}
         nodeSize={12}
         margin={{ top: 60, right: 140, bottom: 70, left: 90 }}

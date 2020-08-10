@@ -9,6 +9,7 @@ const mapStateToProps = state => {
                 return {
                     id: action.id,
                     name: action.name,
+                    url: `https://trello.com/c/${action.id}`,
                     x: action.completionDate.format("YYYY-MM-DD"),
                     y: parseFloat(action.duration.asDays(), 1).toPrecision(1)
                 };
@@ -17,9 +18,17 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onClick: (node, event) => {
+            window.open(node.data.url, '_blank');
+        }
+    }
+};
+
 const ScatterPlotContainer = connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(ScatterPlot);
 
 export default ScatterPlotContainer;
