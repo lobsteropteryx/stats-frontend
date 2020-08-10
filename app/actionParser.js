@@ -21,7 +21,7 @@ export function createActionParser(startId, endId) {
             return (isComplete(filteredActions)) ? { 
                 id: id,
                 completionDate: moment(last(filteredActions).date),
-                duration: moment(last(filteredActions).date) - moment(first(filteredActions).date) 
+                duration: moment.duration(moment(last(filteredActions).date) - moment(first(filteredActions).date)) 
             } : null;
         }
         

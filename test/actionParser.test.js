@@ -49,7 +49,7 @@ describe("Parsing actions", () => {
         ];
         const expected = [{
             id: "1",
-            duration: 86400000,
+            duration: moment.duration(86400000),
             completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
@@ -96,7 +96,7 @@ describe("Parsing actions", () => {
         ];
         const expected = [{
             id: "1",
-            duration: 86400000,
+            duration: moment.duration(86400000),
             completionDate: moment("2020-04-03T16:00:00.000Z")   
         }];
         const parse = createActionParser("1", "2");
@@ -160,7 +160,7 @@ describe("Parsing actions", () => {
         ];
         const expected = [{
             id: "1",
-            duration: 86400000,
+            duration: moment.duration(86400000),
             completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
