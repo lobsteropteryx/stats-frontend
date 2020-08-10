@@ -21,11 +21,17 @@ window.store = store;
 
 const App = () => {
     return (
-        <div style={{height: "400px"}}>
+        <div className="container">
             <AuthPortalContainer />
-            <Filters />
-            <StatsContainer />
-            <ScatterPlotContainer />
+            <div className="wrapper">
+                <div className="filter">
+                    <Filters />
+                    <StatsContainer />
+                </div>
+                <div className="chart">
+                    <ScatterPlotContainer />
+                </div>
+            </div>
         </div>
     );
 };

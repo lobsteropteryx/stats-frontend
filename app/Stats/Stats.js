@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Stats = (props) => {
     return (
         <div>
-            <span>Average duration: {props.average} ± {2 * props.stdev} days, based on {props.n} cards</span>
+            <span className="stats">Average duration: {props.average} ± {2 * props.stdev} days, based on {props.n} cards</span>
         </div>
     );
 };
