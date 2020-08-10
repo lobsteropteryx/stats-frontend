@@ -19,6 +19,16 @@ const ScatterPlot = (props) => (
         axisBottom={{
             format: '%b %d',
             tickValues: 'every 2 days',
+            orient: 'bottom',
+            legend: 'Date Completed',
+            legendPosition: 'middle',
+            legendOffset: 60
+        }}
+        axisLeft={{
+            orient: 'left',
+            legend: 'Days to Complete',
+            legendPosition: 'middle',
+            legendOffset: -60
         }}
         tooltip={({ node }) => (
             <div style={{
