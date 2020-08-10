@@ -20,6 +20,7 @@ export function createActionParser(startId, endId) {
 
             return (isComplete(filteredActions)) ? { 
                 id: id,
+                name: first(filteredActions).data.card.name,
                 completionDate: moment(last(filteredActions).date),
                 duration: moment.duration(moment(last(filteredActions).date) - moment(first(filteredActions).date)) 
             } : null;
