@@ -31,4 +31,17 @@ export default class ApiClient {
             })
             .then(response => response.data);
     }
+    
+    getActionsForBoard(boardId) {
+        return this.axiosInstance
+            .get(`/boards/${boardId}/actions`, { 
+                params: {
+                    key: this.key,
+                    token: this.token,
+                    fields: 'data,date',
+                    filter: 'updateCard:idList'
+                } 
+            })
+            .then(response => response.data);
+    }
 }
