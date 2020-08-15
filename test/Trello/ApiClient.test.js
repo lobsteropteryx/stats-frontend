@@ -15,6 +15,7 @@ describe('Trello API requests', () => {
                 'access-control-allow-origin': '*',
             })
             .get('/1/members/me/boards')
+            .query({key: 'key', token: 'token'})
             .reply(200, expected);
 
         const client = new ApiClient('key', 'token');
@@ -33,7 +34,7 @@ describe('Trello API requests', () => {
                 'access-control-allow-origin': '*',
             })
             .get('/1/boards/1/lists')
-            .query({filter: 'all'})
+            .query({key: 'key', token: 'token', filter: 'all'})
             .reply(200, expected);
 
         const client = new ApiClient('key', 'token');

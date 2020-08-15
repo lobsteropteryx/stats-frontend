@@ -11,13 +11,24 @@ export default class ApiClient {
 
     getBoards() {
         return this.axiosInstance
-            .get(`/members/me/boards`)
+            .get(`/members/me/boards`, {
+                params: {
+                    key: this.key,
+                    token: this.token
+                }
+            })
             .then(response => response.data);
     }
     
     getColumnsForBoard(boardId) {
         return this.axiosInstance
-            .get(`/boards/${boardId}/lists`, { params: {filter: 'all'} })
+            .get(`/boards/${boardId}/lists`, { 
+                params: {
+                    key: this.key,
+                    token: this.token,
+                    filter: 'all'
+                } 
+            })
             .then(response => response.data);
     }
 }
