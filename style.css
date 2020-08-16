@@ -1,12 +1,84 @@
-
-.bar {
-    fill: steelblue;
+.trelloControl label {
+    display: block;
+    padding: 6px;
 }
 
-.bar:hover {
-    fill: brown;
+.trelloDatepicker {
+    height: 30px;
+    width: 300px;
+    border-radius: 4px;
+    border-width: 1px;
+    font-size: medium;
+    font-family: inherit;
+    padding-left: 10px;
 }
 
-.axis--x path {
-    display: none;
+.trelloList {
+    width: 304px;
+}
+
+.trelloControl label {
+    font-weight: bolder;
+}
+
+.container {
+    height: 100vh;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    height: 100%;
+    background-color: lightgrey;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.chart {
+    overflow: scroll;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px 10px 10px 0px;
+}
+
+.filter {
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px 0px 10px 10px;
+    padding: 10px;   
+}
+
+.filter button {
+    display:inline-block;
+    padding:0.2em 1.45em;
+    margin: 10px 0px 10px 0px;
+    border:0.15em solid #CCCCCC;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:400;
+    color:#000000;
+    background-color:#CCCCCC;
+    text-align:center;
+    position:relative;
+}
+
+.filter button:hover{
+    border-color:#7a7a7a;
+}
+
+.filter button:active{
+    background-color:#999999;
+}
+
+@media all and (max-width:30em) {
+    .filter button {
+        display:block;
+        margin:0.2em auto;
+    }
+}
+
+.stats {
+    display: block;
+    margin-top: 50px;
+    font-size: 26px; 
 }

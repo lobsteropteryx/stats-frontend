@@ -2,14 +2,53 @@
   "name": "trello-bugtracker",
   "version": "1.0.0",
   "description": "web app to count trello bug cards",
-  "main": "trello.js",
+  "main": "index.js",
   "scripts": {
-    "test": "test",
-    "dev": "ws"
+    "dev": "webpack-dev-server --hot --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "test": "jest"
   },
   "author": "Ian Firkin",
   "license": "MIT",
   "devDependencies": {
-    "local-web-server": "^2.3.0"
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "axios-mock-adapter": "^1.18.2",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "26.4.0",
+    "json-loader": "^0.5.7",
+    "local-web-server": "^2.6.1",
+    "nock": "13.0.4",
+    "redux-mock-store": "^1.5.4",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@nivo/scatterplot": "^0.62.0",
+    "@reduxjs/toolkit": "^1.4.0",
+    "axios": "^0.19.2",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
+    "percentile": "^1.4.0",
+    "react": "^16.13.1",
+    "react-datepicker": "^2.0.0",
+    "react-dom": "^16.13.1",
+    "react-redux": "^5.1.2",
+    "react-select": "^2.4.4",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "redux-toolkit": "^1.1.2",
+    "trello": "^0.9.1"
   }
 }
