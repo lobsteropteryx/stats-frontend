@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Trello from "trello";
-import * as api from '../Trello/api';
+import ApiClient from '../Trello/ApiClient';
 import { createActionParser } from "../actionParser";
 
 const filterSlice = createSlice({
@@ -41,9 +41,6 @@ const filterSlice = createSlice({
     setEndColumn: (state, action) => {
         state.endColumn = action.payload;
     },
-    setCards: (state, action) => {
-        state.cards = action.payload;
-    },
     setActions: (state, action) => {
         state.actions = action.payload;
     },
@@ -65,44 +62,36 @@ export const {
     setColumns,
     setStartColumn,
     setEndColumn,
-    setCards,
     setActions,
     setStartDate,
     setEndDate 
 } = filterSlice.actions;
 
-const getTrelloClient = filter => {
-    return new Trello(filter.apiKey, filter.token);
+const buildApiClient = (filter) => {
+    return new ApiClient(filter.apiKey, filter.token);
 }
 
 export const fetchBoards = () => async (dispatch, getState) => {
-    const client = getTrelloClient(getState().filter);
+    const client = buildApiClient(getState().filter);
     dispatch(fetchPending());
-    dispatch(setBoards(await api.fetchBoards(client)));
+    dispatch(setBoards(await client.getBoards()));
     dispatch(fetchComplete());
 }
 
 export const fetchColumnsForBoard = (boardId) => async (dispatch, getState) => {
-    const client = getTrelloClient(getState().filter);
+    const client = buildApiClient(getState().filter);
     dispatch(fetchPending());
-    dispatch(setColumns(await api.fetchColumnsForBoard(client, boardId)));
+    dispatch(setColumns(await client.getColumnsForBoard(boardId)));
     dispatch(fetchComplete());
 }
 
 export const fetchActionsForBoard = (boardId, startColumn, endColumn) => async (dispatch, getState) => {
-    const client = getTrelloClient(getState().filter);
+    const client = buildApiClient(getState().filter);
     dispatch(fetchPending());
     const parse = createActionParser(startColumn, endColumn);
-    const actions = await api.fetchActionsForBoard(client, boardId);
+    const actions = await client.getActionsForBoard(boardId);
     const parsedActions = parse(actions);
     dispatch(setActions(parsedActions));
-    dispatch(fetchComplete());
-}
-
-export const fetchCardsForBoard = (boardId) => async (dispatch, getState) => {
-    const client = getTrelloClient(getState().filter);
-    dispatch(fetchPending());
-    dispatch(setCards(await api.fetchCardsForBoard(client, boardId)));
     dispatch(fetchComplete());
 }
 

@@ -73,16 +73,6 @@ describe("Setting columns", () => {
     });
 });
 
-describe("Setting cards", () => {
-    it("sets the list of cards", () => {
-        const state = {};
-        const cards = [{name: "a card"}];
-        const expectedState = {cards};
-        const action = setCards(cards);
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
-});
-
 describe("Selecting columns", () => {
     it("Sets the selected start column", () => {
         const state = {};
