@@ -19,7 +19,7 @@ const ScatterPlot = (props) => (
         enableGridY={true}
         axisBottom={{
             format: '%b %d',
-            tickValues: 'every 2 days',
+            tickValues: 'every week',
             orient: 'bottom',
             legend: 'Date Completed',
             legendPosition: 'middle',
