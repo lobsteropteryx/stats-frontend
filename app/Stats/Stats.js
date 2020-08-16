@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Stats = (props) => {
     return (
         <div>
-            <span>Percentiles (based on {props.n} cards)</span>
+            <span>Percentiles (based on {props.n} stories)</span>
             <table>
                 <tbody>
                     <tr>
