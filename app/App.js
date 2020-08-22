@@ -9,6 +9,7 @@ import filterSlice from './Filter/filterSlice';
 import Filters from './Filter/Filters';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
+import HistogramContainer from './Histogram/HistogramContainer';
 import StatsContainer from './Stats/StatsContainer';
 import settingsSlice from './Settings/settingsSlice';
 import SettingsContainer from './Settings/SettingsContainer';
@@ -33,6 +34,7 @@ const App = () => {
                     <StatsContainer />
                 </div>
                 <div className="chart">
+                    <HistogramContainer />
                     <ScatterPlotContainer />
                 </div>
             </div>

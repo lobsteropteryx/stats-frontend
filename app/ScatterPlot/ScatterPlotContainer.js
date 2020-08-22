@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import { getPlotData } from './selectors';
+import { SCATTER } from '../Settings/settingsSlice';
 import ScatterPlot from './ScatterPlot';
 
 const mapStateToProps = state => {
     return {
-        data: getPlotData(state)
+        data: getPlotData(state),
+        display: state.settings.displayMode === SCATTER ? 'block' : 'none'
     };
 };
 
