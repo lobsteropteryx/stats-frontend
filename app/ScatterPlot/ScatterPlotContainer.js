@@ -1,20 +1,10 @@
 import { connect } from 'react-redux';
+import { getPlotData } from './selectors';
 import ScatterPlot from './ScatterPlot';
 
 const mapStateToProps = state => {
     return {
-        data: [{
-            id: "Cards Completed",
-            data: state.filter.actions.map(action => {
-                return {
-                    id: action.id,
-                    name: action.name,
-                    url: `https://trello.com/c/${action.id}`,
-                    x: action.completionDate.format("YYYY-MM-DD"),
-                    y: parseFloat(action.duration.asDays(), 1).toPrecision(1)
-                };
-            })
-        }]
+        data: getPlotData(state)
     };
 };
 

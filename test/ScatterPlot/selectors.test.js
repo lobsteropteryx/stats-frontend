@@ -3,9 +3,12 @@ import { getPlotData } from "../../app/ScatterPlot/selectors";
 
 describe("Transforming chart data", () => {
     it("Returns an empty array when there are no actions", () => {
-        const expected = [];
+        const expected = [{
+            id: "Cards Completed",
+            data: []
+        }];
 
-        const state = { actions: [] };
+        const state = { filter: { actions: [] } };
 
         const actual = getPlotData(state);
 
@@ -14,20 +17,25 @@ describe("Transforming chart data", () => {
     
     it("Returns data elements from actions", () => {
         const expected = [{
-            id: 1,
-            name: "test",
-            url: "https://trello.com/c/1",
-            x: "2020-01-01",
-            y: "1"
+            id: "Cards Completed",
+            data: [{
+                id: 1,
+                name: "test",
+                url: "https://trello.com/c/1",
+                x: "2020-01-01",
+                y: "1"
+            }]
         }];
 
         const state = { 
-            actions: [{
-                id: 1,
-                name: "test",
-                completionDate: moment("2020-01-01"),
-                duration: moment.duration(1, "days")
-            }]
+            filter: {
+                actions: [{
+                    id: 1,
+                    name: "test",
+                    completionDate: moment("2020-01-01"),
+                    duration: moment.duration(1, "days")
+                }]
+            }
         };
 
         const actual = getPlotData(state);
