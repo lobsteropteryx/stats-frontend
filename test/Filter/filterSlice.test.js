@@ -5,7 +5,6 @@ import {
     fetchComplete,
     setBoards,
     selectBoard,
-    setCards,
     setColumns,
     setActions,
     setStartColumn,

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Trello from "trello";
 import ApiClient from '../Trello/ApiClient';
 import { createActionParser } from "../actionParser";
 
