@@ -10,9 +10,12 @@ import Filters from './Filter/Filters';
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
 import StatsContainer from './Stats/StatsContainer';
+import settingsSlice from './Settings/settingsSlice';
+import SettingsContainer from './Settings/SettingsContainer';
 
 const rootReducer = combineReducers({
-    filter: filterSlice
+    filter: filterSlice,
+    settings: settingsSlice
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
@@ -25,6 +28,7 @@ const App = () => {
             <AuthPortalContainer />
             <div className="wrapper">
                 <div className="filter">
+                    <SettingsContainer />
                     <Filters />
                     <StatsContainer />
                 </div>
