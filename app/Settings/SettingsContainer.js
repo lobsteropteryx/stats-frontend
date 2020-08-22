@@ -15,8 +15,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChange: displayMode => {
-            dispatch(setDisplayMode(displayMode))
+        onChange: e => {
+            dispatch(setDisplayMode(e.value))
         }
     }
 };
