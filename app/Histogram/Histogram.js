@@ -5,7 +5,7 @@ const Histogram = (props) => (
     <div className="chartContainer" style={{display: props.display}}>
         <ResponsiveBar
             data={props.data}
-            keys={props.keys}
+            indexBy='id'
             groupMode='grouped'
             colors={{ scheme: 'dark2' }}
             nodeSize={12}
