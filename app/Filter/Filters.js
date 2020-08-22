@@ -12,8 +12,6 @@ const Filters = () => {
             <BoardsListContainer />
             <StartColumnsListContainer />
             <EndColumnsListContainer />
-            <StartDateListContainer />
-            <EndDateListContainer />
             <SubmitButtonContainer />
         </div>
     );
