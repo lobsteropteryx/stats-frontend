@@ -6,7 +6,7 @@ export const HISTOGRAM = "histogram";
 const settingsSlice = createSlice({
     name: 'settings',
     initialState: {
-      displayMode: SCATTER
+      displayMode: { label: "Scatter Plot", value: SCATTER}
     },
     reducers: {
       setDisplayMode: (state, action) => {

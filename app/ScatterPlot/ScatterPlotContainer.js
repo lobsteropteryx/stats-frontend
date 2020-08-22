@@ -6,7 +6,7 @@ import ScatterPlot from './ScatterPlot';
 const mapStateToProps = state => {
     return {
         data: getPlotData(state),
-        display: state.settings.displayMode === SCATTER ? 'block' : 'none'
+        display: state.settings.displayMode.value === SCATTER ? 'block' : 'none'
     };
 };
 

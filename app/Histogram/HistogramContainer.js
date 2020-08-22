@@ -6,7 +6,7 @@ import Histogram from './Histogram';
 const mapStateToProps = state => {
     return {
         data: getHistogramData(state),
-        display: state.settings.displayMode === HISTOGRAM ? 'block' : 'none'
+        display: state.settings.displayMode.value === HISTOGRAM ? 'block' : 'none'
     };
 };
 
