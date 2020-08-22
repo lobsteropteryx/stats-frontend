@@ -6,7 +6,8 @@ const mapStateToProps = state => {
     return {
         selectedBoardId: state.filter.selectedBoard.value,
         startColumnId: state.filter.startColumn.value,
-        endColumnId: state.filter.endColumn.value
+        endColumnId: state.filter.endColumn.value,
+        spinnerClass: state.filter.isFetching ? 'spinner-enabled' : 'spinner-disabled'
     }
 };
 
