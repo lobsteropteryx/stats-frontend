@@ -21,6 +21,7 @@ const ScatterPlot = (props) => (
             axisBottom={{
                 format: '%b %d',
                 tickValues: 'every week',
+                tickRotation: 90,
                 orient: 'bottom',
                 legend: 'Date Completed',
                 legendPosition: 'middle',
