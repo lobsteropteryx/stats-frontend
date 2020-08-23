@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import spinner from '../../images/spinner.svg';
+import spinner from '../../images/spinner.gif';
 
 const SubmitButton = (props) => {
     return (

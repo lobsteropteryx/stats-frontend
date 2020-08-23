@@ -57,9 +57,6 @@ body.waiting * {
     padding: 10px;   
 }
 
-.filter button {
-}
-
 .filter button:hover{
     border-color:#7a7a7a;
 }
@@ -81,7 +78,7 @@ body.waiting * {
     row-gap: 10px;
     column-gap: 10px;
     height: 40px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 20px 0px;
 }
 
 .spinner-enabled {
