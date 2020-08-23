@@ -1,32 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StatsRow from './StatsRow';
 
 const Stats = (props) => {
     return (
-        <div>
-            <span>Percentiles (based on {props.n} stories)</span>
+        <div className='stats'>
             <table>
                 <tbody>
-                    <tr>
+                    <th>
                         <td>
-                            <span>50% of stories were completed within {props.fifty} days</span>
+                            <span>Percentiles (based on {props.n} stories)</span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>75% of stories were completed within {props.seventyFive} days</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>85% of stories were completed within {props.eightyFive} days</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>95% of stories were completed within {props.ninetyFive} days</span>
-                        </td>
-                    </tr>
+                    </th> 
+                    <StatsRow percentile={'50%'} value={props.fifty} />
+                    <StatsRow percentile={'75%'} value={props.seventyFive} />
+                    <StatsRow percentile={'85%'} value={props.eightyFive} />
+                    <StatsRow percentile={'95%'} value={props.ninetyFive} />
                 </tbody>
             </table>
         </div>

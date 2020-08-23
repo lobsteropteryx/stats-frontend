@@ -7,9 +7,7 @@ const mapStateToProps = state => {
 };
 
 const StatsContainer = connect(
-    mapStateToProps,
-    null,
-    null
+    mapStateToProps
 )(Stats);
 
 export default StatsContainer;
