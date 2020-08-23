@@ -94,9 +94,26 @@ body.waiting * {
 }
 
 .stats table {
-    border-spacing: 0em 0.5em;
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    table-layout: auto;
+    width: 100%;
 }
 
-.stats span {
- font-size: larger;
+.stats td,th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+}
+
+.stats thead th {
+    background-color: #eee;
+}
+
+.stats td {
+    text-align: center;
+}
+
+.stats caption {
+    padding: 10px;
+    caption-side: bottom;
 }

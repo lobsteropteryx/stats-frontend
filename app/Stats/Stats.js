@@ -6,12 +6,14 @@ const Stats = (props) => {
     return (
         <div className='stats'>
             <table>
+                <caption>based on {props.n} stories</caption>
+                <thead>
+                    <tr>
+                        <th>Percent of Stories Completed</th>
+                        <th>Days</th>
+                    </tr> 
+                </thead>
                 <tbody>
-                    <th>
-                        <td>
-                            <span>Percentiles (based on {props.n} stories)</span>
-                        </td>
-                    </th> 
                     <StatsRow percentile={'50%'} value={props.fifty} />
                     <StatsRow percentile={'75%'} value={props.seventyFive} />
                     <StatsRow percentile={'85%'} value={props.eightyFive} />
