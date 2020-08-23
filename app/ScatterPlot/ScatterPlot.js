@@ -7,6 +7,7 @@ const ScatterPlot = (props) => (
             data={props.data}
             onClick={props.onClick}
             colors={{ scheme: 'dark2' }}
+            useMesh={false}
             nodeSize={12}
             margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
             xScale={{

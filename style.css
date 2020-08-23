@@ -43,6 +43,10 @@ body.waiting * {
     height: 100%
 }
 
+.chartContainer circle {
+    cursor: pointer;
+}
+
 .chart {
     overflow: scroll;
     background-color: white;
