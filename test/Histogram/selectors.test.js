@@ -18,7 +18,7 @@ describe("Transforming histogram data", () => {
     
     it("Returns data elements from a single action", () => {
         const expected = [{
-            id: "0",
+            id: "1",
             value: 1
         }];
 
@@ -41,11 +41,11 @@ describe("Transforming histogram data", () => {
     it("Returns data elements from actions", () => {
         const expected = [
         {
-            id: "0",
+            id: "1",
             value: 1
         }, 
         {
-            id: "1",
+            id: "2",
             value: 1
         }];
 

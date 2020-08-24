@@ -7,7 +7,7 @@ export const getHistogramData = createSelector(
     [getActions],
     (actions) => {
         const durations = actions.map(x => { 
-            return Math.ceil(x.duration.asDays()) - 1; 
+            return Math.ceil(x.duration.asDays()); 
          });
     
         const histogram = durations.reduce((bins, x) => {
