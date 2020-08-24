@@ -2,13 +2,13 @@ import moment from "moment";
 import { getPercentiles } from "../../app/Stats/selectors";
 
 describe("Calculating percentiles", () => {
-    it("Sets percentiles to NaNN when there are no actions", () => {
+    it("Sets percentiles to 0 when there are no actions", () => {
         const expected = {
             n: 0,
-            fifty: NaN,
-            seventyFive: NaN,
-            eightyFive: NaN, 
-            ninetyFive: NaN 
+            fifty: 0,
+            seventyFive: 0,
+            eightyFive: 0, 
+            ninetyFive: 0 
         }
 
         const state = { filter: { actions: [] } };

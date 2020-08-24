@@ -9,10 +9,10 @@ export const getPercentiles = createSelector(
         const durations = actions.map(x => x.duration.asDays());
         return {
             n: durations.length,
-            fifty: Math.round(percentile(50, durations)),
-            seventyFive: Math.round(percentile(75, durations)),
-            eightyFive: Math.round(percentile(85, durations)),
-            ninetyFive: Math.round(percentile(95, durations))
+            fifty: Math.ceil(percentile(50, durations)) || 0,
+            seventyFive: Math.ceil(percentile(75, durations)) || 0,
+            eightyFive: Math.ceil(percentile(85, durations)) || 0,
+            ninetyFive: Math.ceil(percentile(95, durations)) || 0
         }
     }
 );
