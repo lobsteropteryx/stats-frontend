@@ -1,9 +1,6 @@
-body.waiting * {
-    cursor: progress;
-}
-
 .trelloControl label {
     display: block;
+    font-weight: bolder;
     padding: 6px;
 }
 
@@ -19,10 +16,6 @@ body.waiting * {
 
 .trelloList {
     width: 304px;
-}
-
-.trelloControl label {
-    font-weight: bolder;
 }
 
 .container {
