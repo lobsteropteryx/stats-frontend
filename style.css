@@ -1,11 +1,11 @@
-.trelloControl label {
+.filterControl label {
     display: block;
     font-weight: bolder;
     padding: 6px;
 }
 
 
-.trelloList {
+.filterList {
     width: 304px;
 }
 

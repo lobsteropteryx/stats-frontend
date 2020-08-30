@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Date = (props) => {
     return (
-        <div className='trelloControl'>
+        <div className='filterControl'>
             <label>{props.label}</label>
             <DatePicker
                 className="dateFilter"
