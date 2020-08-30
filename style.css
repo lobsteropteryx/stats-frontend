@@ -15,7 +15,7 @@
 
 .wrapper {
     display: grid;
-    grid-template-columns: 350px 1fr;
+    grid-template-columns: 360px 1fr;
     height: 100%;
     background-color: lightgrey;
     row-gap: 10px;
@@ -42,7 +42,6 @@
     background-color: white;
     border-radius: 10px;
     margin: 10px 0px 10px 10px;
-    padding: 10px;   
 }
 
 .filter button:hover{
@@ -66,7 +65,7 @@
     row-gap: 10px;
     column-gap: 10px;
     height: 40px;
-    margin: 10px 0px 10px 0px;
+    margin-top: 10px;
 }
 
 .spinner-enabled {
@@ -75,6 +74,12 @@
 
 .spinner-disabled {
     visibility: hidden;
+}
+
+.filter fieldset {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
 }
 
 .settings {
@@ -93,10 +98,12 @@
     padding-left: 10px;
 }
 
+.stats {
+    margin: 10px;
+}
+
 .stats table {
     border-collapse: collapse;
-    border: 2px solid rgb(200, 200, 200);
-    table-layout: auto;
     width: 100%;
 }
 

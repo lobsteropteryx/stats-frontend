@@ -33,12 +33,20 @@ const App = () => {
             <AuthPortalContainer />
             <div className="wrapper">
                 <div className="filter">
-                    <Filters />
-                    <div className="settings">
-                        <SettingsContainer />
-                        <StartDateContainer />
-                        <EndDateContainer />
-                    </div>
+                    <form>
+                        <fieldset>
+                            <legend>Query Filters</legend>
+                            <Filters />
+                        </fieldset>
+                        <fieldset>
+                            <legend>Local Filters</legend>
+                            <div className="settings">
+                                <SettingsContainer />
+                                <StartDateContainer />
+                                <EndDateContainer />
+                            </div>
+                        </fieldset>
+                    </form>
                     <StatsContainer />
                 </div>
                 <div className="chart">
