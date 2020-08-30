@@ -8,7 +8,12 @@ describe("Transforming chart data", () => {
             data: []
         }];
 
-        const state = { filter: { actions: [] } };
+        const state = { 
+            date: {}, 
+            filter: { 
+                actions: [] 
+            } 
+        };
 
         const actual = getPlotData(state);
 
@@ -28,11 +33,54 @@ describe("Transforming chart data", () => {
         }];
 
         const state = { 
+            date: {},
             filter: {
                 actions: [{
                     id: 1,
                     name: "test",
                     completionDate: moment("2020-01-01"),
+                    duration: moment.duration(1, "days")
+                }]
+            }
+        };
+
+        const actual = getPlotData(state);
+
+        expect(actual).toEqual(expected);
+    });
+    
+    it("Filters by date", () => {
+        const expected = [{
+            id: "Cards Completed",
+            data: [{
+                id: 2,
+                name: "test2",
+                url: "https://trello.com/c/2",
+                x: "2020-01-02",
+                y: "1"
+            }]
+        }];
+
+        const state = { 
+            date: {
+                startDate: moment("2020-01-02"),
+                endDate: moment("2020-01-02")
+            },
+            filter: {
+                actions: [{
+                    id: 1,
+                    name: "test",
+                    completionDate: moment("2020-01-01"),
+                    duration: moment.duration(1, "days")
+                }, {
+                    id: 2,
+                    name: "test2",
+                    completionDate: moment("2020-01-02"),
+                    duration: moment.duration(1, "days")
+                }, {
+                    id: 3,
+                    name: "test3",
+                    completionDate: moment("2020-01-03"),
                     duration: moment.duration(1, "days")
                 }]
             }

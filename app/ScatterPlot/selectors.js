@@ -1,6 +1,9 @@
 import { createSelector } from "reselect";
+import filterActionByDate from "../filterActionByDate";
 
 const getActions = state => state.filter.actions;
+const getStartDate = state => state.date.startDate;
+const getEndDate = state => state.date.endDate;
 
 const actionToChartData = (action) => {
     return {
@@ -13,11 +16,13 @@ const actionToChartData = (action) => {
 };
 
 export const getPlotData = createSelector(
-    [getActions],
-    (actions) => {
+    [getActions, getStartDate, getEndDate],
+    (actions, startDate, endDate) => {
         return [{
             id: "Cards Completed",
-            data: actions.map(actionToChartData)
+            data: actions
+                .filter(action => filterActionByDate(action, startDate, endDate))
+                .map(actionToChartData)
         }];
     }
 );
