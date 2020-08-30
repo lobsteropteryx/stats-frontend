@@ -33,11 +33,13 @@ const App = () => {
             <AuthPortalContainer />
             <div className="wrapper">
                 <div className="filter">
-                    <SettingsContainer />
                     <Filters />
+                    <div className="settings">
+                        <SettingsContainer />
+                        <StartDateContainer />
+                        <EndDateContainer />
+                    </div>
                     <StatsContainer />
-                    <StartDateContainer />
-                    <EndDateContainer />
                 </div>
                 <div className="chart">
                     <HistogramContainer />
