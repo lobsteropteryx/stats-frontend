@@ -1,13 +1,16 @@
 import { createSelector } from "reselect";
+import filterActionByDate from "../filterActionByDate";
 
 const getActions = state => state.filter.actions;
+const getStartDate = state => state.date.startDate;
+const getEndDate = state => state.date.endDate;
 
 export const getHistogramData = createSelector(
-    [getActions],
-    (actions) => {
-        const durations = actions.map(x => { 
-            return Math.ceil(x.duration.asDays()); 
-         });
+    [getActions, getStartDate, getEndDate],
+    (actions, startDate, endDate) => {
+        const durations = actions
+            .filter(action => filterActionByDate(action, startDate, endDate))
+            .map(action => Math.ceil(action.duration.asDays()));
     
         const histogram = durations.reduce((bins, x) => {
             bins[x] ? bins[x]++ : bins[x] = 1;
