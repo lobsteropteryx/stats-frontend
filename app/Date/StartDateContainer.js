@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setStartDate } from '../filterSlice';
+import { setStartDate } from './dateSlice';
 import Date from './Date';
 
 const mapStateToProps = state => {

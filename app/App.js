@@ -13,10 +13,14 @@ import HistogramContainer from './Histogram/HistogramContainer';
 import StatsContainer from './Stats/StatsContainer';
 import settingsSlice from './Settings/settingsSlice';
 import SettingsContainer from './Settings/SettingsContainer';
+import StartDateContainer from './Date/StartDateContainer';
+import EndDateContainer from './Date/EndDateContainer';
+import dateSlice from './Date/dateSlice';
 
 const rootReducer = combineReducers({
     filter: filterSlice,
-    settings: settingsSlice
+    settings: settingsSlice,
+    date: dateSlice
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
@@ -32,6 +36,8 @@ const App = () => {
                     <SettingsContainer />
                     <Filters />
                     <StatsContainer />
+                    <StartDateContainer />
+                    <EndDateContainer />
                 </div>
                 <div className="chart">
                     <HistogramContainer />
