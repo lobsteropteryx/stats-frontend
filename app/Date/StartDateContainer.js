@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
-import moment from 'moment';
 import { setStartDate } from './dateSlice';
 import Date from './Date';
 
 const mapStateToProps = state => {
     return {
         label: 'Start Date',
-        date: state.filter.startDate
+        date: state.date.startDate
     }
 };  
 
 const mapDispatchToProps = dispatch => {
     return {
         onChange: date => {
-            dispatch(setStartDate(moment(date)))
+            dispatch(setStartDate(date))
         }
     }
 };
