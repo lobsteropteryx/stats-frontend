@@ -11,7 +11,12 @@ describe("Calculating percentiles", () => {
             ninetyFive: 0 
         }
 
-        const state = { filter: { actions: [] } };
+        const state = { 
+            date: {}, 
+            filter: { 
+                actions: [] 
+            } 
+        };
 
         const actual = getPercentiles(state);
 
@@ -28,6 +33,7 @@ describe("Calculating percentiles", () => {
         };
 
         const state = { 
+            date: {},
             filter: {
                 actions: [{
                     id: 1,
@@ -53,6 +59,7 @@ describe("Calculating percentiles", () => {
         };
 
         const state = { 
+            date: {},
             filter: {
                 actions: [{
                     id: 1,
@@ -63,6 +70,45 @@ describe("Calculating percentiles", () => {
                     id: 2,
                     name: "test2",
                     completionDate: moment("2020-01-02"),
+                    duration: moment.duration(2, "days")
+                }]
+            }
+        };
+
+        const actual = getPercentiles(state);
+
+        expect(actual).toEqual(expected);
+    });
+    
+    it("Filters percentiles based on date", () => {
+        const expected = {
+            n: 1,
+            fifty: 1,
+            seventyFive: 1,
+            eightyFive: 1, 
+            ninetyFive: 1 
+        };
+
+        const state = {
+            date: {
+                startDate: moment("2020-01-02"),
+                endDate: moment("2020-01-02")
+            },
+            filter: {
+                actions: [{
+                    id: 1,
+                    name: "test",
+                    completionDate: moment("2020-01-01"),
+                    duration: moment.duration(3, "days")
+                }, {
+                    id: 2,
+                    name: "test2",
+                    completionDate: moment("2020-01-02"),
+                    duration: moment.duration(1, "days")
+                }, {
+                    id: 3,
+                    name: "test3",
+                    completionDate: moment("2020-01-03"),
                     duration: moment.duration(2, "days")
                 }]
             }

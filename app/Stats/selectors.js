@@ -2,11 +2,16 @@ import { createSelector } from "reselect";
 import percentile from 'percentile';
 
 const getActions = state => state.filter.actions;
+const getStartDate = state => state.date.startDate;
+const getEndDate = state => state.date.endDate;
 
 export const getPercentiles = createSelector(
-    [getActions],
-    (actions) => {
-        const durations = actions.map(x => x.duration.asDays());
+    [getActions, getStartDate, getEndDate],
+    (actions, startDate, endDate) => {
+        const durations = actions
+            .filter(x => !startDate || x.completionDate >= startDate)
+            .filter(x => !endDate || x.completionDate <= endDate)
+            .map(x => x.duration.asDays());
         return {
             n: durations.length,
             fifty: Math.ceil(percentile(50, durations)) || 0,
