@@ -195,4 +195,28 @@ describe('Trello API requests', () => {
             return expect(client.getActionsForBoard(1)).resolves.toEqual(expected);
         });
     });
+
+    describe('Requesting cards', () => {
+        it('Can request cards for a column', () => {
+
+            const expected = [{
+                id: 1
+            }];
+
+            nock('https://api.trello.com')
+                .defaultReplyHeaders({
+                    'access-control-allow-origin': '*',
+                })
+                .get('/1/lists/1/cards')
+                .query({
+                    key: 'key', 
+                    token: 'token'
+                })
+                .reply(200, expected);
+
+            const client = new ApiClient('key', 'token');
+            
+            return expect(client.getCardsForColumn(1)).resolves.toEqual(expected);
+        });
+    });
 });

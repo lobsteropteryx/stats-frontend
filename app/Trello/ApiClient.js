@@ -72,4 +72,15 @@ export default class ApiClient {
             })
             .then(response => response.data);
     }
+    
+    async getCardsForColumn(columnId) {
+        return this.axiosInstance
+            .get(`/lists/${columnId}/cards`, { 
+                params: {
+                    key: this.key,
+                    token: this.token
+                } 
+            })
+            .then(response => response.data);
+    }
 }
