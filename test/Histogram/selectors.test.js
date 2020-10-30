@@ -29,6 +29,7 @@ describe("Transforming histogram data", () => {
                 actions: [{
                     id: 1,
                     name: "test",
+                    isComplete: true,
                     completionDate: moment("2020-01-01"),
                     duration: moment.duration(1, "days")
                 }]
@@ -57,12 +58,47 @@ describe("Transforming histogram data", () => {
                 actions: [{
                     id: 1,
                     name: "test",
+                    isComplete: true,
                     completionDate: moment("2020-01-01"),
                     duration: moment.duration(1, "days")
                 }, {
                     id: 2,
                     name: "test2",
+                    isComplete: true,
                     completionDate: moment("2020-01-01"),
+                    duration: moment.duration(2, "days")
+                }]
+            }
+        };
+
+        const actual = getHistogramData(state);
+
+        expect(actual).toEqual(expected);
+    });
+    
+    it("Filters incomplete actions", () => {
+        const expected = [{
+            id: "2",
+            value: 1
+        }];
+
+        const state = { 
+            date: {
+                startDate: moment("2020-01-02"),
+                endDate: moment("2020-01-02")
+            },
+            filter: {
+                actions: [{
+                    id: 1,
+                    name: "test",
+                    isComplete: false,
+                    completionDate: null,
+                    duration: null 
+                }, {
+                    id: 2,
+                    name: "test2",
+                    isComplete: true,
+                    completionDate: moment("2020-01-02"),
                     duration: moment.duration(2, "days")
                 }]
             }
@@ -88,16 +124,19 @@ describe("Transforming histogram data", () => {
                 actions: [{
                     id: 1,
                     name: "test",
+                    isComplete: true,
                     completionDate: moment("2020-01-01"),
                     duration: moment.duration(1, "days")
                 }, {
                     id: 2,
                     name: "test2",
+                    isComplete: true,
                     completionDate: moment("2020-01-02"),
                     duration: moment.duration(2, "days")
                 }, {
                     id: 3,
                     name: "test3",
+                    isComplete: true,
                     completionDate: moment("2020-01-03"),
                     duration: moment.duration(2, "days")
                 }]
