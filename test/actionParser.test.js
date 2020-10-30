@@ -50,6 +50,7 @@ describe("Parsing actions", () => {
         const expected = [{
             id: "1",
             name: "Card 1",
+            isComplete: true,
             duration: moment.duration(86400000),
             completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
@@ -98,6 +99,7 @@ describe("Parsing actions", () => {
         const expected = [{
             id: "1",
             name: "Card 1",
+            isComplete: true,
             duration: moment.duration(86400000),
             completionDate: moment("2020-04-03T16:00:00.000Z")   
         }];
@@ -163,6 +165,7 @@ describe("Parsing actions", () => {
         const expected = [{
             id: "1",
             name: "Card 1",
+            isComplete: true,
             duration: moment.duration(86400000),
             completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
@@ -197,7 +200,7 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("filters out cards that are still in progress", () => {
+    it("marks cards that are still in progress as incomplete", () => {
         const actions = [
             {
                 "data": {
@@ -217,7 +220,13 @@ describe("Parsing actions", () => {
                 "date":"2020-04-02T16:00:00.000Z"
             }
         ];
-        const expected = [];
+        const expected = [{
+            id: "1",
+            name: "Card 1",
+            isComplete: false,
+            duration: null,
+            completionDate: null
+        }];
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
         expect(actual).toEqual(expected);
@@ -277,7 +286,15 @@ describe("Parsing actions", () => {
                 "date":"2020-04-04T16:00:00.000Z",
             }
         ];
-        const expected = [];
+        
+        const expected = [{
+            id: "1",
+            name: "Card 1",
+            isComplete: false,
+            duration: null,
+            completionDate: null
+        }];
+
         const parse = createActionParser("1", "2");
         const actual = parse(actions);
         expect(actual).toEqual(expected);
