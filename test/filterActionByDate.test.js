@@ -40,4 +40,14 @@ describe('Filtering actions', () => {
 
         expect(filterActionByDate(action, startDate, endDate)).toBe(false);
     });
+
+    it('Returns false if completion date is null', () => {
+        const action = {
+            completionDate: null 
+        };
+        const startDate = null;
+        const endDate = null;
+
+        expect(filterActionByDate(action, startDate, endDate)).toBe(false);
+    });
 });
