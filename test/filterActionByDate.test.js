@@ -30,4 +30,14 @@ describe('Filtering actions', () => {
 
         expect(filterActionByDate(action, startDate, endDate)).toBe(true);
     });
+
+    it('Returns false if startDate is less than completion date and end date is greater than completion date', () => {
+        const action = {
+            completionDate: new Date(1, 2, 2020)
+        };
+        const startDate = new Date(1, 3, 2020);
+        const endDate = new Date(1, 1, 2020);
+
+        expect(filterActionByDate(action, startDate, endDate)).toBe(false);
+    });
 });
