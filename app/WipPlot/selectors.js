@@ -8,8 +8,14 @@ const getEndDate = state => state.date.endDate;
 const monthName = item => item.startDate.format('MMMM');
 
 const bucketActionsByDuration = (actions, startDate, endDate) => {
-    return Object.entries(groupBy(actions, monthName))
-        .map( item => {
+    const filteredActions = actions.filter(
+        action => action.startDate && 
+            (!startDate || action.startDate >= startDate) && 
+            (!endDate || action.startDate <= endDate)
+    );
+    
+    return Object.entries(groupBy(filteredActions, monthName))
+        .map(item => {
             return {
                 x: item[0],
                 y: item[1].length
