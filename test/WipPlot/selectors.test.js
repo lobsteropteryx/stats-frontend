@@ -77,4 +77,62 @@ describe("Transforming WIP data", () => {
             expect(actual).toEqual(expected);
         });
     });
+    
+    describe("Complete actions", () => {
+        it("First day of the month", () => {
+            const expected = [{
+                id: "WIP",
+                data: [{
+                    x: "January",
+                    y: 1
+                }]
+            }];
+
+            const state = {
+                date: {}, 
+                filter: { 
+                    actions: [{
+                        id: 1,
+                        name: "test",
+                        startDate: moment("2020-01-01"),
+                        isComplete: true,
+                        completionDate: moment("2020-01-02"),
+                        duration: moment.duration(1, "days")
+                    }]
+                } 
+            };
+
+            const actual = getPlotData(state);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it("Last day of the month", () => {
+            const expected = [{
+                id: "WIP",
+                data: [{
+                    x: "January",
+                    y: 1
+                }]
+            }];
+
+            const state = {
+                date: {}, 
+                filter: { 
+                    actions: [{
+                        id: 1,
+                        name: "test",
+                        startDate: moment("2020-01-31"),
+                        isComplete: false,
+                        completionDate: moment("2020-01-02"),
+                        duration: moment.duration(1, "days")
+                    }]
+                } 
+            };
+
+            const actual = getPlotData(state);
+
+            expect(actual).toEqual(expected);
+        });
+    });
 });
