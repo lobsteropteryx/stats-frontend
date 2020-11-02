@@ -52,6 +52,7 @@ describe("Parsing actions", () => {
             name: "Card 1",
             isComplete: true,
             duration: moment.duration(86400000),
+            startDate: moment("2020-04-02T16:00:00.000Z"),
             completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
@@ -101,6 +102,7 @@ describe("Parsing actions", () => {
             name: "Card 1",
             isComplete: true,
             duration: moment.duration(86400000),
+            startDate: moment("2020-04-02T16:00:00.000Z"),
             completionDate: moment("2020-04-03T16:00:00.000Z")   
         }];
         const parse = createActionParser("1", "2");
@@ -167,6 +169,7 @@ describe("Parsing actions", () => {
             name: "Card 1",
             isComplete: true,
             duration: moment.duration(86400000),
+            startDate: moment("2020-04-02T16:00:00.000Z"),
             completionDate: moment("2020-04-03T16:00:00.000Z")
         }];
         const parse = createActionParser("1", "2");
@@ -225,6 +228,7 @@ describe("Parsing actions", () => {
             name: "Card 1",
             isComplete: false,
             duration: null,
+            startDate: moment("2020-04-02T16:00:00.000Z"),
             completionDate: null
         }];
         const parse = createActionParser("1", "2");
@@ -292,6 +296,7 @@ describe("Parsing actions", () => {
             name: "Card 1",
             isComplete: false,
             duration: null,
+            startDate: moment("2020-04-02T16:00:00.000Z"),
             completionDate: null
         }];
 
@@ -299,4 +304,4 @@ describe("Parsing actions", () => {
         const actual = parse(actions);
         expect(actual).toEqual(expected);
     });
-})
+});

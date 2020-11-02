@@ -5,10 +5,10 @@ export function createActionParser(startId, endId) {
 
     return (actions) => {
 
-        function filterActions(actions) {
+        function filterAndSortActions(actions) {
             return actions
                 .filter(x => x.data.listAfter.id === startId || x.data.listAfter.id === endId)
-                .sort(x => x.data.listAfter.id === startId ? -1 : 1)
+                .sort( (x, y) => new Date(x.date) - new Date(y.date) );
         }
 
         function isEmpty(actions) {
@@ -20,15 +20,20 @@ export function createActionParser(startId, endId) {
         }
 
         function getDuration(id, actions) {
-            const filteredActions = filterActions(actions);
-            const complete = isComplete(filteredActions);
+            const sortedActions = filterAndSortActions(actions);
+            const complete = isComplete(sortedActions);
 
-            return isEmpty(filteredActions) ? null : { 
+            return isEmpty(sortedActions) ? null : { 
                 id: id,
-                name: first(filteredActions).data.card.name,
+                name: first(sortedActions).data.card.name,
                 isComplete: complete,
-                completionDate: complete ? moment(last(filteredActions).date) : null,
-                duration: complete ? moment.duration(moment(last(filteredActions).date) - moment(first(filteredActions).date)) : null 
+                startDate: moment(first(sortedActions).date),
+                completionDate: complete ? moment(last(sortedActions).date) : null,
+                duration: complete ? 
+                    moment.duration(
+                        moment(last(sortedActions).date) - moment(first(sortedActions).date)
+                    ) : 
+                    null 
             };
         }
         

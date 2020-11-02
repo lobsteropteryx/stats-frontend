@@ -39,6 +39,7 @@ describe("Transforming chart data", () => {
                     id: 1,
                     name: "test",
                     isComplete: true,
+                    startDate: moment("2019-12-30"),
                     completionDate: moment("2020-01-01"),
                     duration: moment.duration(1, "days")
                 }]
@@ -58,7 +59,7 @@ describe("Transforming chart data", () => {
                 name: "test2",
                 url: "https://trello.com/c/2",
                 x: "2020-01-02",
-                y: "1"
+                y: "2"
             }]
         }];
 
@@ -72,14 +73,16 @@ describe("Transforming chart data", () => {
                     id: 1,
                     name: "test",
                     isComplete: false,
+                    startDate: moment("2019-12-30"),
                     completionDate: null,
                     duration: null 
                 }, {
                     id: 2,
                     name: "test2",
                     isComplete: true,
+                    startDate: moment("2019-12-30"),
                     completionDate: moment("2020-01-02"),
-                    duration: moment.duration(1, "days")
+                    duration: moment.duration(2, "days")
                 }]
             }
         };
@@ -97,7 +100,7 @@ describe("Transforming chart data", () => {
                 name: "test2",
                 url: "https://trello.com/c/2",
                 x: "2020-01-02",
-                y: "1"
+                y: "2"
             }]
         }];
 
@@ -111,20 +114,23 @@ describe("Transforming chart data", () => {
                     id: 1,
                     name: "test",
                     isComplete: true,
+                    startDate: moment("2019-12-30"),
                     completionDate: moment("2020-01-01"),
                     duration: moment.duration(1, "days")
                 }, {
                     id: 2,
                     name: "test2",
                     isComplete: true,
+                    startDate: moment("2019-12-30"),
                     completionDate: moment("2020-01-02"),
-                    duration: moment.duration(1, "days")
+                    duration: moment.duration(2, "days")
                 }, {
                     id: 3,
                     name: "test3",
                     isComplete: true,
+                    startDate: moment("2019-12-30"),
                     completionDate: moment("2020-01-03"),
-                    duration: moment.duration(1, "days")
+                    duration: moment.duration(3, "days")
                 }]
             }
         };
