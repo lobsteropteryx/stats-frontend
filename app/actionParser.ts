@@ -1,25 +1,27 @@
 import { groupBy, first, last } from 'lodash';
 import moment from 'moment';
+import Action from './action';
+import { Action as TrelloAction } from './Trello/types';
 
-export function createActionParser(startId, endId) {
+export function createActionParser(startId: string, endId: string) {
 
-    return (actions) => {
+    return (actions: TrelloAction[]) => {
 
-        function filterAndSortActions(actions) {
+        function filterAndSortActions(actions: TrelloAction[]) {
             return actions
                 .filter(x => x.data.listAfter.id === startId || x.data.listAfter.id === endId)
-                .sort( (x, y) => new Date(x.date) - new Date(y.date) );
+                .sort( (x, y) => new Date(x.date).getTime() - new Date(y.date).getTime() );
         }
 
-        function isEmpty(actions) {
+        function isEmpty(actions: TrelloAction[]) {
             return actions.length == 0;
         }
 
-        function isComplete(actions) {
+        function isComplete(actions: TrelloAction[]) {
             return !isEmpty(actions) && actions.length % 2 == 0;
         }
 
-        function getDuration(id, actions) {
+        function getDuration(id: string, actions: TrelloAction[]): Action {
             const sortedActions = filterAndSortActions(actions);
             const complete = isComplete(sortedActions);
 
@@ -31,7 +33,7 @@ export function createActionParser(startId, endId) {
                 completionDate: complete ? moment(last(sortedActions).date) : null,
                 duration: complete ? 
                     moment.duration(
-                        moment(last(sortedActions).date) - moment(first(sortedActions).date)
+                        moment(last(sortedActions).date).diff(moment(first(sortedActions).date) )
                     ) : 
                     null 
             };
@@ -40,7 +42,7 @@ export function createActionParser(startId, endId) {
         const groups = groupBy(actions, x => x.data.card.id );
 
         return Object.entries(groups)
-            .map( ([id, actions]) => getDuration(id, actions))
+            .map( ([id, actions]) => getDuration(id, actions as TrelloAction[]))
             .filter(x => x !== null);
     };
 
