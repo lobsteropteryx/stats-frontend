@@ -8,3 +8,4 @@ export default interface Action {
     completionDate: moment.Moment,
     duration: moment.Duration
 }
+

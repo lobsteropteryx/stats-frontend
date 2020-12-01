@@ -4,9 +4,11 @@ export interface Action {
 }
 
 interface Data {
+    listBefore: List
     listAfter: List
 }
 
 interface List {
-    id: string
+    id: string,
+    name: string
 }
