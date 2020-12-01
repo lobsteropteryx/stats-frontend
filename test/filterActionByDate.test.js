@@ -1,4 +1,4 @@
-import filterActionByDate from "../app/filterActionByDate";
+import { filterActionByDate } from "../app/filterActionByDate";
 
 describe('Filtering actions', () => {
     it('Returns true if startDate is null and end date is less than completion date', () => {
