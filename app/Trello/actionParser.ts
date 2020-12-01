@@ -3,28 +3,23 @@ import moment from 'moment';
 import { Action } from "./types";
 import { Card, Status } from "../card";
 
-export class ActionParser {
-    
-    constructor() {}
+export function parseActions(actions: Action[]) {
+    const groups = groupBy(actions, x => x.data.card.id );
+    return Object.values(groups).map(parseActionsForCard);
+}
 
-    parseActions(actions: Action[]) {
-        const groups = groupBy(actions, x => x.data.card.id );
-        return Object.values(groups).map(this._parseActionsForCard, this);
+function parseActionsForCard(actions: Action[]): Card {
+    return {
+        id: first(actions).data.card.id,
+        name: first(actions).data.card.name,
+        actions: actions.map(mapActionToStatus)
     }
+}
 
-    _parseActionsForCard(actions: Action[]): Card {
-        return {
-            id: first(actions).data.card.id,
-            name: first(actions).data.card.name,
-            actions: actions.map(this._mapActionToStatus, this)
-        }
-    }
-
-    _mapActionToStatus(action: Action): Status {
-        return {
-            startColumn: action.data.listBefore,
-            endColumn: action.data.listAfter,
-            date: moment(action.date)
-        }
+function mapActionToStatus(action: Action): Status {
+    return {
+        startColumn: action.data.listBefore,
+        endColumn: action.data.listAfter,
+        date: moment(action.date)
     }
 }

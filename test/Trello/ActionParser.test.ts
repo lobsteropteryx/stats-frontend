@@ -1,12 +1,11 @@
-import { ActionParser } from "../../app/Trello/actionParser";
+import { parseActions } from "../../app/Trello/actionParser";
 import moment from 'moment';
 
 describe("Parsing actions", () => {
     it("returns an empty list given no actions", () => {
         const actions = [];
         const expected = [];
-        const parser = new ActionParser();
-        const actual = parser.parseActions(actions);
+        const actual = parseActions(actions);
         expect(actual).toEqual(expected);
     });
 
@@ -62,8 +61,7 @@ describe("Parsing actions", () => {
             }]
         }];
 
-        const parser = new ActionParser();
-        const actual = parser.parseActions(actions);
+        const actual = parseActions(actions);
         expect(actual).toEqual(expected);
     });
     
@@ -123,8 +121,7 @@ describe("Parsing actions", () => {
             }]
         }];
 
-        const parser = new ActionParser();
-        const actual = parser.parseActions(actions);
+        const actual = parseActions(actions);
         expect(actual).toEqual(expected);
     });
 });
