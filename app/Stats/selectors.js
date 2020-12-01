@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import percentile from 'percentile';
-import { filterActionByDate } from "../filterActionByDate";
+import { filterActionByDate } from "../cardFilters";
 
 const getActions = state => state.filter.actions;
 const getStartDate = state => state.date.startDate;
