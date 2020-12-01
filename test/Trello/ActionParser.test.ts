@@ -67,7 +67,7 @@ describe("Parsing actions", () => {
         expect(actual).toEqual(expected);
     });
     
-    xit("returns two cards, given two actions", () => {
+    it("returns two cards, given two actions", () => {
         const actions = [
             {
                 "data": {
@@ -93,11 +93,11 @@ describe("Parsing actions", () => {
                         "name":"Card 2",
                     },
                     "listBefore": {
-                        "id":"1",
+                        "id":"0",
                         "name":"ToDo"
                     },
                     "listAfter": {
-                        "id":"2",
+                        "id":"1",
                         "name":"Doing"
                     }
                 },
@@ -109,19 +109,17 @@ describe("Parsing actions", () => {
             id: "1",
             name: "Card 1",
             actions: [{
-                startColumn: {id: "1", name: "ToDo"},
-                endColumn: {id: "2", name: "Doing"},
-                startDate: moment("2020-04-02T16:00:00.000Z"),
-                endDate: moment("2020-04-03T16:00:00.000Z")
+                startColumn: {id: "0", name: "ToDo"},
+                endColumn: {id: "1", name: "Doing"},
+                date: moment("2020-04-02T16:00:00.000Z"),
             }]
         }, {
             id: "2",
             name: "Card 2",
             actions: [{
-                startColumn: {id: "1", name: "ToDo"},
-                endColumn: {id: "2", name: "Doing"},
-                startDate: moment("2020-04-02T16:00:00.000Z"),
-                endDate: moment("2020-04-03T16:00:00.000Z")
+                startColumn: {id: "0", name: "ToDo"},
+                endColumn: {id: "1", name: "Doing"},
+                date: moment("2020-04-03T16:00:00.000Z"),
             }]
         }];
 

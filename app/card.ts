@@ -6,7 +6,7 @@ export interface Card {
     actions: Status[]
 }
 
-interface Status {
+export interface Status {
     startColumn: Column,
     endColumn: Column,
     date: moment.Moment
