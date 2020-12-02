@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export default interface Action {
+export default interface WorkItem {
     id: string,
     name: string,
     isComplete: boolean,

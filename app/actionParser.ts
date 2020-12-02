@@ -1,6 +1,6 @@
 import { groupBy, first, last } from 'lodash';
 import moment from 'moment';
-import Action from './action';
+import WorkItem from './workItem';
 import { Action as TrelloAction } from './Trello/types';
 
 export function createActionParser(startId: string, endId: string) {
@@ -21,7 +21,7 @@ export function createActionParser(startId: string, endId: string) {
             return !isEmpty(actions) && actions.length % 2 == 0;
         }
 
-        function getDuration(id: string, actions: TrelloAction[]): Action {
+        function getDuration(id: string, actions: TrelloAction[]): WorkItem {
             const sortedActions = filterAndSortActions(actions);
             const complete = isComplete(sortedActions);
 
