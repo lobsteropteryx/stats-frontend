@@ -1,6 +1,6 @@
 import { groupBy, first, last } from 'lodash';
 import moment from 'moment';
-import WorkItem from './workItem';
+import { WorkItem } from './workItem';
 import { Action as TrelloAction } from './Trello/types';
 
 export function createActionParser(startId: string, endId: string) {
