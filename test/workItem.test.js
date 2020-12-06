@@ -27,7 +27,7 @@ describe("Converting cards to Work Items", () => {
         expect(actual).toEqual(expected);
     });
 
-    xit("returns an incomplete work item, given a card with no matching actions", () => {
+    it("returns an incomplete work item, given a card with no matching actions", () => {
         const startId = "2";
         const endId = "3";
 
