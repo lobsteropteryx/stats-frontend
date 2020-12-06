@@ -1,16 +1,16 @@
 import { createSelector } from "reselect";
 import percentile from 'percentile';
-import { filterActionByDate } from "../cardFilters";
+import { filterWorkItemByDate } from "../dateFilters";
 
-const getActions = state => state.filter.actions;
+const getCards = state => state.filter.cards;
 const getStartDate = state => state.date.startDate;
 const getEndDate = state => state.date.endDate;
 
 export const getPercentiles = createSelector(
-    [getActions, getStartDate, getEndDate],
+    [getCards, getStartDate, getEndDate],
     (actions, startDate, endDate) => {
         const durations = actions
-            .filter(action => filterActionByDate(action, startDate, endDate))
+            .filter(action => filterWorkItemByDate(action, startDate, endDate))
             .map(action => action.duration.asDays());
         return {
             n: durations.length,

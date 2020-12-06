@@ -5,16 +5,14 @@ import SubmitButton from './SubmitButton';
 const mapStateToProps = state => {
     return {
         selectedBoardId: state.filter.selectedBoard.value,
-        startColumnId: state.filter.startColumn.value,
-        endColumnId: state.filter.endColumn.value,
         spinnerClass: state.filter.isFetching ? 'spinner-enabled' : 'spinner-disabled'
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (event, selectedBoardId, startColumnId, endColumnId) => {
-            dispatch(fetchActionsForBoard(selectedBoardId, startColumnId, endColumnId));
+        onClick: (event, selectedBoardId) => {
+            dispatch(fetchActionsForBoard(selectedBoardId));
         }
     }
 };
@@ -25,9 +23,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         onClick: (event) => {
             dispatchProps.onClick(
                 event, 
-                stateProps.selectedBoardId,
-                stateProps.startColumnId,
-                stateProps.endColumnId
+                stateProps.selectedBoardId
             )
         }
     }

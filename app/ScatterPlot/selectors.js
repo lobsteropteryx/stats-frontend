@@ -1,28 +1,32 @@
 import { createSelector } from "reselect";
-import { filterActionByDate } from "../cardFilters";
+import { cardToWorkItem } from "../workItem";
+import { filterWorkItemByDate } from "../dateFilters";
 
-const getActions = state => state.filter.actions;
+const getCards = state => state.filter.cards;
+const getStartColumn = state => state.filter.startColumn.id;
+const getEndColumn = state => state.filter.endColumn.id;
 const getStartDate = state => state.date.startDate;
 const getEndDate = state => state.date.endDate;
 
-const actionToChartData = (action) => {
+const workItemToChartData = (workItem) => {
     return {
-        id: action.id,
-        name: action.name,
-        url: `https://trello.com/c/${action.id}`,
-        x: action.completionDate.format("YYYY-MM-DD"),
-        y: parseFloat(action.duration.asDays(), 1).toPrecision(1)
+        id: workItem.id,
+        name: workItem.name,
+        url: `https://trello.com/c/${workItem.id}`,
+        x: workItem.completionDate.format("YYYY-MM-DD"),
+        y: parseFloat(workItem.duration.asDays(), 1).toPrecision(1)
     };
 };
 
 export const getPlotData = createSelector(
-    [getActions, getStartDate, getEndDate],
-    (actions, startDate, endDate) => {
+    [getCards, getStartColumn, getEndColumn, getStartDate, getEndDate],
+    (cards, startColumn, endColumn, startDate, endDate) => {
         return [{
             id: "Cards Completed",
-            data: actions
-                .filter(action => filterActionByDate(action, startDate, endDate))
-                .map(actionToChartData)
+            data: cards
+                .map(card => cardToWorkItem(card, startColumn, endColumn))
+                .filter(workItem => filterWorkItemByDate(workItem, startDate, endDate))
+                .map(workItemToChartData)
         }];
     }
 );

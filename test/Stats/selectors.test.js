@@ -14,7 +14,7 @@ describe("Calculating percentiles", () => {
         const state = { 
             date: {}, 
             filter: { 
-                actions: [] 
+                cards: [] 
             } 
         };
 

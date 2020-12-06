@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { groupBy } from 'lodash';
 
-const getActions = state => state.filter.actions;
+const getCards = state => state.filter.cards;
 const getStartDate = state => state.date.startDate;
 const getEndDate = state => state.date.endDate;
 
@@ -24,7 +24,7 @@ const bucketActionsByDuration = (actions, startDate, endDate) => {
 };
 
 export const getPlotData = createSelector(
-    [getActions, getStartDate, getEndDate],
+    [getCards, getStartDate, getEndDate],
     (actions, startDate, endDate) => {
         return [{
             id: "WIP",

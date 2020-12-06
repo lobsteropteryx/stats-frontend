@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import ApiClient from '../Trello/ApiClient';
-import { createActionParser } from "../actionParser";
+import { actionsToCards } from '../Trello/actionParser';
 
 const filterSlice = createSlice({
   name: 'filter',
@@ -8,10 +8,10 @@ const filterSlice = createSlice({
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
     selectedBoard: {},
-    startColumn: {},
-    endColumn: {},
+    startColumn: { id: null, name: null },
+    endColumn: { id: null, name: null },
     columns: [],
-    actions: []
+    cards: []
   },
   reducers: {
     fetchPending: state => {
@@ -28,8 +28,8 @@ const filterSlice = createSlice({
     },
     selectBoard: (state, action) => {
         state.selectedBoard = action.payload;
-        state.startColumn = {};
-        state.endColumn = {};
+        state.startColumn = { id: null, name: null };
+        state.endColumn = { id: null, name: null };
     },
     setColumns: (state, action) => {
         state.columns = action.payload;
@@ -40,7 +40,7 @@ const filterSlice = createSlice({
     setEndColumn: (state, action) => {
         state.endColumn = action.payload;
     },
-    setActions: (state, action) => {
+    setCards: (state, action) => {
         state.actions = action.payload;
     },
     setStartDate: (state, action) => {
@@ -61,7 +61,7 @@ export const {
     setColumns,
     setStartColumn,
     setEndColumn,
-    setActions,
+    setCards,
     setStartDate,
     setEndDate 
 } = filterSlice.actions;
@@ -84,13 +84,12 @@ export const fetchColumnsForBoard = (boardId) => async (dispatch, getState) => {
     dispatch(fetchComplete());
 }
 
-export const fetchActionsForBoard = (boardId, startColumn, endColumn) => async (dispatch, getState) => {
+export const fetchActionsForBoard = (boardId) => async (dispatch, getState) => {
     const client = buildApiClient(getState().filter);
     dispatch(fetchPending());
-    const parse = createActionParser(startColumn, endColumn);
     const actions = await client.getActionsForBoard(boardId);
-    const parsedActions = parse(actions);
-    dispatch(setActions(parsedActions));
+    const cards = actionsToCards(actions);
+    dispatch(setCards(cards));
     dispatch(fetchComplete());
 }
 

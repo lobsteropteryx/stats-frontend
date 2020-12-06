@@ -1,4 +1,4 @@
-import { filterActionByDate } from "../app/cardFilters";
+import { filterWorkItemByDate } from "../app/dateFilters";
 
 describe('Filtering actions', () => {
     it('Returns true if startDate is null and end date is less than completion date', () => {
@@ -8,7 +8,7 @@ describe('Filtering actions', () => {
         const startDate = null;
         const endDate = new Date(1, 2, 2020);
 
-        expect(filterActionByDate(action, startDate, endDate)).toBe(true);
+        expect(filterWorkItemByDate(action, startDate, endDate)).toBe(true);
     });
 
     it('Returns true if startDate is greater than completion date and end date is less than completion date', () => {
@@ -18,7 +18,7 @@ describe('Filtering actions', () => {
         const startDate = new Date(1, 1, 2020);
         const endDate = new Date(1, 3, 2020);
 
-        expect(filterActionByDate(action, startDate, endDate)).toBe(true);
+        expect(filterWorkItemByDate(action, startDate, endDate)).toBe(true);
     });
 
     it('Returns true if endDate is null and start date is less than completion date', () => {
@@ -28,7 +28,7 @@ describe('Filtering actions', () => {
         const startDate = new Date(1, 1, 2020);
         const endDate = null;
 
-        expect(filterActionByDate(action, startDate, endDate)).toBe(true);
+        expect(filterWorkItemByDate(action, startDate, endDate)).toBe(true);
     });
 
     it('Returns false if startDate is less than completion date and end date is greater than completion date', () => {
@@ -38,7 +38,7 @@ describe('Filtering actions', () => {
         const startDate = new Date(1, 3, 2020);
         const endDate = new Date(1, 1, 2020);
 
-        expect(filterActionByDate(action, startDate, endDate)).toBe(false);
+        expect(filterWorkItemByDate(action, startDate, endDate)).toBe(false);
     });
 
     it('Returns false if completion date is null', () => {
@@ -48,6 +48,6 @@ describe('Filtering actions', () => {
         const startDate = null;
         const endDate = null;
 
-        expect(filterActionByDate(action, startDate, endDate)).toBe(false);
+        expect(filterWorkItemByDate(action, startDate, endDate)).toBe(false);
     });
 });

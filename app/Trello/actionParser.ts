@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Action } from "./types";
 import { Card, Status } from "../card";
 
-export function parseActions(actions: Action[]) {
+export function actionsToCards(actions: Action[]) {
     const groups = groupBy(actions, x => x.data.card.id );
     return Object.values(groups).map(parseActionsForCard);
 }

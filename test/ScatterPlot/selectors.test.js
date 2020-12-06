@@ -1,17 +1,22 @@
 import moment from "moment"; 
 import { getPlotData } from "../../app/ScatterPlot/selectors";
 
-describe("Transforming chart data", () => {
-    it("Returns an empty array when there are no actions", () => {
+describe("Scatter plot selector", () => {
+    it("Returns an empty array when there are no cards", () => {
         const expected = [{
             id: "Cards Completed",
             data: []
         }];
 
         const state = { 
-            date: {}, 
+            date: {
+                startDate: null,
+                endDate: null 
+            }, 
             filter: { 
-                actions: [] 
+                startColumn: { id: null, name: null},
+                endColumn: {id: null, name: null},
+                cards: [] 
             } 
         };
 
@@ -20,28 +25,50 @@ describe("Transforming chart data", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("Returns data elements from actions", () => {
+    it("Returns data elements from cards", () => {
         const expected = [{
             id: "Cards Completed",
             data: [{
                 id: 1,
                 name: "test",
                 url: "https://trello.com/c/1",
-                x: "2020-01-01",
+                x: "2020-01-02",
                 y: "1"
             }]
         }];
 
         const state = { 
-            date: {},
+            date: {
+                startDate: null,
+                endDate: null 
+            },
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T16:00:00.000Z")
+                    }]
                 }]
             }
         };
@@ -51,38 +78,34 @@ describe("Transforming chart data", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("Filters incomplete actions", () => {
+    it("Filters incomplete cards", () => {
         const expected = [{
             id: "Cards Completed",
-            data: [{
-                id: 2,
-                name: "test2",
-                url: "https://trello.com/c/2",
-                x: "2020-01-02",
-                y: "2"
-            }]
+            data: []
         }];
 
         const state = { 
             date: {
-                startDate: moment("2020-01-02"),
-                endDate: moment("2020-01-02")
+                startDate: null,
+                endDate: null 
             },
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: false,
-                    startDate: moment("2019-12-30"),
-                    completionDate: null,
-                    duration: null 
-                }, {
-                    id: 2,
-                    name: "test2",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(2, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T16:00:00.000Z"),
+                    }]
                 }]
             }
         };
@@ -95,13 +118,7 @@ describe("Transforming chart data", () => {
     it("Filters by date", () => {
         const expected = [{
             id: "Cards Completed",
-            data: [{
-                id: 2,
-                name: "test2",
-                url: "https://trello.com/c/2",
-                x: "2020-01-02",
-                y: "2"
-            }]
+            data: []
         }];
 
         const state = { 
@@ -110,27 +127,32 @@ describe("Transforming chart data", () => {
                 endDate: moment("2020-01-02")
             },
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
-                }, {
-                    id: 2,
-                    name: "test2",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(2, "days")
-                }, {
-                    id: 3,
-                    name: "test3",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-03"),
-                    duration: moment.duration(3, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-04T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-05T16:00:00.000Z")
+                    }]
                 }]
             }
         };
