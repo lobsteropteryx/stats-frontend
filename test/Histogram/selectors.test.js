@@ -2,13 +2,15 @@ import moment from "moment";
 import { getHistogramData } from "../../app/Histogram/selectors";
 
 describe("Transforming histogram data", () => {
-    it("Returns an empty array when there are no actions", () => {
+    it("Returns an empty array when there are no cards", () => {
         const expected = [];
 
         const state = {
             date: {}, 
             filter: { 
-                actions: [] 
+                startColumn: { id: null, name: null },
+                endColumn: { id: null, name: null },
+                cards: [] 
             } 
         };
 
@@ -17,7 +19,7 @@ describe("Transforming histogram data", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("Returns data elements from a single action", () => {
+    it("Returns data elements for a single card", () => {
         const expected = [{
             id: "1",
             value: 1
@@ -26,13 +28,32 @@ describe("Transforming histogram data", () => {
         const state = { 
             date: {},
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T00:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T00:00:00.000Z")
+                    }]
                 }]
             }
         };
@@ -42,7 +63,7 @@ describe("Transforming histogram data", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("Returns data elements from actions", () => {
+    it("Returns data elements from two cards", () => {
         const expected = [
         {
             id: "1",
@@ -56,20 +77,56 @@ describe("Transforming histogram data", () => {
         const state = { 
             date: {},
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T00:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T00:00:00.000Z")
+                    }]
                 }, {
                     id: 2,
-                    name: "test2",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(2, "days")
+                    name: "test 2",
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-02T00:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-04T00:00:00.000Z")
+                    }]
                 }]
             }
         };
@@ -79,32 +136,28 @@ describe("Transforming histogram data", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("Filters incomplete actions", () => {
-        const expected = [{
-            id: "3",
-            value: 1
-        }];
+    it("Filters incomplete cards", () => {
+        const expected = [];
 
         const state = { 
-            date: {
-                startDate: moment("2020-01-02"),
-                endDate: moment("2020-01-02")
-            },
+            date: {},
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: false,
-                    startDate: moment("2019-12-30"),
-                    completionDate: null,
-                    duration: null 
-                }, {
-                    id: 2,
-                    name: "test2",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(3, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T00:00:00.000Z"),
+                    }]
                 }]
             }
         };
@@ -115,38 +168,40 @@ describe("Transforming histogram data", () => {
     });
     
     it("Filters by date", () => {
-        const expected = [{
-            id: "3",
-            value: 1
-        }];
+        const expected = [];
 
         const state = { 
             date: {
-                startDate: moment("2020-01-02"),
+                startDate: moment("2020-01-01"),
                 endDate: moment("2020-01-02")
             },
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
-                }, {
-                    id: 2,
-                    name: "test2",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(3, "days")
-                }, {
-                    id: 3,
-                    name: "test3",
-                    isComplete: true,
-                    startDate: moment("2019-12-30"),
-                    completionDate: moment("2020-01-03"),
-                    duration: moment.duration(3, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-03T00:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-04T00:00:00.000Z")
+                    }]
                 }]
             }
         };
