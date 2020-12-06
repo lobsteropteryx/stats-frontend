@@ -17,7 +17,7 @@ export function cardToWorkItem(card: Card, startColumn: string, endColumn: strin
         name: card.name,
         isComplete: false,
         startDate: getStartDate(card, startColumn),
-        completionDate: null,
+        completionDate: getEndDate(card, endColumn),
         duration: null
     }
 }
@@ -25,6 +25,14 @@ export function cardToWorkItem(card: Card, startColumn: string, endColumn: strin
 function getStartDate(card: Card, startColumn: string): moment.Moment {
     return card.actions
         .filter(x => x.endColumn.id === startColumn)
+        .map(x => x.date)
+        .sort( (x, y) => x.diff(y))
+        .shift() || null;
+}
+
+function getEndDate(card: Card, endColumn: string): moment.Moment {
+    return card.actions
+        .filter(x => x.endColumn.id === endColumn)
         .map(x => x.date)
         .sort( (x, y) => x.diff(y))
         .shift() || null;

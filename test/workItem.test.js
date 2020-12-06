@@ -61,7 +61,7 @@ describe("Converting cards to Work Items", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("returns an incomplete work item, given a card with one matching action", () => {
+    it("returns an incomplete work item, given a card with a matching start action", () => {
         const startId = "1";
         const endId = "2";
 
@@ -95,6 +95,40 @@ describe("Converting cards to Work Items", () => {
         expect(actual).toEqual(expected);
     });
 
+    it("returns an incomplete work item, given a card with a matching end action", () => {
+        const startId = "1";
+        const endId = "2";
+
+        const card = {
+            id: "1",
+            name: "card",
+            actions: [
+            {
+                startColumn: {
+                    id: "1",
+                    name: "Doing"
+                },
+                endColumn: {
+                    id:"2",
+                    name:"Done"
+                },
+                date: moment("2020-04-02T16:00:00.000Z"),
+            }
+        ]};
+
+        const expected = {
+            id: "1",
+            name: "card",
+            isComplete: false,
+            duration: null,
+            startDate: null,
+            completionDate: moment("2020-04-02T16:00:00.000Z")
+        };
+
+        const actual = cardToWorkItem(card, startId, endId);
+        expect(actual).toEqual(expected);
+    });
+    
     xit("returns a single work item, given a card with two actions", () => {
         const card = {
             id: "1",
