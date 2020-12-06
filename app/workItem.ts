@@ -13,8 +13,8 @@ export interface WorkItem {
 
 export function cardToWorkItem(card: Card, startColumn: string, endColumn: string): WorkItem {
 
-    const startDate = getStartDate(card, startColumn);
-    const endDate = getEndDate(card, endColumn);
+    const startDate = getDate(card, startColumn);
+    const endDate = getDate(card, endColumn);
     const isComplete = startDate !== null && endDate !== null;
 
     return {
@@ -27,18 +27,10 @@ export function cardToWorkItem(card: Card, startColumn: string, endColumn: strin
     }
 }
 
-function getStartDate(card: Card, startColumn: string): moment.Moment {
+function getDate(card: Card, column: string): moment.Moment {
     return card.actions
-        .filter(x => x.endColumn.id === startColumn)
-        .map(x => x.date)
-        .sort( (x, y) => x.diff(y))
-        .shift() || null;
-}
-
-function getEndDate(card: Card, endColumn: string): moment.Moment {
-    return card.actions
-        .filter(x => x.endColumn.id === endColumn)
-        .map(x => x.date)
-        .sort( (x, y) => x.diff(y))
-        .shift() || null;
+    .filter(x => x.endColumn.id === column)
+    .map(x => x.date)
+    .sort( (x, y) => x.diff(y))
+    .shift() || null; 
 }
