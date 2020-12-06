@@ -2,7 +2,7 @@ import moment from "moment";
 import { getPercentiles } from "../../app/Stats/selectors";
 
 describe("Calculating percentiles", () => {
-    it("Sets percentiles to 0 when there are no actions", () => {
+    it("Sets percentiles to 0 when there are no cards", () => {
         const expected = {
             n: 0,
             fifty: 0,
@@ -14,6 +14,8 @@ describe("Calculating percentiles", () => {
         const state = { 
             date: {}, 
             filter: { 
+                startColumn: { id: null, name: null },
+                endColumn: { id: null, name: null },
                 cards: [] 
             } 
         };
@@ -23,7 +25,7 @@ describe("Calculating percentiles", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("Calculates percentiles from a single action", () => {
+    it("Calculates percentiles from a single completed card", () => {
         const expected = {
             n: 1,
             fifty: 1,
@@ -35,11 +37,32 @@ describe("Calculating percentiles", () => {
         const state = { 
             date: {},
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T16:00:00.000Z")
+                    }]
                 }]
             }
         };
@@ -49,7 +72,7 @@ describe("Calculating percentiles", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("Calculates percentiles from actions", () => {
+    it("Calculates percentiles from two cards", () => {
         const expected = {
             n: 2,
             fifty: 1,
@@ -61,16 +84,56 @@ describe("Calculating percentiles", () => {
         const state = { 
             date: {},
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(1, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T16:00:00.000Z")
+                    }]
                 }, {
                     id: 2,
-                    name: "test2",
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(2, "days")
+                    name: "test 2",
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-02T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-04T16:00:00.000Z")
+                    }] 
                 }]
             }
         };
@@ -80,7 +143,7 @@ describe("Calculating percentiles", () => {
         expect(actual).toEqual(expected);
     });
     
-    it("Filters percentiles to only completed stories", () => {
+    it("Filters percentiles to only completed cards", () => {
         const expected = {
             n: 1,
             fifty: 1,
@@ -91,28 +154,50 @@ describe("Calculating percentiles", () => {
 
         const state = {
             date: {
-                startDate: moment("2020-01-02"),
-                endDate: moment("2020-01-02")
+                startDate: null,
+                endDate: null
             },
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    isComplete: true,
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(3, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T16:00:00.000Z")
+                    }]
                 }, {
                     id: 2,
-                    name: "test2",
-                    isComplete: true,
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(1, "days")
-                }, {
-                    id: 3,
-                    name: "test3",
-                    isComplete: false,
-                    completionDate: null,
-                    duration: null 
+                    name: "test 2",
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-02T16:00:00.000Z"),
+                    }]
                 }]
             }
         };
@@ -121,6 +206,7 @@ describe("Calculating percentiles", () => {
 
         expect(actual).toEqual(expected);
     });
+
     it("Filters percentiles based on date", () => {
         const expected = {
             n: 1,
@@ -132,25 +218,60 @@ describe("Calculating percentiles", () => {
 
         const state = {
             date: {
-                startDate: moment("2020-01-02"),
+                startDate: moment("2020-01-01"),
                 endDate: moment("2020-01-02")
             },
             filter: {
-                actions: [{
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                cards: [{
                     id: 1,
                     name: "test",
-                    completionDate: moment("2020-01-01"),
-                    duration: moment.duration(3, "days")
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T00:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T00:00:00.000Z")
+                    }]
                 }, {
                     id: 2,
-                    name: "test2",
-                    completionDate: moment("2020-01-02"),
-                    duration: moment.duration(1, "days")
-                }, {
-                    id: 3,
-                    name: "test3",
-                    completionDate: moment("2020-01-03"),
-                    duration: moment.duration(2, "days")
+                    name: "test 2",
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-03T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-04T16:00:00.000Z")
+                    }] 
                 }]
             }
         };
