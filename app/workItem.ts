@@ -12,13 +12,18 @@ export interface WorkItem {
 }
 
 export function cardToWorkItem(card: Card, startColumn: string, endColumn: string): WorkItem {
+
+    const startDate = getStartDate(card, startColumn);
+    const endDate = getEndDate(card, endColumn);
+    const isComplete = startDate !== null && endDate !== null;
+
     return {
         id: card.id,
         name: card.name,
-        isComplete: false,
-        startDate: getStartDate(card, startColumn),
-        completionDate: getEndDate(card, endColumn),
-        duration: null
+        isComplete: isComplete,
+        startDate: startDate,
+        completionDate: endDate,
+        duration: isComplete ? moment.duration(endDate.diff(startDate)) : null
     }
 }
 

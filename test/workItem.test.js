@@ -128,8 +128,11 @@ describe("Converting cards to Work Items", () => {
         const actual = cardToWorkItem(card, startId, endId);
         expect(actual).toEqual(expected);
     });
-    
-    xit("returns a single work item, given a card with two actions", () => {
+
+    it("returns a single work item, given a card with two actions", () => {
+        const startId = "1";
+        const endId = "2";
+
         const card = {
             id: "1",
             name: "card",
@@ -158,15 +161,16 @@ describe("Converting cards to Work Items", () => {
             }
         ]};
 
-        const expected = [{
+        const expected = {
             id: "1",
-            name: "Card 1",
+            name: "card",
             isComplete: true,
             duration: moment.duration(86400000),
             startDate: moment("2020-04-02T16:00:00.000Z"),
             completionDate: moment("2020-04-03T16:00:00.000Z")
-        }];
-        const actual = cardToWorkItem(card);
+        };
+
+        const actual = cardToWorkItem(card, startId, endId);
         expect(actual).toEqual(expected);
     });
     
