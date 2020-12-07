@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { first, last } from 'lodash';
 import { actionsToCards } from '../Trello/actionParser';
 
 const filterSlice = createSlice({
@@ -34,16 +35,10 @@ const filterSlice = createSlice({
         state.columns = action.payload;
     },
     setStartColumn: (state, action) => {
-        state.startColumn = {
-            id: action.payload.value,
-            name: action.payload.label
-        };
+        state.startColumn = action.payload;
     },
     setEndColumn: (state, action) => {
-        state.endColumn = {
-            id: action.payload.value,
-            name: action.payload.label
-        }
+        state.endColumn = action.payload;
     },
     setCards: (state, action) => {
         state.cards = action.payload;
@@ -79,7 +74,10 @@ export const fetchBoards = (apiClient) => async (dispatch) => {
 
 export const fetchColumnsForBoard = (apiClient, boardId) => async (dispatch) => {
     dispatch(fetchPending());
-    dispatch(setColumns(await apiClient.getColumnsForBoard(boardId)));
+    const columns = await apiClient.getColumnsForBoard(boardId);
+    dispatch(setColumns(columns));
+    dispatch(setStartColumn(first(columns)));
+    dispatch(setEndColumn(last(columns)));
     dispatch(fetchComplete());
 }
 

@@ -14,8 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChange: e => {
-            dispatch(setStartColumn(e))
+        onChange: option => {
+            dispatch(setStartColumn({ id: option.value, name: option.label }))
         }
     }
 };

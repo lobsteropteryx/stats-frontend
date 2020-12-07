@@ -77,7 +77,7 @@ describe("Setting columns", () => {
 describe("Selecting columns", () => {
     it("Sets the selected start column", () => {
         const state = {};
-        const selectedColumn = {value: 1, label: 'selectedColumn'};
+        const selectedColumn = {id: 1, name: 'selectedColumn'};
         const expectedState = {startColumn: {id: 1, name: 'selectedColumn'}};
         const action = setStartColumn(selectedColumn);
         expect(reducer(state, action)).toEqual(expectedState);
@@ -85,7 +85,7 @@ describe("Selecting columns", () => {
 
     it("Sets the selected end column", () => {
         const state = {};
-        const selectedColumn = {value: 1, label: 'selectedColumn'};
+        const selectedColumn = {id: 1, name: 'selectedColumn'};
         const expectedState = {endColumn: {id: 1, name: 'selectedColumn'}};
         const action = setEndColumn(selectedColumn);
         expect(reducer(state, action)).toEqual(expectedState);
@@ -133,6 +133,8 @@ describe("Fetching data from API", () => {
         const expectedActions = [
             fetchPending(),
             setColumns(columns),
+            setStartColumn(),
+            setEndColumn(),
             fetchComplete()
         ];
             
