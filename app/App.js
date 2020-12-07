@@ -7,6 +7,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import filterSlice from './Filter/filterSlice';
 import Filters from './Filter/Filters';
+import StartColumnsListContainer from './Filter/List/StartColumnsListContainer';
+import EndColumnsListContainer from './Filter/List/EndColumnsListContainer'
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
 import HistogramContainer from './Histogram/HistogramContainer';
@@ -41,6 +43,8 @@ const App = () => {
                         <legend>Local Filters</legend>
                         <div className="settings">
                             <SettingsContainer />
+                            <StartColumnsListContainer />
+                            <EndColumnsListContainer />
                             <StartDateContainer />
                             <EndDateContainer />
                         </div>

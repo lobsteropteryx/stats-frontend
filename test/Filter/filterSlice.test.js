@@ -88,12 +88,12 @@ describe("Selecting columns", () => {
     });
 });
 
-describe("Setting actions", () => {
-    it("sets the list of actions", () => {
+describe("Setting cards", () => {
+    it("sets the list of cards", () => {
         const state = {};
-        const actions = [{name: "an action"}];
-        const expectedState = {actions};
-        const action = setCards(actions);
+        const cards = [{name: "an action"}];
+        const expectedState = {cards};
+        const action = setCards(cards);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });

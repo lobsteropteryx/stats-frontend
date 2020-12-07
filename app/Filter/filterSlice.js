@@ -47,7 +47,7 @@ const filterSlice = createSlice({
         }
     },
     setCards: (state, action) => {
-        state.actions = action.payload;
+        state.cards = action.payload;
     },
     setStartDate: (state, action) => {
         state.startDate = action.payload;
