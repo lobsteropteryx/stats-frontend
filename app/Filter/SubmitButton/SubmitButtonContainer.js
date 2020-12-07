@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
+import ApiClient from '../Trello/ApiClient'
 import { fetchActionsForBoard } from '../filterSlice';
 import SubmitButton from './SubmitButton';    
 
 const mapStateToProps = state => {
     return {
+        apiKey: state.filter.apiKey,
+        token: state.filter.token,
         selectedBoardId: state.filter.selectedBoard.value,
         spinnerClass: state.filter.isFetching ? 'spinner-enabled' : 'spinner-disabled'
     }
@@ -11,18 +14,20 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (event, selectedBoardId) => {
-            dispatch(fetchActionsForBoard(selectedBoardId));
+        onClick: (event, apiClient, selectedBoardId) => {
+            dispatch(fetchActionsForBoard(apiClient, selectedBoardId));
         }
     }
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const apiClient = new ApiClient(stateProps.apiKey, stateProps.token);
     return {
-        ...stateProps,
+        spinnerClass: stateProps.spinnerClass,
         onClick: (event) => {
             dispatchProps.onClick(
                 event, 
+                apiClient,
                 stateProps.selectedBoardId
             )
         }

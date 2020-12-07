@@ -90,10 +90,9 @@ export const fetchColumnsForBoard = (boardId) => async (dispatch, getState) => {
     dispatch(fetchComplete());
 }
 
-export const fetchActionsForBoard = (boardId) => async (dispatch, getState) => {
-    const client = buildApiClient(getState().filter);
+export const fetchActionsForBoard = (apiClient, boardId) => async (dispatch, getState) => {
     dispatch(fetchPending());
-    const actions = await client.getActionsForBoard(boardId);
+    const actions = await apiClient.getActionsForBoard(boardId);
     const cards = actionsToCards(actions);
     dispatch(setCards(cards));
     dispatch(fetchComplete());
