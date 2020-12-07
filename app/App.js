@@ -42,11 +42,11 @@ const App = () => {
                     <fieldset>
                         <legend>Local Filters</legend>
                         <div className="settings">
-                            <SettingsContainer />
                             <StartColumnsListContainer />
                             <EndColumnsListContainer />
                             <StartDateContainer />
                             <EndDateContainer />
+                            <SettingsContainer />
                         </div>
                     </fieldset>
                     <StatsContainer />
