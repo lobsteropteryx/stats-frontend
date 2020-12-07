@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reducer, { fetchBoards, fetchActionsForBoard } from '../../app/Filter/filterSlice';
+import reducer, { fetchBoards, fetchActionsForBoard, fetchColumnsForBoard } from '../../app/Filter/filterSlice';
 import {
     setTrelloToken,
     fetchPending,
@@ -122,6 +122,29 @@ describe("Fetching data from API", () => {
         const store = mockStore(state);
 
         const actionCreator = fetchBoards(apiClient);
+        await actionCreator(store.dispatch);
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    it("fetches columns", async () => {
+        const state = {};
+        const columns = [];
+
+        const expectedActions = [
+            fetchPending(),
+            setColumns(columns),
+            fetchComplete()
+        ];
+            
+        const apiClient = {
+            getColumnsForBoard: () => {
+                return columns;
+            }
+        };
+
+        const store = mockStore(state);
+
+        const actionCreator = fetchColumnsForBoard(apiClient);
         await actionCreator(store.dispatch);
         expect(store.getActions()).toEqual(expectedActions);
     });
