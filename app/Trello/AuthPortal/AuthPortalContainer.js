@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import AuthPortal from './AuthPortal';
 import { ApiClient } from '../../Trello/ApiClient';
-import { setTrelloToken } from '../../Filter/filterSlice';
-import { fetchBoards } from '../../Filter/filterSlice';
+import { setTrelloToken } from '../../Filter/Query/queryFilterSlice';
+import { fetchBoards } from '../../Filter/Query/queryFilterSlice';
 
 const mapStateToProps = state => {
     return {
-        apiKey: state.filter.apiKey,
-        token: state.filter.token
+        apiKey: state.queryFilter.apiKey,
+        token: state.queryFilter.token
     }
 };
 

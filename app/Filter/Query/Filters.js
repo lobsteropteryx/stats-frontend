@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardsListContainer from './List/BoardsListContainer';
+import BoardsListContainer from './BoardsListContainer';
 import SubmitButtonContainer from './SubmitButton/SubmitButtonContainer';
 
 const Filters = () => {

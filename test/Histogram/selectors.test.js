@@ -7,7 +7,7 @@ describe("Transforming histogram data", () => {
 
         const state = {
             date: {}, 
-            filter: { 
+            localFilter: { 
                 startColumn: { id: null, name: null },
                 endColumn: { id: null, name: null },
                 cards: [] 
@@ -27,7 +27,7 @@ describe("Transforming histogram data", () => {
 
         const state = { 
             date: {},
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{
@@ -76,7 +76,7 @@ describe("Transforming histogram data", () => {
 
         const state = { 
             date: {},
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{
@@ -141,7 +141,7 @@ describe("Transforming histogram data", () => {
 
         const state = { 
             date: {},
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{
@@ -175,7 +175,7 @@ describe("Transforming histogram data", () => {
                 startDate: moment("2020-01-01"),
                 endDate: moment("2020-01-02")
             },
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{

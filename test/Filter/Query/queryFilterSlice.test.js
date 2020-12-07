@@ -1,17 +1,14 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reducer, { fetchBoards, fetchActionsForBoard, fetchColumnsForBoard } from '../../app/Filter/filterSlice';
+import reducer, { fetchBoards, fetchActionsForBoard, fetchColumnsForBoard } from '../../../app/Filter/Query/queryFilterSlice';
 import {
     setTrelloToken,
     fetchPending,
     fetchComplete,
     setBoards,
-    selectBoard,
-    setColumns,
-    setCards,
-    setStartColumn,
-    setEndColumn
-} from '../../app/Filter/filterSlice';
+    selectBoard
+} from '../../../app/Filter/Query/queryFilterSlice';
+import { setCards, setColumns, setStartColumn, setEndColumn } from '../../../app/Filter/Local/localFilterSlice';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -60,44 +57,6 @@ describe("Selecting a board", () => {
             endColumn: { id: null, name: null } 
         };
         const action = selectBoard(selectedBoard);
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
-});
-
-describe("Setting columns", () => {
-    it("sets the list of columns", () => {
-        const state = {};
-        const columns = [{name: "a list"}];
-        const expectedState = {columns};
-        const action = setColumns(columns);
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
-});
-
-describe("Selecting columns", () => {
-    it("Sets the selected start column", () => {
-        const state = {};
-        const selectedColumn = {id: 1, name: 'selectedColumn'};
-        const expectedState = {startColumn: {id: 1, name: 'selectedColumn'}};
-        const action = setStartColumn(selectedColumn);
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
-
-    it("Sets the selected end column", () => {
-        const state = {};
-        const selectedColumn = {id: 1, name: 'selectedColumn'};
-        const expectedState = {endColumn: {id: 1, name: 'selectedColumn'}};
-        const action = setEndColumn(selectedColumn);
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
-});
-
-describe("Setting cards", () => {
-    it("sets the list of cards", () => {
-        const state = {};
-        const cards = [{name: "an action"}];
-        const expectedState = {cards};
-        const action = setCards(cards);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });

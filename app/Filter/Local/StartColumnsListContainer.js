@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { setStartColumn } from '../filterSlice';
-import List from './List';
+import { setStartColumn } from '../Local/localFilterSlice';
+import List from '../List';
 
 const mapStateToProps = state => {
     return {
         label: "Start Column",
-        value: { value: state.filter.startColumn.id, label: state.filter.startColumn.name },
-        options: state.filter.columns.map(column => {
+        value: { value: state.localFilter.startColumn.id, label: state.localFilter.startColumn.name },
+        options: state.localFilter.columns.map(column => {
             return {value: column.id, label: column.name}
         })
     }

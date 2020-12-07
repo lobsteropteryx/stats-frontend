@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
-import filterSlice from './Filter/filterSlice';
-import Filters from './Filter/Filters';
-import StartColumnsListContainer from './Filter/List/StartColumnsListContainer';
-import EndColumnsListContainer from './Filter/List/EndColumnsListContainer'
+import queryFilterSlice from './Filter/Query/queryFilterSlice';
+import localFilterSlice from './Filter/Local/localFilterSlice';
+import Filters from './Filter/Query/Filters';
+import StartColumnsListContainer from './Filter/Local/StartColumnsListContainer';
+import EndColumnsListContainer from './Filter/Local/EndColumnsListContainer'
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
 import HistogramContainer from './Histogram/HistogramContainer';
@@ -20,7 +21,8 @@ import EndDateContainer from './Date/EndDateContainer';
 import dateSlice from './Date/dateSlice';
 
 const rootReducer = combineReducers({
-    filter: filterSlice,
+    queryFilter: queryFilterSlice,
+    localFilter: localFilterSlice,
     settings: settingsSlice,
     date: dateSlice
 });

@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
-import { ApiClient } from '../../Trello/ApiClient';
-import { fetchActionsForBoard } from '../filterSlice';
+import { ApiClient } from '../../../Trello/ApiClient';
+import { fetchActionsForBoard } from '../queryFilterSlice';
 import SubmitButton from './SubmitButton';    
 
 const mapStateToProps = state => {
     return {
-        apiKey: state.filter.apiKey,
-        token: state.filter.token,
-        selectedBoardId: state.filter.selectedBoard.value,
-        spinnerClass: state.filter.isFetching ? 'spinner-enabled' : 'spinner-disabled'
+        apiKey: state.queryFilter.apiKey,
+        token: state.queryFilter.token,
+        selectedBoardId: state.queryFilter.selectedBoard.value,
+        spinnerClass: state.queryFilter.isFetching ? 'spinner-enabled' : 'spinner-disabled'
     }
 };
 

@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { ApiClient } from '../../Trello/ApiClient';
-import { selectBoard } from '../filterSlice';
-import { fetchColumnsForBoard } from '../filterSlice';
-import List from './List';
+import { selectBoard } from './queryFilterSlice';
+import { fetchColumnsForBoard } from './queryFilterSlice';
+import List from '../List';
 
 const mapStateToProps = state => {
     return {
         label: "Board",
-        options: state.filter.boards.map(board => {
+        options: state.queryFilter.boards.map(board => {
             return {value: board.id, label: board.name}
         }),
-        apiKey: state.filter.apiKey,
-        token: state.filter.token
+        apiKey: state.queryFilter.apiKey,
+        token: state.queryFilter.token
     }
 };
 

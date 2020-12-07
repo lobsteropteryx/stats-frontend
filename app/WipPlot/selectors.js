@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { groupBy } from 'lodash';
 
-const getCards = state => state.filter.cards;
+const getCards = state => state.localFilter.cards;
 const getStartDate = state => state.date.startDate;
 const getEndDate = state => state.date.endDate;
 

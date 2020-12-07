@@ -13,7 +13,7 @@ describe("Calculating percentiles", () => {
 
         const state = { 
             date: {}, 
-            filter: { 
+            localFilter: { 
                 startColumn: { id: null, name: null },
                 endColumn: { id: null, name: null },
                 cards: [] 
@@ -36,7 +36,7 @@ describe("Calculating percentiles", () => {
 
         const state = { 
             date: {},
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{
@@ -83,7 +83,7 @@ describe("Calculating percentiles", () => {
 
         const state = { 
             date: {},
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{
@@ -157,7 +157,7 @@ describe("Calculating percentiles", () => {
                 startDate: null,
                 endDate: null
             },
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{
@@ -221,7 +221,7 @@ describe("Calculating percentiles", () => {
                 startDate: moment("2020-01-01"),
                 endDate: moment("2020-01-02")
             },
-            filter: {
+            localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 cards: [{

@@ -1,17 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
-import { actionsToCards } from '../Trello/actionParser';
+import { actionsToCards } from '../../Trello/actionParser';
+import { setCards, setColumns, setStartColumn, setEndColumn } from '../Local/localFilterSlice';
 
 const filterSlice = createSlice({
-  name: 'filter',
+  name: 'queryFilter',
   initialState: {
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
-    selectedBoard: {},
-    startColumn: { id: null, name: null },
-    endColumn: { id: null, name: null },
-    columns: [],
-    cards: []
+    selectedBoard: {}
   },
   reducers: {
     fetchPending: state => {
@@ -31,24 +28,7 @@ const filterSlice = createSlice({
         state.startColumn = { id: null, name: null };
         state.endColumn = { id: null, name: null };
     },
-    setColumns: (state, action) => {
-        state.columns = action.payload;
-    },
-    setStartColumn: (state, action) => {
-        state.startColumn = action.payload;
-    },
-    setEndColumn: (state, action) => {
-        state.endColumn = action.payload;
-    },
-    setCards: (state, action) => {
-        state.cards = action.payload;
-    },
-    setStartDate: (state, action) => {
-        state.startDate = action.payload;
-    },
-    setEndDate: (state, action) => {
-        state.endDate = action.payload;
-    }
+
   }
 });
 
@@ -57,13 +37,7 @@ export const {
     fetchComplete,
     setTrelloToken,
     setBoards,
-    selectBoard,
-    setColumns,
-    setStartColumn,
-    setEndColumn,
-    setCards,
-    setStartDate,
-    setEndDate 
+    selectBoard
 } = filterSlice.actions;
 
 export const fetchBoards = (apiClient) => async (dispatch) => {

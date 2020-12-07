@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { setEndColumn } from '../filterSlice';
-import List from './List';
+import { setEndColumn } from '../Local/localFilterSlice';
+import List from '../List';
 
 const mapStateToProps = state => {
     return {
         label: "End Column",
-        value: { value: state.filter.endColumn.id, label: state.filter.endColumn.name },
-        options: state.filter.columns.map(column => {
+        value: { value: state.localFilter.endColumn.id, label: state.localFilter.endColumn.name },
+        options: state.localFilter.columns.map(column => {
             return {value: column.id, label: column.name}
         })
     }
