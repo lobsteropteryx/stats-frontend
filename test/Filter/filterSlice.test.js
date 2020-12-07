@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reducer, { fetchActionsForBoard } from '../../app/Filter/filterSlice';
+import reducer, { fetchBoards, fetchActionsForBoard } from '../../app/Filter/filterSlice';
 import {
     setTrelloToken,
     fetchPending,
@@ -103,35 +103,56 @@ describe("Setting cards", () => {
 });
 
 describe("Fetching data from API", () => {
-    describe("Fetching actions", () => {
-        it("dispatches the correct actions", async () => {
-            const state = {
-                columns: [
-                    {id: "1", name: "ToDo"},
-                    {id: "2", name: "Doing"},
-                    {id: "3", name: "Done"}
-                ]
-            };
-            const boardId = "board";
-            const cards = [];
+    it("fetches boards", async () => {
+        const state = {};
+        const boards = [];
 
-            const expectedActions = [
-                fetchPending(),
-                setCards(cards),
-                fetchComplete()
-            ];
-                
-            const apiClient = {
-                getActionsForBoard: (boardId) => {
-                    return cards;
-                }
-            };
+        const expectedActions = [
+            fetchPending(),
+            setBoards(boards),
+            fetchComplete()
+        ];
+            
+        const apiClient = {
+            getBoards: () => {
+                return boards;
+            }
+        };
 
-            const store = mockStore(state);
+        const store = mockStore(state);
 
-            const actionCreator = fetchActionsForBoard(apiClient, boardId);
-            await actionCreator(store.dispatch);
-            expect(store.getActions()).toEqual(expectedActions);
-        });
+        const actionCreator = fetchBoards(apiClient);
+        await actionCreator(store.dispatch);
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    it("fetches actions", async () => {
+        const state = {
+            columns: [
+                {id: "1", name: "ToDo"},
+                {id: "2", name: "Doing"},
+                {id: "3", name: "Done"}
+            ]
+        };
+        const boardId = "board";
+        const cards = [];
+
+        const expectedActions = [
+            fetchPending(),
+            setCards(cards),
+            fetchComplete()
+        ];
+            
+        const apiClient = {
+            getActionsForBoard: (boardId) => {
+                return cards;
+            }
+        };
+
+        const store = mockStore(state);
+
+        const actionCreator = fetchActionsForBoard(apiClient, boardId);
+        await actionCreator(store.dispatch);
+        expect(store.getActions()).toEqual(expectedActions);
     });
 });

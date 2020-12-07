@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { last } from 'lodash';
 
-export default class ApiClient {
+export class ApiClient {
     constructor(key, token) {
         this.key = key;
         this.token = token;

@@ -1,6 +1,6 @@
 import nock from 'nock';
 
-import ApiClient from '../../app/Trello/ApiClient';
+import { ApiClient } from '../../app/Trello/ApiClient';
 
 describe('Trello API requests', () => {
 

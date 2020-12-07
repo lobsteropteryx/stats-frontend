@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ApiClient from '../Trello/ApiClient'
+import { ApiClient } from '../../Trello/ApiClient';
 import { fetchActionsForBoard } from '../filterSlice';
 import SubmitButton from './SubmitButton';    
 

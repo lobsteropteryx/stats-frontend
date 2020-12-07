@@ -30,7 +30,7 @@ class AuthPortal extends React.PureComponent {
         window.removeEventListener('message', this.getAuthorization, false);
         this.externalWindow.close();
         if ((event.data != null) && /[0-9a-f]{64}/.test(event.data)) {
-            this.props.onAuthorization(event.data);
+            this.props.onAuthorization(this.props.apiKey, event.data);
         }
     }
 

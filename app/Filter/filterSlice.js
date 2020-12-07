@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import ApiClient from '../Trello/ApiClient';
+import { ApiClient } from '../Trello/ApiClient';
 import { actionsToCards } from '../Trello/actionParser';
 
 const filterSlice = createSlice({
@@ -76,10 +76,9 @@ const buildApiClient = (filter) => {
     return new ApiClient(filter.apiKey, filter.token);
 }
 
-export const fetchBoards = () => async (dispatch, getState) => {
-    const client = buildApiClient(getState().filter);
+export const fetchBoards = (apiClient) => async (dispatch) => {
     dispatch(fetchPending());
-    dispatch(setBoards(await client.getBoards()));
+    dispatch(setBoards(await apiClient.getBoards()));
     dispatch(fetchComplete());
 }
 
@@ -90,7 +89,7 @@ export const fetchColumnsForBoard = (boardId) => async (dispatch, getState) => {
     dispatch(fetchComplete());
 }
 
-export const fetchActionsForBoard = (apiClient, boardId) => async (dispatch, getState) => {
+export const fetchActionsForBoard = (apiClient, boardId) => async (dispatch) => {
     dispatch(fetchPending());
     const actions = await apiClient.getActionsForBoard(boardId);
     const cards = actionsToCards(actions);
