@@ -35,10 +35,16 @@ const filterSlice = createSlice({
         state.columns = action.payload;
     },
     setStartColumn: (state, action) => {
-        state.startColumn = action.payload;
+        state.startColumn = {
+            id: action.payload.value,
+            name: action.payload.label
+        };
     },
     setEndColumn: (state, action) => {
-        state.endColumn = action.payload;
+        state.endColumn = {
+            id: action.payload.value,
+            name: action.payload.label
+        }
     },
     setCards: (state, action) => {
         state.actions = action.payload;

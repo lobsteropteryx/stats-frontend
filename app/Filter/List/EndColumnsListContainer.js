@@ -5,7 +5,7 @@ import List from './List';
 const mapStateToProps = state => {
     return {
         label: "End Column",
-        value: state.filter.endColumn,
+        value: { value: state.filter.endColumn.id, label: state.filter.endColumn.name },
         options: state.filter.columns.map(column => {
             return {value: column.id, label: column.name}
         })
@@ -14,8 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChange: column => {
-            dispatch(setEndColumn(column))
+        onChange: e => {
+            dispatch(setEndColumn(e))
         }
     }
 };
