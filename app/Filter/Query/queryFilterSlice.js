@@ -18,6 +18,9 @@ const filterSlice = createSlice({
     fetchComplete: state => {
         state.isFetching = false;
     },
+    enableExport: state => {
+        state.exportEnabled = true;
+    },
     setTrelloToken: (state, action) => {
         state.token = action.payload;
     },
@@ -28,6 +31,7 @@ const filterSlice = createSlice({
         state.selectedBoard = action.payload;
         state.startColumn = { id: null, name: null };
         state.endColumn = { id: null, name: null };
+        state.exportEnabled = false;
     }
   }
 });
@@ -35,6 +39,7 @@ const filterSlice = createSlice({
 export const { 
     fetchPending,
     fetchComplete,
+    enableExport,
     setTrelloToken,
     setBoards,
     selectBoard
@@ -61,6 +66,7 @@ export const fetchActionsForBoard = (apiClient, boardId) => async (dispatch) => 
     const cards = actionsToCards(actions);
     dispatch(setCards(cards));
     dispatch(fetchComplete());
+    dispatch(enableExport());
 }
 
 export default filterSlice.reducer;

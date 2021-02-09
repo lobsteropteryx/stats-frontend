@@ -5,6 +5,7 @@ import {
     setTrelloToken,
     fetchPending,
     fetchComplete,
+    enableExport,
     setBoards,
     selectBoard
 } from '../../../app/Filter/Query/queryFilterSlice';
@@ -18,7 +19,6 @@ describe("Initial state", () => {
         const expectedState = {
             apiKey: "e052546597a829919aae4fbd2a6e4095",
             boards: [],
-            exportEnabled: false,
             selectedBoard: {},
             exportEnabled: false
         };
@@ -33,6 +33,19 @@ describe("Authentication", () => {
         const token = 'abc';
         const action = setTrelloToken(token);
         expect(reducer(state, action)).toEqual({token});
+    });
+});
+
+describe("Exporting data", () => {
+    it("enables exporting data after fetch", () => {
+        const state = {
+            exportEnabled: false
+        };
+        const expectedState = {
+            exportEnabled: true 
+        };
+        const action = enableExport;
+        expect(reducer(state, action)).toEqual(expectedState);
     });
 });
 
@@ -64,12 +77,17 @@ describe("Setting boards", () => {
 
 describe("Selecting a board", () => {
     it("Sets the board and resets the selected columns", () => {
-        const state = {startColumn: 'start', endColumn: 'ending'};
+        const state = {
+            startColumn: 'start', 
+            endColumn: 'ending',
+            exportEnabled: true
+        };
         const selectedBoard = {id: 1, name: 'selectedBoard'};
         const expectedState = {
             selectedBoard: selectedBoard,
             startColumn: { id: null, name: null },
-            endColumn: { id: null, name: null } 
+            endColumn: { id: null, name: null },
+            exportEnabled: false
         };
         const action = selectBoard(selectedBoard);
         expect(reducer(state, action)).toEqual(expectedState);
@@ -139,7 +157,8 @@ describe("Fetching data from API", () => {
         const expectedActions = [
             fetchPending(),
             setCards(cards),
-            fetchComplete()
+            fetchComplete(),
+            enableExport()
         ];
             
         const apiClient = {

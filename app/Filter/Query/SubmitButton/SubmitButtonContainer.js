@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(fetchActionsForBoard(apiClient, selectedBoardId));
         },
         onExport: (event) => {
-            alert("export data");
+            console.log("export data");
         }
     }
 };
@@ -28,6 +28,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const apiClient = new ApiClient(stateProps.apiKey, stateProps.token);
     return {
         spinnerClass: stateProps.spinnerClass,
+        exportEnabled: stateProps.exportEnabled,
         onExport: dispatchProps.onExport,
         onSubmit: (event) => {
             dispatchProps.onSubmit(
