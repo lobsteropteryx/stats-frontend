@@ -8,7 +8,8 @@ const filterSlice = createSlice({
   initialState: {
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
-    selectedBoard: {}
+    selectedBoard: {},
+    exportEnabled: false
   },
   reducers: {
     fetchPending: state => {
@@ -27,8 +28,7 @@ const filterSlice = createSlice({
         state.selectedBoard = action.payload;
         state.startColumn = { id: null, name: null };
         state.endColumn = { id: null, name: null };
-    },
-
+    }
   }
 });
 

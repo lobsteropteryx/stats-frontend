@@ -8,14 +8,18 @@ const mapStateToProps = state => {
         apiKey: state.queryFilter.apiKey,
         token: state.queryFilter.token,
         selectedBoardId: state.queryFilter.selectedBoard.value,
-        spinnerClass: state.queryFilter.isFetching ? 'spinner-enabled' : 'spinner-disabled'
+        spinnerClass: state.queryFilter.isFetching ? 'spinner-enabled' : 'spinner-disabled',
+        exportEnabled: state.queryFilter.exportEnabled
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (event, apiClient, selectedBoardId) => {
+        onSubmit: (event, apiClient, selectedBoardId) => {
             dispatch(fetchActionsForBoard(apiClient, selectedBoardId));
+        },
+        onExport: (event) => {
+            alert("export data");
         }
     }
 };
@@ -24,8 +28,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const apiClient = new ApiClient(stateProps.apiKey, stateProps.token);
     return {
         spinnerClass: stateProps.spinnerClass,
-        onClick: (event) => {
-            dispatchProps.onClick(
+        onExport: dispatchProps.onExport,
+        onSubmit: (event) => {
+            dispatchProps.onSubmit(
                 event, 
                 apiClient,
                 stateProps.selectedBoardId

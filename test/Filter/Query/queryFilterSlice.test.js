@@ -12,6 +12,21 @@ import { setCards, setColumns, setStartColumn, setEndColumn } from '../../../app
 
 const mockStore = configureMockStore([thunk]);
 
+describe("Initial state", () => {
+    it("sets the proper initial state", () => {
+        const state; // undefined
+        const expectedState = {
+            apiKey: "e052546597a829919aae4fbd2a6e4095",
+            boards: [],
+            exportEnabled: false,
+            selectedBoard: {},
+            exportEnabled: false
+        };
+        const action = { payload: null, action: "default" };
+        expect(reducer(state, action)).toEqual(expectedState);
+    });
+});
+
 describe("Authentication", () => {
     it("sets the trello token", () => {
         const state = {};
