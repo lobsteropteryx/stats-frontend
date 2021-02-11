@@ -18,7 +18,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onChange: (option, apiClient) => {
-            dispatch(selectBoard(option));
+            dispatch(selectBoard({id: option.value, name: option.label}));
             dispatch(fetchColumnsForBoard(apiClient, option.value));
         }
     }

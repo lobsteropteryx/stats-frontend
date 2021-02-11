@@ -1,24 +1,24 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 
-const Export = (props) => {
+const ExportButton = (props) => {
+    const downloadAnchor = useRef(null);
+    const exportData = (event) => {
+        event.preventDefault();
+        downloadAnchor.current.click(); 
+        URL.revokeObjectURL(props.url);
+    };
+
     return (
         <div className='exportButton'>
-            <button onClick={props.onClick} disabled={!props.enabled}>Export</button>
-            <a href={props.url} download={props.filename} />
+            <button onClick={e => exportData(e, props.content)} disabled={!props.enabled}>Export</button>
+            <a ref={downloadAnchor} href={props.url} download={props.filename} />
         </div>
     );
 };
 
-Export.propTypes = {
-    onClick: PropTypes.func.isRequired,
+ExportButton.propTypes = {
     enabled: PropTypes.bool.isRequired
 };
 
-function exportData(event, content) {
-    event.preventDefault();
-    const blobl = new Blob([content]);
-    const fileUrl = URL.createObjectURL(blob);
-}
-
-export default Export;
+export default ExportButton;
