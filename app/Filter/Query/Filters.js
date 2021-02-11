@@ -1,12 +1,12 @@
 import React from 'react';
 import BoardsListContainer from './BoardsListContainer';
-import SubmitButtonContainer from './SubmitButton/SubmitButtonContainer';
+import QueryControlsContainer from './QueryControls/QueryControlsContainer';
 
 const Filters = () => {
     return (
         <div className="filterGroup">
             <BoardsListContainer />
-            <SubmitButtonContainer />
+            <QueryControlsContainer />
         </div>
     );
 };

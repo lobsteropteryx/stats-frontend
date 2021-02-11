@@ -1,5 +1,5 @@
 import moment from "moment"; 
-import { getExportParameters } from "../../../../app/Filter/Query/SubmitButton/selectors";
+import { getExportParameters } from "../../../../app/Filter/Query/QueryControls/selectors";
 
 describe("Scatter plot selector", () => {
     it("Returns the correct data structure when there are no cards", () => {

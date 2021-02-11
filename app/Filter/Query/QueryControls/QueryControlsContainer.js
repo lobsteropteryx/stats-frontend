@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { ApiClient } from '../../../Trello/ApiClient';
 import { fetchActionsForBoard } from '../queryFilterSlice';
 import { getExportParameters } from './selectors';
-import SubmitButton from './SubmitButton';    
+import QueryControls from './QueryControls';    
 
 const mapStateToProps = state => {
     const {content, url, filename} = getExportParameters(state);
@@ -45,10 +45,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     }
 }
 
-const SubmitButtonContainer = connect(
+const QueryControlsContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
     mergeProps
-)(SubmitButton);
+)(QueryControls);
 
-export default SubmitButtonContainer;
+export default QueryControlsContainer;

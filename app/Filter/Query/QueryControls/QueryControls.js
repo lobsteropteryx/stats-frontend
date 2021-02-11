@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ExportButton from '../ExportButton/ExportButton';
 import spinner from '../../../images/spinner.svg';
 
-const SubmitButton = (props) => {
+const QueryControls = (props) => {
     return (
         <div className='submitButton'>
             <button onClick={props.onSubmit}>Submit</button>
@@ -17,8 +17,8 @@ const SubmitButton = (props) => {
     );
 };
 
-SubmitButton.propTypes = {
+QueryControls.propTypes = {
     onSubmit: PropTypes.func.isRequired
 };
 
-export default SubmitButton;
+export default QueryControls;
