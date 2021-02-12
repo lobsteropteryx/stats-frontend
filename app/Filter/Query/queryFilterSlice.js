@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
 import { actionsToCards } from '../../Trello/actionParser';
 import { setCards, setColumns, setStartColumn, setEndColumn } from '../Local/localFilterSlice';
+import { getCsvData } from './csvExporter';
 
 const filterSlice = createSlice({
   name: 'queryFilter',
@@ -32,6 +33,9 @@ const filterSlice = createSlice({
         state.startColumn = { id: null, name: null };
         state.endColumn = { id: null, name: null };
         state.exportEnabled = false;
+    },
+    setCsvData: (state, action) => {
+        state.csvData = action.payload;
     }
   }
 });
@@ -42,7 +46,8 @@ export const {
     enableExport,
     setTrelloToken,
     setBoards,
-    selectBoard
+    selectBoard,
+    setCsvData
 } = filterSlice.actions;
 
 export const fetchBoards = (apiClient) => async (dispatch) => {
@@ -67,6 +72,13 @@ export const fetchActionsForBoard = (apiClient, boardId) => async (dispatch) => 
     dispatch(setCards(cards));
     dispatch(fetchComplete());
     dispatch(enableExport());
+}
+
+export const exportCsvData = (cards, boardName) => async (dispatch) => {
+    dispatch(fetchPending());
+    const csvData = await getCsvData(cards, boardName);
+    dispatch(setCsvData(csvData));
+    dispatch(fetchComplete()); 
 }
 
 export default filterSlice.reducer;

@@ -7,7 +7,9 @@ import {
     fetchComplete,
     enableExport,
     setBoards,
-    selectBoard
+    selectBoard,
+    setCsvData,
+    exportCsvData
 } from '../../../app/Filter/Query/queryFilterSlice';
 import { setCards, setColumns, setStartColumn, setEndColumn } from '../../../app/Filter/Local/localFilterSlice';
 
@@ -172,5 +174,44 @@ describe("Fetching data from API", () => {
         const actionCreator = fetchActionsForBoard(apiClient, boardId);
         await actionCreator(store.dispatch);
         expect(store.getActions()).toEqual(expectedActions);
+    });
+});
+
+describe("Exporting to CSV", () => {
+
+    it("sets CSV data", () => {
+        const state = {};
+        const csvData = "column,anotherColumn";
+        const expectedState = {csvData};
+        const action = setCsvData(csvData);
+        expect(reducer(state, action)).toEqual(expectedState);
+    })
+    
+    it("exports cards to CSV", async () => {
+
+        global.URL.createObjectURL = jest.fn(() => "myUrl");
+        const state = {};
+
+        const cards = [];
+        const boardName = "myBoard";
+        const csvData = {
+            content: "",
+            filename: "myBoard-2021-02-12",
+            url: "myUrl"
+        };
+
+        const expectedActions = [
+            fetchPending(),
+            setCsvData(csvData),
+            fetchComplete()
+        ];
+
+        const store = mockStore(state);
+
+        const actionCreator = exportCsvData(cards, boardName);
+        await actionCreator(store.dispatch);
+        expect(store.getActions()).toEqual(expectedActions);
+
+        global.URL.createObjectURL.mockRestore();
     });
 });

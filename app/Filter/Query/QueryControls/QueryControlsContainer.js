@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
+import { useAsyncSelector } from 'use-async-selector';
 import { ApiClient } from '../../../Trello/ApiClient';
 import { fetchActionsForBoard } from '../queryFilterSlice';
-import { getExportParameters } from './selectors';
+import { getExportParameters } from '../csvExporter';
+
 import QueryControls from './QueryControls';    
 
 const mapStateToProps = state => {
     const {content, url, filename} = getExportParameters(state);
+    const csvSelector = async state => convertExportData(state.localFilter.cards, state.queryFilter.selectedBoard.name);
+    const { loading, error, data } = useAsyncSelector(csvSelector);
     return {
         content,
         url,

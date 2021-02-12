@@ -11,7 +11,7 @@ const ExportButton = (props) => {
 
     return (
         <div className='exportButton'>
-            <button onClick={e => exportData(e, props.content)} disabled={!props.enabled}>Export</button>
+            <button onClick={e => exportData(e, data.content)} disabled={!props.enabled}>Export</button>
             <a ref={downloadAnchor} href={props.url} download={props.filename} />
         </div>
     );
