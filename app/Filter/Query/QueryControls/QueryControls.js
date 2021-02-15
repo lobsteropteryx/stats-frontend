@@ -10,7 +10,8 @@ const QueryControls = (props) => {
             <ExportButton 
                 enabled={props.exportEnabled} 
                 content={props.exportContent} 
-                url={props.exportUrl} filename={props.exportFilename} 
+                url={props.exportUrl} 
+                filename={props.exportFilename} 
             />
             <img className={props.spinnerClass} src={spinner} />
         </div>

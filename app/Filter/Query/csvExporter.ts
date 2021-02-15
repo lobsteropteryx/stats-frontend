@@ -7,7 +7,7 @@ export async function getCsvData(cards, boardName) {
     return {
         content: content,
         url: URL.createObjectURL(blob),
-        filename: `${boardName}-${new Date().toISOString().slice(0, 10)}`  
+        filename: `${boardName}-${new Date(Date.now()).toISOString().slice(0, 10)}.csv`  
     }
 };
 

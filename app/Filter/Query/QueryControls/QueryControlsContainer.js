@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { useAsyncSelector } from 'use-async-selector';
 import { ApiClient } from '../../../Trello/ApiClient';
 import { fetchActionsForBoard } from '../queryFilterSlice';
 import { getExportParameters } from '../csvExporter';
@@ -7,26 +6,23 @@ import { getExportParameters } from '../csvExporter';
 import QueryControls from './QueryControls';    
 
 const mapStateToProps = state => {
-    const {content, url, filename} = getExportParameters(state);
-    const csvSelector = async state => convertExportData(state.localFilter.cards, state.queryFilter.selectedBoard.name);
-    const { loading, error, data } = useAsyncSelector(csvSelector);
     return {
-        content,
-        url,
-        filename,
         apiKey: state.queryFilter.apiKey,
         token: state.queryFilter.token,
-        selectedBoardId: state.queryFilter.selectedBoard.id,
+        selectedBoard: state.queryFilter.selectedBoard,
         spinnerClass: state.queryFilter.isFetching ? 'spinner-enabled' : 'spinner-disabled',
         exportEnabled: state.queryFilter.exportEnabled,
-        exportContent: state.localFilter.cards
+        exportContent: state.queryFilter.csvData.content,
+        exportUrl: state.queryFilter.csvData.url,
+        exportFilename: state.queryFilter.csvData.filename,
+        cards: state.localFilter.cards
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSubmit: (event, apiClient, selectedBoardId) => {
-            dispatch(fetchActionsForBoard(apiClient, selectedBoardId));
+        onSubmit: (event, apiClient, selectedBoard) => {
+            dispatch(fetchActionsForBoard(apiClient, selectedBoard));
         }
     }
 };
@@ -36,14 +32,14 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         spinnerClass: stateProps.spinnerClass,
         exportEnabled: stateProps.exportEnabled,
-        exportContent: stateProps.content,
-        exportUrl: stateProps.url,
-        exportFilename: stateProps.filename,
+        exportContent: stateProps.exportContent,
+        exportUrl: stateProps.exportUrl,
+        exportFilename: stateProps.exportFilename,
         onSubmit: (event) => {
             dispatchProps.onSubmit(
                 event, 
                 apiClient,
-                stateProps.selectedBoardId
+                stateProps.selectedBoard
             )
         }
     }

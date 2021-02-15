@@ -11,14 +11,15 @@ const ExportButton = (props) => {
 
     return (
         <div className='exportButton'>
-            <button onClick={e => exportData(e, data.content)} disabled={!props.enabled}>Export</button>
+            <button onClick={e => exportData(e)} disabled={!props.enabled}>Export</button>
             <a ref={downloadAnchor} href={props.url} download={props.filename} />
         </div>
     );
 };
 
 ExportButton.propTypes = {
-    enabled: PropTypes.bool.isRequired
+    enabled: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default ExportButton;

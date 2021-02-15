@@ -10,7 +10,8 @@ const filterSlice = createSlice({
     apiKey: 'e052546597a829919aae4fbd2a6e4095',
     boards: [],
     selectedBoard: {},
-    exportEnabled: false
+    exportEnabled: false,
+    csvData: {}
   },
   reducers: {
     fetchPending: state => {
@@ -65,20 +66,15 @@ export const fetchColumnsForBoard = (apiClient, boardId) => async (dispatch) => 
     dispatch(fetchComplete());
 }
 
-export const fetchActionsForBoard = (apiClient, boardId) => async (dispatch) => {
+export const fetchActionsForBoard = (apiClient, board) => async (dispatch) => {
     dispatch(fetchPending());
-    const actions = await apiClient.getActionsForBoard(boardId);
+    const actions = await apiClient.getActionsForBoard(board.id);
     const cards = actionsToCards(actions);
     dispatch(setCards(cards));
+    const csvData = await getCsvData(cards, board.name);
+    dispatch(setCsvData(csvData));
     dispatch(fetchComplete());
     dispatch(enableExport());
-}
-
-export const exportCsvData = (cards, boardName) => async (dispatch) => {
-    dispatch(fetchPending());
-    const csvData = await getCsvData(cards, boardName);
-    dispatch(setCsvData(csvData));
-    dispatch(fetchComplete()); 
 }
 
 export default filterSlice.reducer;
