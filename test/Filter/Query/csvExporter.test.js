@@ -12,7 +12,7 @@ describe("Converting CSV", () => {
         const expected = {
             content: "id,name,actions.startColumn.id,actions.startColumn.name,actions.endColumn.id,actions.endColumn.name,actions.date\n1,test,0,ToDo,1,Doing,1/1/2020",
             url: "myUrl",
-            filename: "myBoard-2019-05-14"
+            filename: "myBoard-2019-05-14.csv"
         };
 
         const boardName = "myBoard";
