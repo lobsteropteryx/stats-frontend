@@ -98,7 +98,8 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList',
                     fields: 'labels,name',
                     filter: 'all',
-                    limit: apiLimit
+                    limit: apiLimit,
+                    sort: '-id'
                 })
                 .reply(200, firstPage);
 
@@ -114,7 +115,8 @@ describe('Trello API requests', () => {
                     fields: 'labels,name',
                     filter: 'all',
                     before: 1,
-                    limit: apiLimit
+                    limit: apiLimit,
+                    sort: '-id'
                 })
                 .reply(200, secondPage);
 
@@ -200,7 +202,8 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList',
                     filter: 'all',
                     fields: 'labels,name',
-                    limit: 1
+                    limit: 1,
+                    sort: '-id'
                 })
                 .reply(200, firstPage);
 
@@ -216,7 +219,8 @@ describe('Trello API requests', () => {
                     fields: 'labels,name',
                     filter: 'all',
                     before: 1,
-                    limit: 1
+                    limit: 1,
+                    sort: '-id'
                 })
                 .reply(200, secondPage);
             
@@ -232,7 +236,8 @@ describe('Trello API requests', () => {
                     fields: 'labels,name',
                     filter: 'all',
                     before: 2,
-                    limit: 1
+                    limit: 1,
+                    sort: '-id'
                 })
                 .reply(200, thirdPage);
 

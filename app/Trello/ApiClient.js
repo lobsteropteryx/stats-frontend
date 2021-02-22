@@ -58,7 +58,8 @@ export class ApiClient {
                 limit: this.apiLimit,
                 actions: 'updateCard:idList',
                 fields: 'labels,name',
-                filter: 'all'
+                filter: 'all',
+                sort: '-id'
             } 
         })
         .then(response => response.data);
@@ -74,6 +75,7 @@ export class ApiClient {
                 actions: 'updateCard:idList',
                 fields: 'labels,name',
                 filter: 'all',
+                sort: '-id',
                 before: beforeDate
             } 
         })
