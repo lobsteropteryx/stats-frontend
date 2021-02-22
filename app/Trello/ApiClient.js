@@ -73,14 +73,56 @@ export class ApiClient {
             .then(response => response.data);
     }
     
-    async getCardsForColumn(columnId) {
+    async getCardsForBoard(boardId) {
         return this.axiosInstance
-            .get(`/lists/${columnId}/cards`, { 
+            .get(`/boards/${boardId}/cards`, { 
                 params: {
                     key: this.key,
-                    token: this.token
+                    token: this.token,
+                    actions: 'updateCard',
+                    fields: 'labels'
                 } 
             })
             .then(response => response.data);
+    }
+    
+    async getCardsForBoard(boardId) {
+        let pageOfCards = await this._getFirstCardsPage(boardId);
+        let allCards = pageOfCards;
+
+        do {
+            let lastCardId = last(allCards).id;
+            pageOfCards = await this._getNextCardsPage(boardId, lastCardId);
+            allCards = allCards.concat(pageOfCards);
+        } while (pageOfCards.length !== 0)
+        
+        return allCards;
+    }
+
+    _getFirstCardsPage(boardId) {
+        return this.axiosInstance
+        .get(`/boards/${boardId}/cards`, { 
+            params: {
+                key: this.key,
+                token: this.token,
+                actions: 'updateCard',
+                fields: 'labels'
+            } 
+        })
+        .then(response => response.data);
+    }
+
+    _getNextCardsPage(boardId, beforeDate) {
+        return this.axiosInstance
+        .get(`/boards/${boardId}/cards`, { 
+            params: {
+                key: this.key,
+                token: this.token,
+                actions: 'updateCard',
+                fields: 'labels',
+                before: beforeDate
+            } 
+        })
+        .then(response => response.data);
     }
 }

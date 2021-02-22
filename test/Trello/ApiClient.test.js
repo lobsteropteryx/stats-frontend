@@ -197,26 +197,178 @@ describe('Trello API requests', () => {
     });
 
     describe('Requesting cards', () => {
-        it('Can request cards for a column', () => {
+        it('Can request one page of cards with their actions', () => {
 
-            const expected = [{
-                id: 1
+            const firstPage = [{
+                id: 1,
+                actions: [{
+                    id: 1,
+                    labels: [],
+                    data: {
+                        card: {
+                            id: 1,
+                            name: 'myCard',
+                            shortLink: 'link'
+                        },
+                        board: {
+                            id: 1,
+                            name: 'myBoard',
+                            shortLink: 'board'
+                        },
+                        listBefore: {
+                            id: 1,
+                            name: 'ToDo'
+                        },
+                        listAfter: {
+                            id: 1,
+                            name: 'Doing'
+                        }
+                    },
+                    date: '2020-04-02T16:00:00.000Z' 
+                }]
             }];
+
+            const secondPage = [];
+            const expected = firstPage;
 
             nock('https://api.trello.com')
                 .defaultReplyHeaders({
                     'access-control-allow-origin': '*',
                 })
-                .get('/1/lists/1/cards')
+                .get('/1/boards/1/cards')
                 .query({
                     key: 'key', 
-                    token: 'token'
+                    token: 'token',
+                    actions: 'updateCard',
+                    fields: 'labels'
                 })
-                .reply(200, expected);
+                .reply(200, firstPage);
+
+            nock('https://api.trello.com')
+                .defaultReplyHeaders({
+                    'access-control-allow-origin': '*',
+                })
+                .get('/1/boards/1/cards')
+                .query({
+                    key: 'key', 
+                    token: 'token',
+                    actions: 'updateCard',
+                    fields: 'labels',
+                    before: 1
+                })
+                .reply(200, secondPage);
 
             const client = new ApiClient('key', 'token');
             
-            return expect(client.getCardsForColumn(1)).resolves.toEqual(expected);
+            return expect(client.getCardsForBoard(1)).resolves.toEqual(expected);
+        });
+        
+        it('Can request all pages of cards with their actions', () => {
+
+            const firstPage = [{
+                id: 1,
+                actions: [{
+                    id: 1,
+                    labels: [],
+                    data: {
+                        card: {
+                            id: 1,
+                            name: 'myCard',
+                            shortLink: 'link'
+                        },
+                        board: {
+                            id: 1,
+                            name: 'myBoard',
+                            shortLink: 'board'
+                        },
+                        listBefore: {
+                            id: 1,
+                            name: 'ToDo'
+                        },
+                        listAfter: {
+                            id: 1,
+                            name: 'Doing'
+                        }
+                    },
+                    date: '2020-04-02T16:00:00.000Z' 
+                }]
+            }];
+
+            const secondPage = [{
+                id: 2,
+                actions: [{
+                    id: 2,
+                    labels: [],
+                    data: {
+                        card: {
+                            id: 2,
+                            name: 'myOtherCard',
+                            shortLink: 'link2'
+                        },
+                        board: {
+                            id: 1,
+                            name: 'myBoard',
+                            shortLink: 'board'
+                        },
+                        listBefore: {
+                            id: 1,
+                            name: 'ToDo'
+                        },
+                        listAfter: {
+                            id: 1,
+                            name: 'Doing'
+                        }
+                    },
+                    date: '2020-04-03T16:00:00.000Z' 
+                }]
+            }];
+            const thirdPage = [];
+            const expected = firstPage.concat(secondPage);
+            
+            nock('https://api.trello.com')
+                .defaultReplyHeaders({
+                    'access-control-allow-origin': '*',
+                })
+                .get('/1/boards/1/cards')
+                .query({
+                    key: 'key', 
+                    token: 'token',
+                    actions: 'updateCard',
+                    fields: 'labels'
+                })
+                .reply(200, firstPage);
+
+            nock('https://api.trello.com')
+                .defaultReplyHeaders({
+                    'access-control-allow-origin': '*',
+                })
+                .get('/1/boards/1/cards')
+                .query({
+                    key: 'key', 
+                    token: 'token',
+                    actions: 'updateCard',
+                    fields: 'labels',
+                    before: 1
+                })
+                .reply(200, secondPage);
+            
+            nock('https://api.trello.com')
+                .defaultReplyHeaders({
+                    'access-control-allow-origin': '*',
+                })
+                .get('/1/boards/1/cards')
+                .query({
+                    key: 'key', 
+                    token: 'token',
+                    actions: 'updateCard',
+                    fields: 'labels',
+                    before: 2
+                })
+                .reply(200, thirdPage);
+
+            const client = new ApiClient('key', 'token');
+            
+            return expect(client.getCardsForBoard(1)).resolves.toEqual(expected);
         });
     });
 });
