@@ -201,6 +201,7 @@ describe('Trello API requests', () => {
 
             const firstPage = [{
                 id: 1,
+                name: "myCard",
                 actions: [{
                     id: 1,
                     labels: [],
@@ -240,7 +241,7 @@ describe('Trello API requests', () => {
                     key: 'key', 
                     token: 'token',
                     actions: 'updateCard',
-                    fields: 'labels'
+                    fields: 'labels,name'
                 })
                 .reply(200, firstPage);
 
@@ -253,7 +254,7 @@ describe('Trello API requests', () => {
                     key: 'key', 
                     token: 'token',
                     actions: 'updateCard',
-                    fields: 'labels',
+                    fields: 'labels,name',
                     before: 1
                 })
                 .reply(200, secondPage);
@@ -267,6 +268,7 @@ describe('Trello API requests', () => {
 
             const firstPage = [{
                 id: 1,
+                name: "myCard",
                 actions: [{
                     id: 1,
                     labels: [],
@@ -296,6 +298,7 @@ describe('Trello API requests', () => {
 
             const secondPage = [{
                 id: 2,
+                name: "myOtherCard",
                 actions: [{
                     id: 2,
                     labels: [],
@@ -334,7 +337,7 @@ describe('Trello API requests', () => {
                     key: 'key', 
                     token: 'token',
                     actions: 'updateCard',
-                    fields: 'labels'
+                    fields: 'labels,name'
                 })
                 .reply(200, firstPage);
 
@@ -347,7 +350,7 @@ describe('Trello API requests', () => {
                     key: 'key', 
                     token: 'token',
                     actions: 'updateCard',
-                    fields: 'labels',
+                    fields: 'labels,name',
                     before: 1
                 })
                 .reply(200, secondPage);
@@ -361,7 +364,7 @@ describe('Trello API requests', () => {
                     key: 'key', 
                     token: 'token',
                     actions: 'updateCard',
-                    fields: 'labels',
+                    fields: 'labels,name',
                     before: 2
                 })
                 .reply(200, thirdPage);

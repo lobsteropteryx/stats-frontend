@@ -74,19 +74,6 @@ export class ApiClient {
     }
     
     async getCardsForBoard(boardId) {
-        return this.axiosInstance
-            .get(`/boards/${boardId}/cards`, { 
-                params: {
-                    key: this.key,
-                    token: this.token,
-                    actions: 'updateCard',
-                    fields: 'labels'
-                } 
-            })
-            .then(response => response.data);
-    }
-    
-    async getCardsForBoard(boardId) {
         let pageOfCards = await this._getFirstCardsPage(boardId);
         let allCards = pageOfCards;
 
@@ -106,7 +93,7 @@ export class ApiClient {
                 key: this.key,
                 token: this.token,
                 actions: 'updateCard',
-                fields: 'labels'
+                fields: 'labels,name'
             } 
         })
         .then(response => response.data);
@@ -119,7 +106,7 @@ export class ApiClient {
                 key: this.key,
                 token: this.token,
                 actions: 'updateCard',
-                fields: 'labels',
+                fields: 'labels,name',
                 before: beforeDate
             } 
         })
