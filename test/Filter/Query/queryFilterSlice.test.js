@@ -134,7 +134,7 @@ describe("Fetching data from API", () => {
         ];
             
         const apiClient = {
-            getColumnsForBoard: () => {
+            getListsForBoard: () => {
                 return columns;
             }
         };

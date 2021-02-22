@@ -24,7 +24,7 @@ export class ApiClient {
             .then(response => response.data);
     }
     
-    getColumnsForBoard(boardId) {
+    getListsForBoard(boardId) {
         return this.axiosInstance
             .get(`/boards/${boardId}/lists`, { 
                 params: {

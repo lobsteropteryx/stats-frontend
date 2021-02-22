@@ -46,7 +46,7 @@ describe('Trello API requests', () => {
 
         const client = new ApiClient('key', 'token');
 
-        return expect(client.getColumnsForBoard(1)).resolves.toEqual(expected);
+        return expect(client.getListsForBoard(1)).resolves.toEqual(expected);
     });
 
     it('Can request labels for a board', () => {

@@ -59,7 +59,7 @@ export const fetchBoards = (apiClient) => async (dispatch) => {
 
 export const fetchColumnsForBoard = (apiClient, boardId) => async (dispatch) => {
     dispatch(fetchPending());
-    const columns = await apiClient.getColumnsForBoard(boardId);
+    const columns = await apiClient.getListsForBoard(boardId);
     dispatch(setColumns(columns));
     dispatch(setStartColumn(first(columns)));
     dispatch(setEndColumn(last(columns)));
