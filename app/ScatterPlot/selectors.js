@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { cardToWorkItem } from "../workItem";
-import { filterWorkItemByDate } from "../dateFilters";
+import { filterWorkItemByDate } from "../filters";
 
 const getCards = state => state.localFilter.cards;
 const getStartColumn = state => state.localFilter.startColumn.id;
