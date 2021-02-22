@@ -6,7 +6,8 @@ const filterSlice = createSlice({
     cards: [],
     columns: [],
     startColumn: { id: null, name: null },
-    endColumn: { id: null, name: null }
+    endColumn: { id: null, name: null },
+    labels: []
   },
   reducers: {
     setCards: (state, action) => {
@@ -20,6 +21,9 @@ const filterSlice = createSlice({
     },
     setEndColumn: (state, action) => {
         state.endColumn = action.payload;
+    },
+    setLabels: (state, action) => {
+      state.labels = action.payload;
     }
   }
 });
@@ -28,7 +32,8 @@ export const {
     setCards,
     setColumns,
     setStartColumn,
-    setEndColumn
+    setEndColumn,
+    setLabels
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

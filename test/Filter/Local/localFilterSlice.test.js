@@ -3,7 +3,8 @@ import {
     setCards,
     setColumns,
     setStartColumn,
-    setEndColumn
+    setEndColumn,
+    setLabels
 } from '../../../app/Filter/Local/localFilterSlice';
 
 describe("Setting columns", () => {
@@ -12,6 +13,19 @@ describe("Setting columns", () => {
         const columns = [{name: "a list"}];
         const expectedState = {columns};
         const action = setColumns(columns);
+        expect(reducer(state, action)).toEqual(expectedState);
+    });
+});
+
+describe("Setting labels", () => {
+    it("sets the list of labels", () => {
+        const state = {};
+        const labels = [{
+            id: "1",
+            name: "a label"
+        }];
+        const expectedState = {labels};
+        const action = setLabels(labels);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });
