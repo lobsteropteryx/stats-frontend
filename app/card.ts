@@ -2,8 +2,15 @@ import moment from 'moment';
 
 export interface Card {
     id: string,
-    name: string
+    name: string,
+    labels: Label[],
     actions: Action[]
+}
+
+export interface Label {
+    id: string,
+    name: string,
+    color: string
 }
 
 export interface Action {

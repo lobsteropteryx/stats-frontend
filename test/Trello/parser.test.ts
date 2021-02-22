@@ -9,11 +9,42 @@ describe("Parsing cards", () => {
         expect(actual).toEqual(expected);
     });
 
+    it("parses a card with a label", () => {
+
+        const cards = [
+            {
+                "id": "1",
+                "name": "Card 1",
+                "labels": [{
+                    "id": "1",
+                    "name": "my label",
+                    "color": "red"
+                }],
+                "actions": []
+            }
+        ];
+
+        const expected = [{
+            id: "1",
+            name: "Card 1",
+            labels: [{
+                id: "1",
+                name: "my label",
+                color: "red"
+            }],
+            actions: []
+        }];
+
+        const actual = parseTrelloCards(cards);
+        expect(actual).toEqual(expected);
+    });
+
     it("parses one card with two actions", () => {
         const cards = [
             {
                 "id": "1",
                 "name": "Card 1",
+                "labels": [],
                 "actions": [{
                     "data": {
                         "card": {
@@ -54,6 +85,7 @@ describe("Parsing cards", () => {
         const expected = [{
             id: "1",
             name: "Card 1",
+            labels: [],
             actions: [{
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
@@ -74,6 +106,7 @@ describe("Parsing cards", () => {
             {
                 "id": "1",
                 "name": "Card 1",
+                "labels": [],
                 "actions": [{
                     "data": {
                         "card": {
@@ -95,6 +128,7 @@ describe("Parsing cards", () => {
             {
                 "id": "2",
                 "name": "Card 2",
+                "labels": [],
                 "actions": [{
                     "data": {
                         "card": {
@@ -118,6 +152,7 @@ describe("Parsing cards", () => {
         const expected = [{
             id: "1",
             name: "Card 1",
+            labels: [],
             actions: [{
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
@@ -126,6 +161,7 @@ describe("Parsing cards", () => {
         }, {
             id: "2",
             name: "Card 2",
+            labels: [],
             actions: [{
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
