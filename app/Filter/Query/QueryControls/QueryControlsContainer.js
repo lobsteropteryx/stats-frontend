@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { ApiClient } from '../../../Trello/ApiClient';
-import { fetchActionsForBoard } from '../queryFilterSlice';
+import { fetchCardsForBoard } from '../queryFilterSlice';
 import { getExportParameters } from '../csvExporter';
 
 import QueryControls from './QueryControls';    
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (event, apiClient, selectedBoard) => {
-            dispatch(fetchActionsForBoard(apiClient, selectedBoard));
+            dispatch(fetchCardsForBoard(apiClient, selectedBoard));
         }
     }
 };

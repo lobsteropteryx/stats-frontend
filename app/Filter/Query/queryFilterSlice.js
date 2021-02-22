@@ -66,9 +66,9 @@ export const fetchColumnsForBoard = (apiClient, boardId) => async (dispatch) => 
     dispatch(fetchComplete());
 }
 
-export const fetchActionsForBoard = (apiClient, board) => async (dispatch) => {
+export const fetchCardsForBoard = (apiClient, board) => async (dispatch) => {
     dispatch(fetchPending());
-    const actions = await apiClient.getActionsForBoard(board.id);
+    const actions = await apiClient.getCardsForBoard(board.id);
     const cards = parseTrelloCards(actions);
     dispatch(setCards(cards));
     const csvData = await getCsvData(cards, board.name);

@@ -33,46 +33,6 @@ export class ApiClient {
             .then(response => response.data);
     }
     
-    async getActionsForBoard(boardId) {
-        let pageOfActions = await this._getFirstActionsPage(boardId);
-        let allActions = pageOfActions;
-
-        do {
-            let lastActionId = last(allActions).id;
-            pageOfActions = await this._getNextActionsPage(boardId, lastActionId);
-            allActions = allActions.concat(pageOfActions);
-        } while (pageOfActions.length !== 0)
-        
-        return allActions;
-    }
-
-    _getFirstActionsPage(boardId) {
-        return this.axiosInstance
-        .get(`/boards/${boardId}/actions`, { 
-            params: {
-                key: this.key,
-                token: this.token,
-                fields: 'data,date',
-                filter: 'updateCard:idList'
-            } 
-        })
-        .then(response => response.data);
-    }
-
-    _getNextActionsPage(boardId, beforeDate) {
-        return this.axiosInstance
-            .get(`/boards/${boardId}/actions`, { 
-                params: {
-                    key: this.key,
-                    token: this.token,
-                    fields: 'data,date',
-                    filter: 'updateCard:idList',
-                    before: beforeDate
-                } 
-            })
-            .then(response => response.data);
-    }
-    
     async getCardsForBoard(boardId) {
         let pageOfCards = await this._getFirstCardsPage(boardId);
         let allCards = pageOfCards;
@@ -92,8 +52,9 @@ export class ApiClient {
             params: {
                 key: this.key,
                 token: this.token,
-                actions: 'updateCard',
-                fields: 'labels,name'
+                actions: 'updateCard:idList',
+                fields: 'labels,name',
+                filter: 'all'
             } 
         })
         .then(response => response.data);
@@ -105,8 +66,9 @@ export class ApiClient {
             params: {
                 key: this.key,
                 token: this.token,
-                actions: 'updateCard',
+                actions: 'updateCard:idList',
                 fields: 'labels,name',
+                filter: 'all',
                 before: beforeDate
             } 
         })

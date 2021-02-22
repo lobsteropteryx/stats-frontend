@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reducer, { fetchBoards, fetchActionsForBoard, fetchColumnsForBoard } from '../../../app/Filter/Query/queryFilterSlice';
+import reducer, { fetchBoards, fetchCardsForBoard, fetchColumnsForBoard } from '../../../app/Filter/Query/queryFilterSlice';
 import {
     setTrelloToken,
     fetchPending,
@@ -146,7 +146,7 @@ describe("Fetching data from API", () => {
         expect(store.getActions()).toEqual(expectedActions);
     });
 
-    it("fetches actions", async () => {
+    it("fetches cards", async () => {
         global.URL.createObjectURL = jest.fn(() => "myUrl");
         jest.spyOn(global.Date, 'now')
         .mockImplementationOnce(() =>
@@ -181,14 +181,14 @@ describe("Fetching data from API", () => {
         ];
             
         const apiClient = {
-            getActionsForBoard: (boardId) => {
+            getCardsForBoard: (boardId) => {
                 return cards;
             }
         };
 
         const store = mockStore(state);
 
-        const actionCreator = fetchActionsForBoard(apiClient, board);
+        const actionCreator = fetchCardsForBoard(apiClient, board);
         await actionCreator(store.dispatch);
         expect(store.getActions()).toEqual(expectedActions);
     });
