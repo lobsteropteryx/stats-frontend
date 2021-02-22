@@ -18,8 +18,7 @@ const ExportButton = (props) => {
 };
 
 ExportButton.propTypes = {
-    enabled: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired
+    enabled: PropTypes.bool.isRequired
 };
 
 export default ExportButton;
