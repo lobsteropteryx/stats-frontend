@@ -49,6 +49,28 @@ describe('Trello API requests', () => {
         return expect(client.getColumnsForBoard(1)).resolves.toEqual(expected);
     });
 
+    it('Can request labels for a board', () => {
+        const expected = {
+            id: 'columnId',
+            name: 'myColumn'
+        };
+
+        nock('https://api.trello.com')
+            .defaultReplyHeaders({
+                'access-control-allow-origin': '*',
+            })
+            .get('/1/boards/1/labels')
+            .query({
+                key: 'key', 
+                token: 'token'
+            })
+            .reply(200, expected);
+
+        const client = new ApiClient('key', 'token');
+
+        return expect(client.getLabelsForBoard(1)).resolves.toEqual(expected);
+    });
+
     describe('Requesting cards', () => {
         it('Can request one page of cards with their actions', () => {
 

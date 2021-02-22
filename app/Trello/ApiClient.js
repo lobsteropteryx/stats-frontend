@@ -35,6 +35,17 @@ export class ApiClient {
             })
             .then(response => response.data);
     }
+
+    getLabelsForBoard(boardId) {
+        return this.axiosInstance
+            .get(`/boards/${boardId}/labels`, { 
+                params: {
+                    key: this.key,
+                    token: this.token
+                } 
+            })
+            .then(response => response.data);
+    }
     
     async getCardsForBoard(boardId) {
         let pageOfCards = await this._getFirstCardsPage(boardId);
