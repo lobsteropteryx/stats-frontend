@@ -52,6 +52,8 @@ describe('Trello API requests', () => {
     describe('Requesting cards', () => {
         it('Can request one page of cards with their actions', () => {
 
+            const apiLimit = 1;
+            
             const firstPage = [{
                 id: 1,
                 name: "myCard",
@@ -96,6 +98,7 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList',
                     fields: 'labels,name',
                     filter: 'all',
+                    limit: apiLimit
                 })
                 .reply(200, firstPage);
 
@@ -110,16 +113,19 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList',
                     fields: 'labels,name',
                     filter: 'all',
-                    before: 1
+                    before: 1,
+                    limit: apiLimit
                 })
                 .reply(200, secondPage);
 
-            const client = new ApiClient('key', 'token');
+            const client = new ApiClient('key', 'token', apiLimit);
             
             return expect(client.getCardsForBoard(1)).resolves.toEqual(expected);
         });
         
         it('Can request all pages of cards with their actions', () => {
+
+            const apiLimit = 1; 
 
             const firstPage = [{
                 id: 1,
@@ -193,7 +199,8 @@ describe('Trello API requests', () => {
                     token: 'token',
                     actions: 'updateCard:idList',
                     filter: 'all',
-                    fields: 'labels,name'
+                    fields: 'labels,name',
+                    limit: 1
                 })
                 .reply(200, firstPage);
 
@@ -208,7 +215,8 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList',
                     fields: 'labels,name',
                     filter: 'all',
-                    before: 1
+                    before: 1,
+                    limit: 1
                 })
                 .reply(200, secondPage);
             
@@ -223,11 +231,12 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList',
                     fields: 'labels,name',
                     filter: 'all',
-                    before: 2
+                    before: 2,
+                    limit: 1
                 })
                 .reply(200, thirdPage);
 
-            const client = new ApiClient('key', 'token');
+            const client = new ApiClient('key', 'token', apiLimit);
             
             return expect(client.getCardsForBoard(1)).resolves.toEqual(expected);
         });

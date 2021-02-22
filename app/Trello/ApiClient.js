@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { last } from 'lodash';
 
+const API_LIMIT = 250;
+
 export class ApiClient {
-    constructor(key, token) {
+    constructor(key, token, limit=API_LIMIT) {
         this.key = key;
         this.token = token;
+        this.apiLimit = limit;
         this.axiosInstance = axios.create({
             baseURL: 'https://api.trello.com/1'
         });
@@ -52,6 +55,7 @@ export class ApiClient {
             params: {
                 key: this.key,
                 token: this.token,
+                limit: this.apiLimit,
                 actions: 'updateCard:idList',
                 fields: 'labels,name',
                 filter: 'all'
@@ -66,6 +70,7 @@ export class ApiClient {
             params: {
                 key: this.key,
                 token: this.token,
+                limit: this.apiLimit,
                 actions: 'updateCard:idList',
                 fields: 'labels,name',
                 filter: 'all',
