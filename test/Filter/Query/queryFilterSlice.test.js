@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reducer, { fetchBoards, fetchCardsForBoard, fetchColumnsForBoard } from '../../../app/Filter/Query/queryFilterSlice';
+import reducer, { fetchBoards, fetchCardsForBoard, fetchDataForBoard } from '../../../app/Filter/Query/queryFilterSlice';
 import {
     setTrelloToken,
     fetchPending,
@@ -8,10 +8,9 @@ import {
     enableExport,
     setBoards,
     selectBoard,
-    setCsvData,
-    exportCsvData
+    setCsvData
 } from '../../../app/Filter/Query/queryFilterSlice';
-import { setCards, setColumns, setStartColumn, setEndColumn } from '../../../app/Filter/Local/localFilterSlice';
+import { setCards, setColumns, setStartColumn, setEndColumn, setLabels } from '../../../app/Filter/Local/localFilterSlice';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -121,27 +120,32 @@ describe("Fetching data from API", () => {
         expect(store.getActions()).toEqual(expectedActions);
     });
 
-    it("fetches columns", async () => {
+    it("fetches data for board", async () => {
         const state = {};
         const columns = [];
+        const labels = [];
 
         const expectedActions = [
             fetchPending(),
             setColumns(columns),
             setStartColumn(),
             setEndColumn(),
+            setLabels(labels),
             fetchComplete()
         ];
             
         const apiClient = {
             getListsForBoard: () => {
                 return columns;
+            },
+            getLabelsForBoard: () => {
+                return labels;
             }
         };
 
         const store = mockStore(state);
 
-        const actionCreator = fetchColumnsForBoard(apiClient);
+        const actionCreator = fetchDataForBoard(apiClient);
         await actionCreator(store.dispatch);
         expect(store.getActions()).toEqual(expectedActions);
     });

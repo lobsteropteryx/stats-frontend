@@ -7,6 +7,21 @@ import {
     setLabels
 } from '../../../app/Filter/Local/localFilterSlice';
 
+describe("Initial state", () => {
+    it("sets the proper initial state", () => {
+        const state; // undefined
+        const expectedState = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: []
+        };
+        const action = { payload: null, action: "default" };
+        expect(reducer(state, action)).toEqual(expectedState);
+    });
+});
+
 describe("Setting columns", () => {
     it("sets the list of columns", () => {
         const state = {};
