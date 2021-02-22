@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
-import { actionsToCards } from '../../Trello/actionParser';
+import { parseTrelloCards } from '../../Trello/parser';
 import { setCards, setColumns, setStartColumn, setEndColumn } from '../Local/localFilterSlice';
 import { getCsvData } from './csvExporter';
 
@@ -69,7 +69,7 @@ export const fetchColumnsForBoard = (apiClient, boardId) => async (dispatch) => 
 export const fetchActionsForBoard = (apiClient, board) => async (dispatch) => {
     dispatch(fetchPending());
     const actions = await apiClient.getActionsForBoard(board.id);
-    const cards = actionsToCards(actions);
+    const cards = parseTrelloCards(actions);
     dispatch(setCards(cards));
     const csvData = await getCsvData(cards, board.name);
     dispatch(setCsvData(csvData));

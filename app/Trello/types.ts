@@ -1,3 +1,9 @@
+export interface Card {
+    id: string,
+    name: string,
+    actions: Array<Action>
+}
+
 export interface Action {
     date: string,
     data: Data

@@ -3,10 +3,10 @@ import moment from 'moment';
 export interface Card {
     id: string,
     name: string
-    actions: Status[]
+    actions: Action[]
 }
 
-export interface Status {
+export interface Action {
     startColumn: Column,
     endColumn: Column,
     date: moment.Moment
