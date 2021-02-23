@@ -1,8 +1,8 @@
-import reducer from '../../app/Date/dateSlice';
+import reducer from '../../../../app/Filter/Local/Date/dateSlice';
 import {
     setStartDate,
     setEndDate
-} from '../../app/Date/dateSlice';
+} from '../../../../app/Filter/Local/Date/dateSlice';
 
 describe("Dates", () => {
     it("sets the start date", () => {

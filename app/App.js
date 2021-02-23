@@ -16,9 +16,9 @@ import HistogramContainer from './Histogram/HistogramContainer';
 import StatsContainer from './Stats/StatsContainer';
 import settingsSlice from './Settings/settingsSlice';
 import SettingsContainer from './Settings/SettingsContainer';
-import StartDateContainer from './Date/StartDateContainer';
-import EndDateContainer from './Date/EndDateContainer';
-import dateSlice from './Date/dateSlice';
+import StartDateContainer from './Filter/Local/Date/StartDateContainer';
+import EndDateContainer from './Filter/Local/Date/EndDateContainer';
+import dateSlice from './Filter/Local/Date/dateSlice';
 import LabelSelectContainer from './Filter/Local/Label/LabelSelectContainer';
 
 const rootReducer = combineReducers({
