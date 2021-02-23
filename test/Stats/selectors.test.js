@@ -16,7 +16,8 @@ describe("Calculating percentiles", () => {
             localFilter: { 
                 startColumn: { id: null, name: null },
                 endColumn: { id: null, name: null },
-                cards: [] 
+                selectedLabels: [],
+                cards: []
             } 
         };
 
@@ -39,9 +40,11 @@ describe("Calculating percentiles", () => {
             localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
+                selectedLabels: [],
                 cards: [{
                     id: 1,
                     name: "test",
+                    labels: [],
                     actions: [{
                         startColumn: {
                             id: "0",
@@ -86,9 +89,11 @@ describe("Calculating percentiles", () => {
             localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
+                selectedLabels: [],
                 cards: [{
                     id: 1,
                     name: "test",
+                    labels: [],
                     actions: [{
                         startColumn: {
                             id: "0",
@@ -113,6 +118,7 @@ describe("Calculating percentiles", () => {
                 }, {
                     id: 2,
                     name: "test 2",
+                    labels: [],
                     actions: [{
                         startColumn: {
                             id: "0",
@@ -160,9 +166,11 @@ describe("Calculating percentiles", () => {
             localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
+                selectedLabels: [],
                 cards: [{
                     id: 1,
                     name: "test",
+                    labels: [],
                     actions: [{
                         startColumn: {
                             id: "0",
@@ -187,6 +195,7 @@ describe("Calculating percentiles", () => {
                 }, {
                     id: 2,
                     name: "test 2",
+                    labels: [],
                     actions: [{
                         startColumn: {
                             id: "0",
@@ -224,9 +233,11 @@ describe("Calculating percentiles", () => {
             localFilter: {
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
+                selectedLabels: [],
                 cards: [{
                     id: 1,
                     name: "test",
+                    labels: [],
                     actions: [{
                         startColumn: {
                             id: "0",
@@ -251,6 +262,92 @@ describe("Calculating percentiles", () => {
                 }, {
                     id: 2,
                     name: "test 2",
+                    labels: [],
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-03T16:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-04T16:00:00.000Z")
+                    }] 
+                }]
+            }
+        };
+
+        const actual = getPercentiles(state);
+
+        expect(actual).toEqual(expected);
+    });
+
+    it("Filters percentiles based on label", () => {
+        const expected = {
+            n: 1,
+            fifty: 1,
+            seventyFive: 1,
+            eightyFive: 1, 
+            ninetyFive: 1 
+        };
+
+        const state = {
+            date: {
+                startDate: null,
+                endDate: null 
+            },
+            localFilter: {
+                startColumn: { id: "1", name: "Doing" },
+                endColumn: { id: "2", name: "Done" },
+                selectedLabels: [{
+                    id: '1',
+                    name: 'defect',
+                    color: 'red'
+                }],
+                cards: [{
+                    id: 1,
+                    name: "test",
+                    labels: [],
+                    actions: [{
+                        startColumn: {
+                            id: "0",
+                            name: "ToDo"
+                        },
+                        endColumn: {
+                            id:"1",
+                            name:"Doing"
+                        },
+                        date: moment("2020-01-01T00:00:00.000Z"),
+                    }, {
+                        startColumn: {
+                            id: "1",
+                            name: "Doing"
+                        },
+                        endColumn: {
+                            id:"2",
+                            name:"Done"
+                        },
+                        date: moment("2020-01-02T00:00:00.000Z")
+                    }]
+                }, {
+                    id: 2,
+                    name: "test 2",
+                    labels: [{
+                        id: '1',
+                        name: 'defect',
+                        color: 'red'
+                    }],
                     actions: [{
                         startColumn: {
                             id: "0",

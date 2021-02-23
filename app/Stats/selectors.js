@@ -1,18 +1,20 @@
 import { createSelector } from "reselect";
 import percentile from 'percentile';
 import { cardToWorkItem } from "../workItem";
-import { filterWorkItemByDate } from "../filters";
+import { filterWorkItemByDate, filterCardByLabel } from "../filters";
 
 const getCards = state => state.localFilter.cards;
+const getSelectedLabels = state => state.localFilter.selectedLabels;
 const getStartColumn = state => state.localFilter.startColumn.id;
 const getEndColumn = state => state.localFilter.endColumn.id;
 const getStartDate = state => state.date.startDate;
 const getEndDate = state => state.date.endDate;
 
 export const getPercentiles = createSelector(
-    [getCards, getStartColumn, getEndColumn, getStartDate, getEndDate],
-    (cards, startColumn, endColumn, startDate, endDate) => {
+    [getCards, getSelectedLabels, getStartColumn, getEndColumn, getStartDate, getEndDate],
+    (cards, selectedLabels, startColumn, endColumn, startDate, endDate) => {
         const durations = cards
+            .filter(card => filterCardByLabel(card, selectedLabels))
             .map(card => cardToWorkItem(card, startColumn, endColumn))
             .filter(card => filterWorkItemByDate(card, startDate, endDate))
             .map(card => card.duration.asDays());
