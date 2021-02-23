@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { ApiClient } from '../../Trello/ApiClient';
-import { selectBoard } from './queryFilterSlice';
+import { changeSelectedBoard } from './queryFilterSlice';
 import { fetchDataForBoard } from './queryFilterSlice';
 import List from '../List';
 
@@ -18,7 +18,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onChange: (option, apiClient) => {
-            dispatch(selectBoard({id: option.value, name: option.label}));
+            dispatch(changeSelectedBoard({id: option.value, name: option.label}));
             dispatch(fetchDataForBoard(apiClient, option.value));
         }
     }

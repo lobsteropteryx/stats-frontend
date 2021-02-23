@@ -1,16 +1,22 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reducer, { fetchBoards, fetchCardsForBoard, fetchDataForBoard } from '../../../app/Filter/Query/queryFilterSlice';
+import reducer, { 
+    fetchBoards, 
+    fetchCardsForBoard, 
+    fetchDataForBoard,
+    changeSelectedBoard
+} from '../../../app/Filter/Query/queryFilterSlice';
 import {
     setTrelloToken,
     fetchPending,
     fetchComplete,
     enableExport,
+    disableExport,
     setBoards,
     selectBoard,
     setCsvData
 } from '../../../app/Filter/Query/queryFilterSlice';
-import { setCards, setColumns, setStartColumn, setEndColumn, setLabels } from '../../../app/Filter/Local/localFilterSlice';
+import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../../../app/Filter/Local/localFilterSlice';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -49,6 +55,17 @@ describe("Exporting data", () => {
         const action = enableExport;
         expect(reducer(state, action)).toEqual(expectedState);
     });
+    
+    it("disables exporting data when changing boards", () => {
+        const state = {
+            exportEnabled: true
+        };
+        const expectedState = {
+            exportEnabled: false 
+        };
+        const action = disableExport;
+        expect(reducer(state, action)).toEqual(expectedState);
+    });
 });
 
 describe("Showing fetch state", () => {
@@ -78,23 +95,36 @@ describe("Setting boards", () => {
 });
 
 describe("Selecting a board", () => {
-    it("Sets the board and resets the selected columns", () => {
-        const state = {
-            startColumn: 'start', 
-            endColumn: 'ending',
-            exportEnabled: true
-        };
+    it("Sets the board", () => {
+        const state = {};
         const selectedBoard = {id: 1, name: 'selectedBoard'};
         const expectedState = {
-            selectedBoard: selectedBoard,
-            startColumn: { id: null, name: null },
-            endColumn: { id: null, name: null },
-            exportEnabled: false
+            selectedBoard: selectedBoard
         };
         const action = selectBoard(selectedBoard);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });
+
+describe("Updating the selected board", () => {
+    const state = {};
+    const board = {id: '1', name: 'myBoard'}
+
+    const expectedActions = [
+        selectBoard(board),
+        setStartColumn({ id: null, name: null }),
+        setEndColumn({ id: null, name: null }),
+        setLabels([]),
+        selectLabels([]),
+        disableExport()
+    ];
+
+    const store = mockStore(state);
+
+    const actionCreator = changeSelectedBoard(board);
+    actionCreator(store.dispatch);
+    expect(store.getActions()).toEqual(expectedActions);
+})
 
 describe("Fetching data from API", () => {
     it("fetches boards", async () => {

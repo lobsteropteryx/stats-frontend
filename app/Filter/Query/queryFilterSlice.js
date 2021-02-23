@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
 import { parseTrelloCards } from '../../Trello/parser';
-import { setCards, setColumns, setStartColumn, setEndColumn, setLabels } from '../Local/localFilterSlice';
+import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../Local/localFilterSlice';
 import { getCsvData } from './csvExporter';
 
 const filterSlice = createSlice({
@@ -23,6 +23,9 @@ const filterSlice = createSlice({
     enableExport: state => {
         state.exportEnabled = true;
     },
+    disableExport: state => {
+        state.exportEnabled = false;
+    },
     setTrelloToken: (state, action) => {
         state.token = action.payload;
     },
@@ -31,9 +34,6 @@ const filterSlice = createSlice({
     },
     selectBoard: (state, action) => {
         state.selectedBoard = action.payload;
-        state.startColumn = { id: null, name: null };
-        state.endColumn = { id: null, name: null };
-        state.exportEnabled = false;
     },
     setCsvData: (state, action) => {
         state.csvData = action.payload;
@@ -45,11 +45,21 @@ export const {
     fetchPending,
     fetchComplete,
     enableExport,
+    disableExport,
     setTrelloToken,
     setBoards,
     selectBoard,
     setCsvData
 } = filterSlice.actions;
+
+export const changeSelectedBoard = (board) => (dispatch) => {
+    dispatch(selectBoard(board));
+    dispatch(setStartColumn({ id: null, name: null }));
+    dispatch(setEndColumn({ id: null, name: null }));
+    dispatch(setLabels([]));
+    dispatch(selectLabels([]));
+    dispatch(disableExport());
+}
 
 export const fetchBoards = (apiClient) => async (dispatch) => {
     dispatch(fetchPending());
