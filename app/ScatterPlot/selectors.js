@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 import { cardToWorkItem } from "../workItem";
-import { filterWorkItemByDate } from "../filters";
+import { filterWorkItemByDate, filterCardByLabel } from "../filters";
 
 const getCards = state => state.localFilter.cards;
+const getSelectedLabels = state => state.localFilter.selectedLabels;
 const getStartColumn = state => state.localFilter.startColumn.id;
 const getEndColumn = state => state.localFilter.endColumn.id;
 const getStartDate = state => state.date.startDate;
@@ -19,11 +20,12 @@ const workItemToChartData = (workItem) => {
 };
 
 export const getPlotData = createSelector(
-    [getCards, getStartColumn, getEndColumn, getStartDate, getEndDate],
-    (cards, startColumn, endColumn, startDate, endDate) => {
+    [getCards, getSelectedLabels, getStartColumn, getEndColumn, getStartDate, getEndDate],
+    (cards, selectedLabels, startColumn, endColumn, startDate, endDate) => {
         return [{
             id: "Cards Completed",
             data: cards
+                .filter(card => filterCardByLabel(card, selectedLabels))
                 .map(card => cardToWorkItem(card, startColumn, endColumn))
                 .filter(workItem => filterWorkItemByDate(workItem, startDate, endDate))
                 .map(workItemToChartData)
