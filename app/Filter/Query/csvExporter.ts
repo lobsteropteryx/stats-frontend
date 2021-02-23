@@ -15,6 +15,7 @@ function transformDates(card): Card {
     return {
         id: card.id,
         name: card.name,
+        labels: card.labels,
         actions: card.actions.map(action => {
             return {
                 startColumn: action.startColumn,

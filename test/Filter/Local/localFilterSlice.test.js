@@ -4,7 +4,8 @@ import {
     setColumns,
     setStartColumn,
     setEndColumn,
-    setLabels
+    setLabels,
+    selectLabels
 } from '../../../app/Filter/Local/localFilterSlice';
 
 describe("Initial state", () => {
@@ -15,7 +16,8 @@ describe("Initial state", () => {
             columns: [],
             startColumn: { id: null, name: null },
             endColumn: { id: null, name: null },
-            labels: []
+            labels: [],
+            selectedLabels: []
         };
         const action = { payload: null, action: "default" };
         expect(reducer(state, action)).toEqual(expectedState);
@@ -41,6 +43,19 @@ describe("Setting labels", () => {
         }];
         const expectedState = {labels};
         const action = setLabels(labels);
+        expect(reducer(state, action)).toEqual(expectedState);
+    });
+});
+
+describe("Selecting labels", () => {
+    it("sets the list of selected labels", () => {
+        const state = {};
+        const selectedLabels = [{
+            id: "1",
+            name: "a label"
+        }];
+        const expectedState = {selectedLabels};
+        const action = selectLabels(selectedLabels);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });

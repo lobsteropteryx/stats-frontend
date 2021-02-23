@@ -19,6 +19,7 @@ import SettingsContainer from './Settings/SettingsContainer';
 import StartDateContainer from './Date/StartDateContainer';
 import EndDateContainer from './Date/EndDateContainer';
 import dateSlice from './Date/dateSlice';
+import LabelSelectContainer from './Filter/Local/Label/LabelSelectContainer';
 
 const rootReducer = combineReducers({
     queryFilter: queryFilterSlice,
@@ -48,6 +49,7 @@ const App = () => {
                             <EndColumnsListContainer />
                             <StartDateContainer />
                             <EndDateContainer />
+                            <LabelSelectContainer />
                             <SettingsContainer />
                         </div>
                     </fieldset>
