@@ -11,11 +11,10 @@ export async function getCsvData(cards, boardName) {
     }
 };
 
-function transformDates(card): Card {
+function transformDates(card) {
     return {
         id: card.id,
         name: card.name,
-        labels: card.labels,
         actions: card.actions.map(action => {
             return {
                 startColumn: action.startColumn,

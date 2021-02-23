@@ -20,6 +20,11 @@ describe("Converting CSV", () => {
         const cards = [{
             id: 1,
             name: "test",
+            labels: [{
+                id: '1',
+                name: 'myLabel',
+                color: 'red'
+            }],
             actions: [{
                 startColumn: {
                     id: "0",
