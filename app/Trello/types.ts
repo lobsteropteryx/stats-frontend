@@ -30,7 +30,7 @@ export interface UpdateAction {
     data: UpdateData
 }
 
-export type Action = UpdateAction;
+export type Action = CreateAction | UpdateAction;
 
 export interface Label {
     id: string,

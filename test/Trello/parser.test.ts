@@ -1,4 +1,5 @@
 import { parseTrelloCards } from "../../app/Trello/parser";
+import { Card as TrelloCard, ActionType } from "../../app/Trello/types";
 import moment from 'moment';
 
 describe("Parsing cards", () => {
@@ -40,13 +41,13 @@ describe("Parsing cards", () => {
     });
 
     it("parses one card with two actions", () => {
-        const cards = [
+        const cards: TrelloCard[] = [
             {
                 "id": "1",
                 "name": "Card 1",
                 "labels": [],
                 "actions": [{
-                    "type": "updateCard",
+                    "type": "updateCard" as ActionType,
                     "data": {
                         "listBefore": {
                             "id":"0",
@@ -60,7 +61,7 @@ describe("Parsing cards", () => {
                     "date":"2020-04-02T16:00:00.000Z",
                 },
                 {
-                    "type": "updateCard",
+                    "type": "updateCard" as ActionType,
                     "data": {
                         "listBefore": {
                             "id":"1",
@@ -101,7 +102,7 @@ describe("Parsing cards", () => {
                 "name": "Card 1",
                 "labels": [],
                 "actions": [{
-                    "type": "updateCard",
+                    "type": "updateCard" as ActionType,
                     "data": {
                         "listBefore": {
                             "id":"0",
@@ -119,7 +120,7 @@ describe("Parsing cards", () => {
                 "name": "Card 2",
                 "labels": [],
                 "actions": [{
-                    "type": "updateCard",
+                    "type": "updateCard" as ActionType,
                     "data": {
                         "listBefore": {
                             "id":"0",
@@ -165,7 +166,7 @@ describe("Parsing cards", () => {
                 "name": "Card 1",
                 "labels": [],
                 "actions": [{
-                    "type": "updateCard",
+                    "type": "updateCard" as ActionType,
                     "data": {
                         "listBefore": {
                             "id":"0",
@@ -179,7 +180,7 @@ describe("Parsing cards", () => {
                     "date":"2020-04-02T16:00:00.000Z",
                 },
                 {
-                    "type": "createCard",
+                    "type": "createCard" as ActionType,
                     "data": {
                         "list": {
                             "id":"1",
