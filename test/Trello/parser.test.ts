@@ -163,37 +163,14 @@ describe("Parsing cards", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("filters out actions other than updateCard", () => {
+    it("parses createCard actions", () => {
         const cards = [
             {
                 "id": "1",
                 "name": "Card 1",
                 "labels": [],
                 "actions": [{
-                    "type": "updateCard" as ActionType,
-                    "data": {
-                        "listBefore": {
-                            "id":"0",
-                            "name":"ToDo"
-                        },
-                        "listAfter": {
-                            "id":"1",
-                            "name":"Doing"
-                        }
-                    },
-                    "date":"2020-04-02T16:00:00.000Z",
-                },
-                {
                     "type": "createCard" as ActionType,
-                    "data": {
-                        "list": {
-                            "id":"1",
-                            "name":"List 1",
-                        },
-                    },
-                    "date":"2020-04-01T16:00:00.000Z",
-                }, {
-                    "type": "moveCardToBoard" as ActionType,
                     "data": {
                         "list": {
                             "id":"1",
@@ -210,10 +187,10 @@ describe("Parsing cards", () => {
             name: "Card 1",
             labels: [],
             actions: [{
-                type: "updateCard",
-                startColumn: {id: "0", name: "ToDo"},
-                endColumn: {id: "1", name: "Doing"},
-                date: moment("2020-04-02T16:00:00.000Z"),
+                type: "createCard",
+                startColumn: {id: "1", name: "List 1"},
+                endColumn: {id: null, name: null},
+                date: moment("2020-04-01T16:00:00.000Z"),
             }]
         }];
 
