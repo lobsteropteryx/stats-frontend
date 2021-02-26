@@ -44,7 +44,7 @@
     "@nivo/bar": "^0.62.0",
     "@nivo/scatterplot": "^0.62.0",
     "@reduxjs/toolkit": "^1.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "jsonexport": "^3.2.0",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
