@@ -46,11 +46,8 @@ describe("Parsing cards", () => {
                 "name": "Card 1",
                 "labels": [],
                 "actions": [{
+                    "type": "updateCard",
                     "data": {
-                        "card": {
-                            "id":"1",
-                            "name":"Card 1",
-                        },
                         "listBefore": {
                             "id":"0",
                             "name":"ToDo"
@@ -63,11 +60,8 @@ describe("Parsing cards", () => {
                     "date":"2020-04-02T16:00:00.000Z",
                 },
                 {
+                    "type": "updateCard",
                     "data": {
-                        "card": {
-                            "id":"1",
-                            "name":"Card 1",
-                        },
                         "listBefore": {
                             "id":"1",
                             "name":"Doing"
@@ -102,17 +96,13 @@ describe("Parsing cards", () => {
     });
     
     it("parses two cards with a single action on each", () => {
-        const cards = [
-            {
+        const cards = [{
                 "id": "1",
                 "name": "Card 1",
                 "labels": [],
                 "actions": [{
+                    "type": "updateCard",
                     "data": {
-                        "card": {
-                            "id":"1",
-                            "name":"Card 1",
-                        },
                         "listBefore": {
                             "id":"0",
                             "name":"ToDo"
@@ -124,17 +114,13 @@ describe("Parsing cards", () => {
                     },
                     "date":"2020-04-02T16:00:00.000Z",
                 }]
-            },
-            {
+            },{
                 "id": "2",
                 "name": "Card 2",
                 "labels": [],
                 "actions": [{
+                    "type": "updateCard",
                     "data": {
-                        "card": {
-                            "id":"2",
-                            "name":"Card 2",
-                        },
                         "listBefore": {
                             "id":"0",
                             "name":"ToDo"
@@ -146,8 +132,7 @@ describe("Parsing cards", () => {
                     },
                     "date":"2020-04-03T16:00:00.000Z",
                 }]
-            }
-        ];
+            }];
 
         const expected = [{
             id: "1",
@@ -166,6 +151,54 @@ describe("Parsing cards", () => {
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
                 date: moment("2020-04-03T16:00:00.000Z"),
+            }]
+        }];
+
+        const actual = parseTrelloCards(cards);
+        expect(actual).toEqual(expected);
+    });
+
+    it("filters out actions other than updateCard", () => {
+        const cards = [
+            {
+                "id": "1",
+                "name": "Card 1",
+                "labels": [],
+                "actions": [{
+                    "type": "updateCard",
+                    "data": {
+                        "listBefore": {
+                            "id":"0",
+                            "name":"ToDo"
+                        },
+                        "listAfter": {
+                            "id":"1",
+                            "name":"Doing"
+                        }
+                    },
+                    "date":"2020-04-02T16:00:00.000Z",
+                },
+                {
+                    "type": "createCard",
+                    "data": {
+                        "list": {
+                            "id":"1",
+                            "name":"List 1",
+                        },
+                    },
+                    "date":"2020-04-01T16:00:00.000Z",
+                }]
+            }
+        ];
+
+        const expected = [{
+            id: "1",
+            name: "Card 1",
+            labels: [],
+            actions: [{
+                startColumn: {id: "0", name: "ToDo"},
+                endColumn: {id: "1", name: "Doing"},
+                date: moment("2020-04-02T16:00:00.000Z"),
             }]
         }];
 

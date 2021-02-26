@@ -2,7 +2,9 @@ import moment from 'moment';
 import { 
     Card as TrelloCard, 
     Action as TrelloAction,
-    Label as TrelloLabel
+    UpdateAction as TrelloUpdateAction,
+    Label as TrelloLabel,
+    ActionType
 } from "./types";
 import { Card, Action, Label } from "../card";
 
@@ -15,7 +17,7 @@ function parseTrelloCard(trelloCard: TrelloCard): Card {
         id: trelloCard.id,
         name: trelloCard.name,
         labels: trelloCard.labels.map(parseTrelloLabel),
-        actions: trelloCard.actions.map(parseTrelloAction)
+        actions: trelloCard.actions.filter(filterUpdateActions).map(parseTrelloAction)
     }
 }
 
@@ -23,7 +25,11 @@ function parseTrelloLabel(trelloLabel: TrelloLabel): Label {
     return trelloLabel;
 }
 
-function parseTrelloAction(trelloAction: TrelloAction): Action {
+function filterUpdateActions(trelloAction: TrelloAction): boolean {
+    return trelloAction.type === ActionType.UpdateCard;
+}
+
+function parseTrelloAction(trelloAction: TrelloUpdateAction): Action {
     return {
         startColumn: {
             id: trelloAction.data.listBefore.id,
