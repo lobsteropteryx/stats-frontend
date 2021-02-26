@@ -10,7 +10,8 @@ describe("Converting CSV", () => {
             .mockImplementationOnce(() => '2019-05-14');
 
         const expected = {
-            content: "id,name,actions.startColumn.id,actions.startColumn.name,actions.endColumn.id,actions.endColumn.name,actions.date\n1,test,0,ToDo,1,Doing,1/1/2020",
+            content: `id,name,actions.type,actions.startColumn.id,actions.startColumn.name,actions.endColumn.id,actions.endColumn.name,actions.date
+1,test,updateCard,0,ToDo,1,Doing,1/1/2020`,
             url: "myUrl",
             filename: "myBoard-2019-05-14.csv"
         };
@@ -26,6 +27,7 @@ describe("Converting CSV", () => {
                 color: 'red'
             }],
             actions: [{
+                type: "updateCard",
                 startColumn: {
                     id: "0",
                     name: "ToDo"

@@ -17,6 +17,7 @@ function transformDates(card) {
         name: card.name,
         actions: card.actions.map(action => {
             return {
+                type: action.type,
                 startColumn: action.startColumn,
                 endColumn: action.endColumn,
                 date: action.date.toDate()
