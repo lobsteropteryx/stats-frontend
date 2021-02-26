@@ -67,7 +67,7 @@ export class ApiClient {
                 key: this.key,
                 token: this.token,
                 limit: this.apiLimit,
-                actions: 'updateCard:idList',
+                actions: 'updateCard:idList,createCard,moveCardToBoard',
                 fields: 'labels,name',
                 filter: 'all',
                 sort: '-id'
@@ -83,7 +83,7 @@ export class ApiClient {
                 key: this.key,
                 token: this.token,
                 limit: this.apiLimit,
-                actions: 'updateCard:idList',
+                actions: 'updateCard:idList,createCard,moveCardToBoard',
                 fields: 'labels,name',
                 filter: 'all',
                 sort: '-id',

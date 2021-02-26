@@ -117,7 +117,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList',
+                    actions: 'updateCard:idList,createCard,moveCardToBoard',
                     fields: 'labels,name',
                     filter: 'all',
                     limit: apiLimit,
@@ -133,7 +133,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList',
+                    actions: 'updateCard:idList,createCard,moveCardToBoard',
                     fields: 'labels,name',
                     filter: 'all',
                     before: 1,
@@ -221,7 +221,8 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList',
+                    actions: 'updateCard:idList,createCard,moveCardToBoard',
+                    fields: 'labels,name',
                     filter: 'all',
                     fields: 'labels,name',
                     limit: 1,
@@ -237,7 +238,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList',
+                    actions: 'updateCard:idList,createCard,moveCardToBoard',
                     fields: 'labels,name',
                     filter: 'all',
                     before: 1,
@@ -254,7 +255,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList',
+                    actions: 'updateCard:idList,createCard,moveCardToBoard',
                     fields: 'labels,name',
                     filter: 'all',
                     before: 2,

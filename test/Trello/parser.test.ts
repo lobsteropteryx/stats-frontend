@@ -188,6 +188,15 @@ describe("Parsing cards", () => {
                         },
                     },
                     "date":"2020-04-01T16:00:00.000Z",
+                }, {
+                    "type": "moveCardToBoard" as ActionType,
+                    "data": {
+                        "list": {
+                            "id":"1",
+                            "name":"List 1",
+                        },
+                    },
+                    "date":"2020-04-01T16:00:00.000Z",
                 }]
             }
         ];
