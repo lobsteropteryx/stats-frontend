@@ -31,6 +31,7 @@ function filterUpdateActions(trelloAction: TrelloAction): boolean {
 
 function parseTrelloAction(trelloAction: TrelloUpdateAction): Action {
     return {
+        type: trelloAction.type,
         startColumn: {
             id: trelloAction.data.listBefore.id,
             name: trelloAction.data.listBefore.name

@@ -13,7 +13,14 @@ export interface Label {
     color: string
 }
 
+export enum ActionType {
+    CreateCard = "createCard",
+    UpdateCard = "updateCard",
+    MoveCardToBoard = "moveCardToBoard"
+}
+
 export interface Action {
+    type: ActionType,
     startColumn: Column,
     endColumn: Column,
     date: moment.Moment
