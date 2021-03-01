@@ -5,9 +5,9 @@ import {
     CreateAction as TrelloCreateAction,
     UpdateAction as TrelloUpdateAction,
     Label as TrelloLabel,
-    ActionType
+    ActionType as TrelloActionType
 } from "./types";
-import { Card, Action, Label } from "../card";
+import { Card, Action, Label, ActionType } from "../card";
 
 export function parseTrelloCards(trelloCards: TrelloCard[]) {
     return trelloCards.map(parseTrelloCard);
@@ -27,7 +27,7 @@ function parseTrelloLabel(trelloLabel: TrelloLabel): Label {
 }
 
 function parseTrelloAction(trelloAction: TrelloAction): Action {
-    if (trelloAction.type === ActionType.UpdateCard) {
+    if (trelloAction.type === TrelloActionType.UpdateCard) {
         return parseUpdateCardAction(trelloAction as TrelloUpdateAction);
     } else {
         return parseCreateCardAction(trelloAction as TrelloCreateAction);
@@ -36,7 +36,7 @@ function parseTrelloAction(trelloAction: TrelloAction): Action {
 
 function parseUpdateCardAction(trelloAction: TrelloUpdateAction): Action {
     return {
-        type: trelloAction.type,
+        type: ActionType.CardMoved,
         startColumn: {
             id: trelloAction.data.listBefore.id,
             name: trelloAction.data.listBefore.name
@@ -51,7 +51,7 @@ function parseUpdateCardAction(trelloAction: TrelloUpdateAction): Action {
 
 function parseCreateCardAction(trelloAction: TrelloCreateAction): Action {
     return {
-        type: trelloAction.type,
+        type: ActionType.CardCreated,
         startColumn: {
             id: null,
             name: null

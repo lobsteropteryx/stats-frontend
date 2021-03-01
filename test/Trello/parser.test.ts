@@ -82,12 +82,12 @@ describe("Parsing cards", () => {
             name: "Card 1",
             labels: [],
             actions: [{
-                type: "updateCard",
+                type: "cardMoved",
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
                 date: moment("2020-04-02T16:00:00.000Z"),
             }, {
-                type: "updateCard",
+                type: "cardMoved",
                 startColumn: {id: "1", name: "Doing"},
                 endColumn: {id: "2", name: "Done"},
                 date: moment("2020-04-03T16:00:00.000Z")
@@ -142,7 +142,7 @@ describe("Parsing cards", () => {
             name: "Card 1",
             labels: [],
             actions: [{
-                type: "updateCard",
+                type: "cardMoved",
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
                 date: moment("2020-04-02T16:00:00.000Z"),
@@ -152,7 +152,7 @@ describe("Parsing cards", () => {
             name: "Card 2",
             labels: [],
             actions: [{
-                type: "updateCard",
+                type: "cardMoved",
                 startColumn: {id: "0", name: "ToDo"},
                 endColumn: {id: "1", name: "Doing"},
                 date: moment("2020-04-03T16:00:00.000Z"),
@@ -187,7 +187,7 @@ describe("Parsing cards", () => {
             name: "Card 1",
             labels: [],
             actions: [{
-                type: "createCard",
+                type: "cardCreated",
                 startColumn: {id: null, name: null},
                 endColumn: {id: "1", name: "List 1"},
                 date: moment("2020-04-01T16:00:00.000Z"),
@@ -222,7 +222,7 @@ describe("Parsing cards", () => {
             name: "Card 1",
             labels: [],
             actions: [{
-                type: "moveCardToBoard",
+                type: "cardCreated",
                 startColumn: {id: null, name: null},
                 endColumn: {id: "1", name: "List 1"},
                 date: moment("2020-04-01T16:00:00.000Z"),
@@ -257,7 +257,7 @@ describe("Parsing cards", () => {
             name: "Card 1",
             labels: [],
             actions: [{
-                type: "copyCard",
+                type: "cardCreated",
                 startColumn: {id: null, name: null},
                 endColumn: {id: "1", name: "List 1"},
                 date: moment("2020-04-01T16:00:00.000Z"),

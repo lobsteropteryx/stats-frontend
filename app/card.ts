@@ -14,10 +14,8 @@ export interface Label {
 }
 
 export enum ActionType {
-    CreateCard = "createCard",
-    UpdateCard = "updateCard",
-    MoveCardToBoard = "moveCardToBoard",
-    CopyCard = "copyCard"
+    CardCreated = "cardCreated",
+    CardMoved = "cardMoved"
 }
 
 export interface Action {
