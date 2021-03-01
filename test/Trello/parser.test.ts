@@ -197,4 +197,74 @@ describe("Parsing cards", () => {
         const actual = parseTrelloCards(cards);
         expect(actual).toEqual(expected);
     });
+    
+    it("parses moveCardToBoard actions", () => {
+        const cards = [
+            {
+                "id": "1",
+                "name": "Card 1",
+                "labels": [],
+                "actions": [{
+                    "type": "moveCardToBoard" as ActionType,
+                    "data": {
+                        "list": {
+                            "id":"1",
+                            "name":"List 1",
+                        },
+                    },
+                    "date":"2020-04-01T16:00:00.000Z",
+                }]
+            }
+        ];
+
+        const expected = [{
+            id: "1",
+            name: "Card 1",
+            labels: [],
+            actions: [{
+                type: "moveCardToBoard",
+                startColumn: {id: null, name: null},
+                endColumn: {id: "1", name: "List 1"},
+                date: moment("2020-04-01T16:00:00.000Z"),
+            }]
+        }];
+
+        const actual = parseTrelloCards(cards);
+        expect(actual).toEqual(expected);
+    });
+    
+    it("parses copyCard actions", () => {
+        const cards = [
+            {
+                "id": "1",
+                "name": "Card 1",
+                "labels": [],
+                "actions": [{
+                    "type": "copyCard" as ActionType,
+                    "data": {
+                        "list": {
+                            "id":"1",
+                            "name":"List 1",
+                        },
+                    },
+                    "date":"2020-04-01T16:00:00.000Z",
+                }]
+            }
+        ];
+
+        const expected = [{
+            id: "1",
+            name: "Card 1",
+            labels: [],
+            actions: [{
+                type: "copyCard",
+                startColumn: {id: null, name: null},
+                endColumn: {id: "1", name: "List 1"},
+                date: moment("2020-04-01T16:00:00.000Z"),
+            }]
+        }];
+
+        const actual = parseTrelloCards(cards);
+        expect(actual).toEqual(expected);
+    });
 });
