@@ -1,7 +1,8 @@
 export enum ActionType {
     CreateCard = "createCard",
     UpdateCard = "updateCard",
-    MoveCardToBoard = "moveCardToBoard"
+    MoveCardToBoard = "moveCardToBoard",
+    CopyCard = "copyCard"
 }
 
 interface List {
