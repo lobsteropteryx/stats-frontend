@@ -4,6 +4,7 @@ import {
     Action as TrelloAction,
     CreateAction as TrelloCreateAction,
     UpdateAction as TrelloUpdateAction,
+    CloseAction as TrelloCloseAction,
     Label as TrelloLabel,
     ActionType as TrelloActionType
 } from "./types";
@@ -28,7 +29,9 @@ function parseTrelloLabel(trelloLabel: TrelloLabel): Label {
 
 function parseTrelloAction(trelloAction: TrelloAction): Action {
     if (trelloAction.type === TrelloActionType.UpdateCard) {
-        return parseUpdateCardAction(trelloAction as TrelloUpdateAction);
+        return trelloAction.data.card.closed ? 
+            parseCloseCardAction(trelloAction as TrelloCloseAction) :
+            parseUpdateCardAction(trelloAction as TrelloUpdateAction);
     } else {
         return parseCreateCardAction(trelloAction as TrelloCreateAction);
     }
@@ -44,6 +47,21 @@ function parseUpdateCardAction(trelloAction: TrelloUpdateAction): Action {
         endColumn: {
             id: trelloAction.data.listAfter.id,
             name: trelloAction.data.listAfter.name
+        },
+        date: moment(trelloAction.date)
+    }
+}
+
+function parseCloseCardAction(trelloAction: TrelloCloseAction): Action {
+    return {
+        type: ActionType.CardClosed,
+        startColumn: {
+            id: null,
+            name: null
+        },
+        endColumn: {
+            id: trelloAction.data.list.id,
+            name: trelloAction.data.list.name
         },
         date: moment(trelloAction.date)
     }

@@ -15,7 +15,8 @@ export interface Label {
 
 export enum ActionType {
     CardCreated = "cardCreated",
-    CardMoved = "cardMoved"
+    CardMoved = "cardMoved",
+    CardClosed = "cardClosed"
 }
 
 export interface Action {
