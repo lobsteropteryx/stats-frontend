@@ -53,12 +53,12 @@ function parseCreateCardAction(trelloAction: TrelloCreateAction): Action {
     return {
         type: trelloAction.type,
         startColumn: {
-            id: trelloAction.data.list.id,
-            name: trelloAction.data.list.name
-        },
-        endColumn: {
             id: null,
             name: null
+        },
+        endColumn: {
+            id: trelloAction.data.list.id,
+            name: trelloAction.data.list.name
         },
         date: moment(trelloAction.date)
     }

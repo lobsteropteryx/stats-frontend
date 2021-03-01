@@ -188,8 +188,8 @@ describe("Parsing cards", () => {
             labels: [],
             actions: [{
                 type: "createCard",
-                startColumn: {id: "1", name: "List 1"},
-                endColumn: {id: null, name: null},
+                startColumn: {id: null, name: null},
+                endColumn: {id: "1", name: "List 1"},
                 date: moment("2020-04-01T16:00:00.000Z"),
             }]
         }];
