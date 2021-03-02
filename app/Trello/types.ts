@@ -5,29 +5,36 @@ export enum ActionType {
     CopyCard = "copyCard"
 }
 
-interface ClosedActionCard {
+export interface ClosedStatus {
     closed: boolean
 }
 
-type ActionCard = ClosedActionCard | any;
+interface ListStatus {
+    idList: string
+}
+
+type ActionCard = ClosedStatus | any;
+
+type Old = ClosedStatus | ListStatus;
 
 interface List {
     id: string,
     name: string
 }
 
-interface UpdateData {
+export interface UpdateData {
     listBefore: List
     listAfter: List,
-    card: ActionCard
+    card: ActionCard,
+    old: Old
 }
 
-interface CreateData {
+export interface CreateData {
     list: List,
     card: ActionCard
 }
 
-interface CloseData {
+export interface CloseData {
     list: List,
     card: ActionCard
 }

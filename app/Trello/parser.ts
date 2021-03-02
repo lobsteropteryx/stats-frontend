@@ -2,6 +2,8 @@ import moment from 'moment';
 import { 
     Card as TrelloCard, 
     Action as TrelloAction,
+    UpdateData,
+    ClosedStatus,
     CreateAction as TrelloCreateAction,
     UpdateAction as TrelloUpdateAction,
     CloseAction as TrelloCloseAction,
@@ -29,26 +31,15 @@ function parseTrelloLabel(trelloLabel: TrelloLabel): Label {
 
 function parseTrelloAction(trelloAction: TrelloAction): Action {
     if (trelloAction.type === TrelloActionType.UpdateCard) {
-        return trelloAction.data.card.closed ? 
-            parseCloseCardAction(trelloAction as TrelloCloseAction) :
-            parseUpdateCardAction(trelloAction as TrelloUpdateAction);
+        if (trelloAction.data.card.closed && !((trelloAction.data as UpdateData).old as ClosedStatus).closed) {
+            return parseCloseCardAction(trelloAction as TrelloCloseAction);
+        } else if ( !trelloAction.data.card.closed && ((trelloAction.data as UpdateData).old as ClosedStatus).closed) {
+            return parseReopenCardAction(trelloAction as TrelloCloseAction); 
+        } else {
+            return parseUpdateCardAction(trelloAction as TrelloUpdateAction);
+        }
     } else {
         return parseCreateCardAction(trelloAction as TrelloCreateAction);
-    }
-}
-
-function parseUpdateCardAction(trelloAction: TrelloUpdateAction): Action {
-    return {
-        type: ActionType.CardMoved,
-        startColumn: {
-            id: trelloAction.data.listBefore.id,
-            name: trelloAction.data.listBefore.name
-        },
-        endColumn: {
-            id: trelloAction.data.listAfter.id,
-            name: trelloAction.data.listAfter.name
-        },
-        date: moment(trelloAction.date)
     }
 }
 
@@ -62,6 +53,36 @@ function parseCloseCardAction(trelloAction: TrelloCloseAction): Action {
         endColumn: {
             id: trelloAction.data.list.id,
             name: trelloAction.data.list.name
+        },
+        date: moment(trelloAction.date)
+    }
+}
+
+function parseReopenCardAction(trelloAction: TrelloCloseAction): Action {
+    return {
+        type: ActionType.CardReopened,
+        startColumn: {
+            id: null,
+            name: null
+        },
+        endColumn: {
+            id: trelloAction.data.list.id,
+            name: trelloAction.data.list.name
+        },
+        date: moment(trelloAction.date)
+    }
+}
+
+function parseUpdateCardAction(trelloAction: TrelloUpdateAction): Action {
+    return {
+        type: ActionType.CardMoved,
+        startColumn: {
+            id: trelloAction.data.listBefore.id,
+            name: trelloAction.data.listBefore.name
+        },
+        endColumn: {
+            id: trelloAction.data.listAfter.id,
+            name: trelloAction.data.listAfter.name
         },
         date: moment(trelloAction.date)
     }

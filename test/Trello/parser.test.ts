@@ -50,6 +50,9 @@ describe("Parsing cards", () => {
                     "actions": [{
                         "type": "updateCard" as ActionType,
                         "data": {
+                            "old": {
+                                "idList": "0"
+                            },
                             "card": {},
                             "listBefore": {
                                 "id":"0",
@@ -65,6 +68,9 @@ describe("Parsing cards", () => {
                     {
                         "type": "updateCard" as ActionType,
                         "data": {
+                            "old": {
+                                "idList": "0"
+                            },
                             "card": {},
                             "listBefore": {
                                 "id":"1",
@@ -109,6 +115,9 @@ describe("Parsing cards", () => {
                     "actions": [{
                         "type": "updateCard" as ActionType,
                         "data": {
+                            "old": {
+                                "idList": "0"
+                            },
                             "card": {},
                             "listBefore": {
                                 "id":"0",
@@ -128,6 +137,9 @@ describe("Parsing cards", () => {
                     "actions": [{
                         "type": "updateCard" as ActionType,
                         "data": {
+                            "old": {
+                                "idList": "0"
+                            },
                             "card": {},
                             "listBefore": {
                                 "id":"0",
@@ -177,6 +189,9 @@ describe("Parsing cards", () => {
                     "actions": [{
                         "type": "updateCard" as ActionType,
                         "data": {
+                            "old": {
+                                "closed": false
+                            },
                             "card": {
                                 "closed": true
                             },
@@ -196,6 +211,47 @@ describe("Parsing cards", () => {
                 labels: [],
                 actions: [{
                     type: "cardClosed",
+                    startColumn: {id: null, name: null},
+                    endColumn: {id: "1", name: "List 1"},
+                    date: moment("2020-04-01T16:00:00.000Z"),
+                }]
+            }];
+
+            const actual = parseTrelloCards(cards);
+            expect(actual).toEqual(expected);
+        });
+        
+        it("parses updateCard:closed actions when the card is reopened", () => {
+            const cards = [
+                {
+                    "id": "1",
+                    "name": "Card 1",
+                    "labels": [],
+                    "actions": [{
+                        "type": "updateCard" as ActionType,
+                        "data": {
+                            "old": {
+                                "closed": true
+                            },
+                            "card": {
+                                "closed": false
+                            },
+                            "list": {
+                                "id":"1",
+                                "name":"List 1",
+                            },
+                        },
+                        "date":"2020-04-01T16:00:00.000Z",
+                    }]
+                }
+            ];
+
+            const expected = [{
+                id: "1",
+                name: "Card 1",
+                labels: [],
+                actions: [{
+                    type: "cardReopened",
                     startColumn: {id: null, name: null},
                     endColumn: {id: "1", name: "List 1"},
                     date: moment("2020-04-01T16:00:00.000Z"),

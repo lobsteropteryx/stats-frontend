@@ -117,7 +117,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList,createCard,moveCardToBoard,copyCard',
+                    actions: 'updateCard:idList,updateCard:closed,createCard,moveCardToBoard,copyCard',
                     fields: 'labels,name',
                     filter: 'all',
                     limit: apiLimit,
@@ -133,7 +133,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList,createCard,moveCardToBoard,copyCard',
+                    actions: 'updateCard:idList,updateCard:closed,createCard,moveCardToBoard,copyCard',
                     fields: 'labels,name',
                     filter: 'all',
                     before: 1,
@@ -221,7 +221,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList,createCard,moveCardToBoard,copyCard',
+                    actions: 'updateCard:idList,updateCard:closed,createCard,moveCardToBoard,copyCard',
                     fields: 'labels,name',
                     filter: 'all',
                     fields: 'labels,name',
@@ -238,7 +238,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList,createCard,moveCardToBoard,copyCard',
+                    actions: 'updateCard:idList,updateCard:closed,createCard,moveCardToBoard,copyCard',
                     fields: 'labels,name',
                     filter: 'all',
                     before: 1,
@@ -255,7 +255,7 @@ describe('Trello API requests', () => {
                 .query({
                     key: 'key', 
                     token: 'token',
-                    actions: 'updateCard:idList,createCard,moveCardToBoard,copyCard',
+                    actions: 'updateCard:idList,updateCard:closed,createCard,moveCardToBoard,copyCard',
                     fields: 'labels,name',
                     filter: 'all',
                     before: 2,
