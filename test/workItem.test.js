@@ -2,7 +2,6 @@ import moment from 'moment';
 import { cardToWorkItem } from "../app/workItem";
 
 describe("Converting cards to Work Items", () => {
-   
     it("returns an incomplete work item, given a card with no actions", () => {
         const startId = "1";
         const endId = "2";
@@ -258,6 +257,89 @@ describe("Converting cards to Work Items", () => {
                     name:"Doing"
                 },
                 date: moment("2020-04-03T16:00:00.000Z"),
+            }
+        ]};
+
+        const expected = {
+            id: "1",
+            name: "card",
+            isComplete: false,
+            duration: null,
+            startDate: moment("2020-04-01T16:00:00.000Z"),
+            completionDate: null
+        };
+
+        const actual = cardToWorkItem(card, startId, endId);
+        expect(actual).toEqual(expected);
+    });
+    
+    xit("returns an incomplete work item given a card that was moved back and closed", () => {
+        const startId = "1";
+        const endId = "2";
+
+        const card = {
+            id: "1",
+            name: "card",
+            actions: [
+            {
+                type: "cardCreated",
+                startColumn: {
+                    id: null,
+                    name: null 
+                },
+                endColumn: {
+                    id:"0",
+                    name:"ToDo"
+                },
+                date: moment("2020-04-01T16:00:00.000Z"),
+            },
+            {
+                type: "cardMoved",
+                startColumn: {
+                    id: "0",
+                    name: "ToDo"
+                },
+                endColumn: {
+                    id:"1",
+                    name:"Doing"
+                },
+                date: moment("2020-04-01T16:00:00.000Z"),
+            },
+            {
+                type: "cardMoved",
+                startColumn: {
+                    id: "1",
+                    name: "Doing"
+                },
+                endColumn: {
+                    id:"2",
+                    name:"Done"
+                },
+                date: moment("2020-04-02T16:00:00.000Z")
+            },
+            {
+                type: "cardMoved",
+                startColumn: {
+                    id: "2",
+                    name: "Done"
+                },
+                endColumn: {
+                    id:"1",
+                    name:"Doing"
+                },
+                date: moment("2020-04-03T16:00:00.000Z"),
+            },
+            {
+                type: "cardClosed",
+                startColumn: {
+                    id: null, 
+                    name: null 
+                },
+                endColumn: {
+                    id:"1",
+                    name:"Doing"
+                },
+                date: moment("2020-04-04T16:00:00.000Z"),
             }
         ]};
 
