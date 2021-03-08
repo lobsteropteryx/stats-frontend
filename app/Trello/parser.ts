@@ -2,8 +2,6 @@ import moment from 'moment';
 import { 
     Card as TrelloCard, 
     Action as TrelloAction,
-    UpdateData,
-    ClosedStatus,
     CreateAction as TrelloCreateAction,
     UpdateAction as TrelloUpdateAction,
     CloseAction as TrelloCloseAction,
@@ -17,11 +15,19 @@ export function parseTrelloCards(trelloCards: TrelloCard[]) {
 }
 
 function parseTrelloCard(trelloCard: TrelloCard): Card {
-    return {
-        id: trelloCard.id,
-        name: trelloCard.name,
-        labels: trelloCard.labels.map(parseTrelloLabel),
-        actions: trelloCard.actions.map(parseTrelloAction)
+    try 
+    {
+        return {
+            id: trelloCard.id,
+            name: trelloCard.name,
+            labels: trelloCard.labels.map(parseTrelloLabel),
+            actions: trelloCard.actions.map(parseTrelloAction)
+        }
+    }
+    catch (error)
+    {
+        console.error(trelloCard);
+        throw(`Error parsing card ${trelloCard.id}`);
     }
 }
 
@@ -31,17 +37,46 @@ function parseTrelloLabel(trelloLabel: TrelloLabel): Label {
 
 function parseTrelloAction(trelloAction: TrelloAction): Action {
     if (trelloAction.type === TrelloActionType.UpdateCard) {
-        if (trelloAction.data.card.closed && !((trelloAction.data as UpdateData).old as ClosedStatus).closed) {
+        if (isCloseCardAction(trelloAction as TrelloCloseAction)) {
             return parseCloseCardAction(trelloAction as TrelloCloseAction);
-        } else if ( !trelloAction.data.card.closed && ((trelloAction.data as UpdateData).old as ClosedStatus).closed) {
+        } else if (isCloseOnAnotherBoardCardAction(trelloAction as TrelloCloseAction)) {
+            return parseCloseOnAnotherBoardCardAction(trelloAction as TrelloCloseAction); 
+        } else if (isReopenCardAction(trelloAction as TrelloCloseAction)) {
             return parseReopenCardAction(trelloAction as TrelloCloseAction); 
-        } else {
+        } else if (isReopenOnAnotherBoardCardAction(trelloAction as TrelloCloseAction)) {
+            return parseReopenOnAnotherBoardCardAction(trelloAction as TrelloCloseAction); 
+        } else if (isUpdateCardAction(trelloAction as TrelloUpdateAction)) {
             return parseUpdateCardAction(trelloAction as TrelloUpdateAction);
+        } else {
+            throw(`Error parsing action: ${trelloAction}`);
         }
     } else {
         return parseCreateCardAction(trelloAction as TrelloCreateAction);
     }
 }
+
+function isCloseCardAction(action: TrelloCloseAction): boolean {
+   return (action.data.card.closed && action.data.card !== undefined);
+}
+
+function isReopenCardAction(action: TrelloCloseAction): boolean {
+    return !action.data.card.closed && action.data.card.closed !== undefined && 
+        action.data.old.closed !== undefined && action.data.old.closed;
+ }
+
+ function isUpdateCardAction(action: TrelloUpdateAction): boolean {
+     return action.data.listAfter !== undefined && action.data.listBefore !== undefined;
+ }
+ 
+ function isReopenOnAnotherBoardCardAction(action: TrelloCloseAction): boolean {
+    return action.data.card.closed === undefined && 
+        action.data.old.closed !== undefined && !action.data.old.closed;
+ }
+
+ function isCloseOnAnotherBoardCardAction(action: TrelloCloseAction): boolean {
+    return action.data.card.closed === undefined && 
+        action.data.old.closed !== undefined && action.data.old.closed;
+ }
 
 function parseCloseCardAction(trelloAction: TrelloCloseAction): Action {
     return {
@@ -58,9 +93,39 @@ function parseCloseCardAction(trelloAction: TrelloCloseAction): Action {
     }
 }
 
+function parseCloseOnAnotherBoardCardAction(trelloAction: TrelloCloseAction): Action {
+    return {
+        type: ActionType.CardClosedOnAnotherBoard,
+        startColumn: {
+            id: null,
+            name: null
+        },
+        endColumn: {
+            id: trelloAction.data.list.id,
+            name: trelloAction.data.list.name
+        },
+        date: moment(trelloAction.date)
+    }
+}
+
 function parseReopenCardAction(trelloAction: TrelloCloseAction): Action {
     return {
         type: ActionType.CardReopened,
+        startColumn: {
+            id: null,
+            name: null
+        },
+        endColumn: {
+            id: trelloAction.data.list.id,
+            name: trelloAction.data.list.name
+        },
+        date: moment(trelloAction.date)
+    }
+}
+
+function parseReopenOnAnotherBoardCardAction(trelloAction: TrelloCloseAction): Action {
+    return {
+        type: ActionType.CardReopenedOnAnotherBoard,
         startColumn: {
             id: null,
             name: null

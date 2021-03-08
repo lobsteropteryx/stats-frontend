@@ -3,6 +3,7 @@ import { cardToWorkItem } from "../workItem";
 import { filterWorkItemByDate, filterCardByLabel } from "../filters";
 
 const getCards = state => state.localFilter.cards;
+const getColumns = state => state.localFilter.columns;
 const getSelectedLabels = state => state.localFilter.selectedLabels;
 const getStartColumn = state => state.localFilter.startColumn.id;
 const getEndColumn = state => state.localFilter.endColumn.id;
@@ -20,13 +21,13 @@ const workItemToChartData = (workItem) => {
 };
 
 export const getPlotData = createSelector(
-    [getCards, getSelectedLabels, getStartColumn, getEndColumn, getStartDate, getEndDate],
-    (cards, selectedLabels, startColumn, endColumn, startDate, endDate) => {
+    [getCards, getColumns, getSelectedLabels, getStartColumn, getEndColumn, getStartDate, getEndDate],
+    (cards, columns, selectedLabels, startColumn, endColumn, startDate, endDate) => {
         return [{
             id: "Cards Completed",
             data: cards
                 .filter(card => filterCardByLabel(card, selectedLabels))
-                .map(card => cardToWorkItem(card, startColumn, endColumn))
+                .map(card => cardToWorkItem(card, columns, startColumn, endColumn))
                 .filter(workItem => filterWorkItemByDate(workItem, startDate, endDate))
                 .map(workItemToChartData)
         }];

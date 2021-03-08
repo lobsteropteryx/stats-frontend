@@ -6,6 +6,17 @@ describe("Converting cards to Work Items", () => {
         const startId = "1";
         const endId = "2";
 
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
+
         const card = {
             id: "1",
             name: "card",
@@ -21,13 +32,24 @@ describe("Converting cards to Work Items", () => {
             completionDate: null
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
 
     it("returns an incomplete work item, given a card with no matching actions", () => {
         const startId = "2";
         const endId = "3";
+
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
 
         const card = {
             id: "1",
@@ -55,13 +77,24 @@ describe("Converting cards to Work Items", () => {
             completionDate: null
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
 
     it("returns an incomplete work item, given a card with a matching start action", () => {
         const startId = "1";
         const endId = "2";
+
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
 
         const card = {
             id: "1",
@@ -89,13 +122,24 @@ describe("Converting cards to Work Items", () => {
             completionDate: null
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
 
     it("returns an incomplete work item, given a card with a matching end action", () => {
         const startId = "1";
         const endId = "2";
+
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
 
         const card = {
             id: "1",
@@ -123,7 +167,7 @@ describe("Converting cards to Work Items", () => {
             completionDate: null 
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
 
@@ -131,6 +175,17 @@ describe("Converting cards to Work Items", () => {
         const startId = "1";
         const endId = "2";
 
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
+
         const card = {
             id: "1",
             name: "card",
@@ -168,7 +223,7 @@ describe("Converting cards to Work Items", () => {
             completionDate: moment("2020-04-03T16:00:00.000Z")
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
     
@@ -176,6 +231,17 @@ describe("Converting cards to Work Items", () => {
         const startId = "1";
         const endId = "2";
 
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
+
         const card = {
             id: "1",
             name: "card",
@@ -213,7 +279,7 @@ describe("Converting cards to Work Items", () => {
             completionDate: moment("2020-04-03T16:00:00.000Z")
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
     
@@ -221,11 +287,21 @@ describe("Converting cards to Work Items", () => {
         const startId = "1";
         const endId = "2";
 
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
+
         const card = {
             id: "1",
             name: "card",
-            actions: [
-            {
+            actions: [{
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -249,8 +325,8 @@ describe("Converting cards to Work Items", () => {
             },
             {
                 startColumn: {
-                    id: "0",
-                    name: "ToDo"
+                    id: "2",
+                    name: "Done"
                 },
                 endColumn: {
                     id:"1",
@@ -269,13 +345,24 @@ describe("Converting cards to Work Items", () => {
             completionDate: null
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
     
-    xit("returns an incomplete work item given a card that was moved back and closed", () => {
+    it("returns an incomplete work item given a card that was moved back and closed", () => {
         const startId = "1";
         const endId = "2";
+
+        const columns = [{
+            id: "0",
+            name: "ToDo"
+        }, {
+            id: "1",
+            name: "Doing"
+        }, {
+            id: "2",
+            name: "Done"
+        }]
 
         const card = {
             id: "1",
@@ -324,7 +411,7 @@ describe("Converting cards to Work Items", () => {
                     name: "Done"
                 },
                 endColumn: {
-                    id:"1",
+                    id: "1",
                     name:"Doing"
                 },
                 date: moment("2020-04-03T16:00:00.000Z"),
@@ -336,7 +423,7 @@ describe("Converting cards to Work Items", () => {
                     name: null 
                 },
                 endColumn: {
-                    id:"1",
+                    id: "1",
                     name:"Doing"
                 },
                 date: moment("2020-04-04T16:00:00.000Z"),
@@ -352,7 +439,7 @@ describe("Converting cards to Work Items", () => {
             completionDate: null
         };
 
-        const actual = cardToWorkItem(card, startId, endId);
+        const actual = cardToWorkItem(card, columns, startId, endId);
         expect(actual).toEqual(expected);
     });
 });

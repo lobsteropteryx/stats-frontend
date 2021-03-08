@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { groupBy, first } from 'lodash'
-import { Card } from './card';
+import { wasMovedBack } from './actionFilter';
+import { Card, Column } from './card';
 
 export interface WorkItem {
     id: string,
@@ -11,11 +11,11 @@ export interface WorkItem {
     duration: moment.Duration
 }
 
-export function cardToWorkItem(card: Card, startColumn: string, endColumn: string): WorkItem {
+export function cardToWorkItem(card: Card, columns: Column[], startColumn: string, endColumn: string): WorkItem {
 
     const startDate = getDate(card, startColumn);
     const endDate = getDate(card, endColumn);
-    const isComplete = !wasMovedBack(card, startColumn, endColumn) && 
+    const isComplete = !card.actions.some(action => wasMovedBack(action, columns)) && 
         startDate !== null && 
         endDate !== null;
 
@@ -35,10 +35,4 @@ function getDate(card: Card, column: string): moment.Moment {
     .map(x => x.date)
     .sort( (x, y) => x.diff(y))
     .shift() || null; 
-}
-
-function wasMovedBack(card: Card, startColumn: string, endColumn: string): boolean {
-    return card.actions
-        .filter(x => x.endColumn.id === endColumn || x.endColumn.id === startColumn)
-        .length % 2 !== 0
 }

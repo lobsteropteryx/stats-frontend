@@ -8,6 +8,16 @@ describe("Transforming histogram data", () => {
         const state = {
             date: {}, 
             localFilter: { 
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: null, name: null },
                 endColumn: { id: null, name: null },
                 selectedLabels: [],
@@ -29,6 +39,16 @@ describe("Transforming histogram data", () => {
         const state = { 
             date: {},
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -80,6 +100,16 @@ describe("Transforming histogram data", () => {
         const state = { 
             date: {},
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -148,6 +178,16 @@ describe("Transforming histogram data", () => {
         const state = { 
             date: {},
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -184,6 +224,16 @@ describe("Transforming histogram data", () => {
                 endDate: moment("2020-01-02")
             },
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -230,6 +280,16 @@ describe("Transforming histogram data", () => {
                 endDate: null 
             },
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [{

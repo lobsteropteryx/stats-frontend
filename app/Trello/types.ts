@@ -26,7 +26,7 @@ export interface UpdateData {
     listBefore: List
     listAfter: List,
     card: ActionCard,
-    old: Old
+    old: ListStatus
 }
 
 export interface CreateData {
@@ -36,7 +36,8 @@ export interface CreateData {
 
 export interface CloseData {
     list: List,
-    card: ActionCard
+    card: ActionCard,
+    old: ClosedStatus
 }
 
 export interface CreateAction {

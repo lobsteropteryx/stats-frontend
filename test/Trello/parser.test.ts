@@ -221,6 +221,84 @@ describe("Parsing cards", () => {
             expect(actual).toEqual(expected);
         });
         
+        it("parses updateCard:closed actions closed on another board", () => {
+            const cards = [
+                {
+                    "id": "1",
+                    "name": "Card 1",
+                    "labels": [],
+                    "actions": [{
+                        "type": "updateCard" as ActionType,
+                        "data": {
+                            "old": {
+                                "closed": true 
+                            },
+                            "card": {},
+                            "list": {
+                                "id":"1",
+                                "name":"List 1",
+                            },
+                        },
+                        "date":"2020-04-01T16:00:00.000Z",
+                    }]
+                }
+            ];
+
+            const expected = [{
+                id: "1",
+                name: "Card 1",
+                labels: [],
+                actions: [{
+                    type: "cardClosedOnAnotherBoard",
+                    startColumn: {id: null, name: null},
+                    endColumn: {id: "1", name: "List 1"},
+                    date: moment("2020-04-01T16:00:00.000Z"),
+                }]
+            }];
+
+            const actual = parseTrelloCards(cards);
+            expect(actual).toEqual(expected);
+        });
+        
+        it("parses updateCard:closed actions opened on another board", () => {
+            const cards = [
+                {
+                    "id": "1",
+                    "name": "Card 1",
+                    "labels": [],
+                    "actions": [{
+                        "type": "updateCard" as ActionType,
+                        "data": {
+                            "old": {
+                                "closed": false
+                            },
+                            "card": {},
+                            "list": {
+                                "id":"1",
+                                "name":"List 1",
+                            },
+                        },
+                        "date":"2020-04-01T16:00:00.000Z",
+                    }]
+                }
+            ];
+
+            const expected = [{
+                id: "1",
+                name: "Card 1",
+                labels: [],
+                actions: [{
+                    type: "cardReopenedOnAnotherBoard",
+                    startColumn: {id: null, name: null},
+                    endColumn: {id: "1", name: "List 1"},
+                    date: moment("2020-04-01T16:00:00.000Z"),
+                }]
+            }];
+
+            const actual = parseTrelloCards(cards);
+            expect(actual).toEqual(expected);
+        });
+
         it("parses updateCard:closed actions when the card is reopened", () => {
             const cards = [
                 {

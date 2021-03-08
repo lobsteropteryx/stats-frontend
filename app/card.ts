@@ -17,7 +17,9 @@ export enum ActionType {
     CardCreated = "cardCreated",
     CardMoved = "cardMoved",
     CardClosed = "cardClosed",
-    CardReopened = "cardReopened"
+    CardReopened = "cardReopened",
+    CardClosedOnAnotherBoard = "cardClosedOnAnotherBoard",
+    CardReopenedOnAnotherBoard = "cardReopenedOnAnotherBoard"
 }
 
 export interface Action {
@@ -27,7 +29,7 @@ export interface Action {
     date: moment.Moment
 }
 
-interface Column {
+export interface Column {
     id: string,
     name: string
 }

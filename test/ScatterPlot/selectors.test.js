@@ -14,6 +14,16 @@ describe("Scatter plot selector", () => {
                 endDate: null 
             }, 
             localFilter: { 
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: null, name: null},
                 endColumn: {id: null, name: null},
                 selectedLabels: [],
@@ -44,6 +54,16 @@ describe("Scatter plot selector", () => {
                 endDate: null 
             },
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -92,6 +112,16 @@ describe("Scatter plot selector", () => {
                 endDate: null 
             },
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -130,6 +160,16 @@ describe("Scatter plot selector", () => {
                 endDate: moment("2020-01-02")
             },
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [],
@@ -178,6 +218,16 @@ describe("Scatter plot selector", () => {
                 endDate: null 
             },
             localFilter: {
+                columns: [{
+                    id: "0",
+                    name: "ToDo"
+                }, {
+                    id: "1",
+                    name: "Doing"
+                }, {
+                    id: "2",
+                    name: "Done"
+                }],
                 startColumn: { id: "1", name: "Doing" },
                 endColumn: { id: "2", name: "Done" },
                 selectedLabels: [{
