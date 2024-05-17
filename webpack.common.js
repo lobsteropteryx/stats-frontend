@@ -3,6 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+    resolve: {
+        fallback: {
+            os: require.resolve('os-browserify/browser'),
+            stream: require.resolve('stream-browserify')
+        }
+    },
     entry: './app/App.js',
     devtool: 'inline-source-map',
     output: {
@@ -44,8 +50,5 @@ module.exports = {
             title: 'Development',
             template: 'index.html'
         })
-    ],
-    node: {
-        fs: 'empty'
-    }
+    ]
 };
