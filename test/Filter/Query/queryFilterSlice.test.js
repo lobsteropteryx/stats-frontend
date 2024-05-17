@@ -23,7 +23,7 @@ describe("Initial state", () => {
     it("sets the proper initial state", () => {
         const state = undefined;
         const expectedState = {
-            apiKey: "e052546597a829919aae4fbd2a6e4095",
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
             boards: [],
             selectedBoard: {},
             exportEnabled: false,
