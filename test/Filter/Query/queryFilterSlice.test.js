@@ -1,5 +1,4 @@
 import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import reducer, { 
     fetchBoards, 
     fetchCardsForBoard, 
@@ -18,11 +17,11 @@ import {
 } from '../../../app/Filter/Query/queryFilterSlice';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../../../app/Filter/Local/localFilterSlice';
 
-const mockStore = configureMockStore([thunk]);
+const mockStore = configureMockStore([]);
 
 describe("Initial state", () => {
     it("sets the proper initial state", () => {
-        const state; // undefined
+        const state = undefined;
         const expectedState = {
             apiKey: "e052546597a829919aae4fbd2a6e4095",
             boards: [],

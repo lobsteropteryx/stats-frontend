@@ -1,4 +1,4 @@
-import jsonexport from "jsonexport";
+import jsonexport from "jsonexport/dist";
 import { Card } from "../../card";
 
 export async function getCsvData(cards: Card[], boardName: string) {

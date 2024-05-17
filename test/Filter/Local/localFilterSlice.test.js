@@ -10,7 +10,7 @@ import {
 
 describe("Initial state", () => {
     it("sets the proper initial state", () => {
-        const state; // undefined
+        const state = undefined;
         const expectedState = {
             cards: [],
             columns: [],
