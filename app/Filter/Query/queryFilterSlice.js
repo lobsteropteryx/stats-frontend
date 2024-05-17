@@ -7,7 +7,7 @@ import { getCsvData } from './csvExporter';
 const filterSlice = createSlice({
   name: 'queryFilter',
   initialState: {
-    apiKey: 'e052546597a829919aae4fbd2a6e4095',
+    apiKey: '683c53951940857c57dc075ab2b57ad8',
     boards: [],
     selectedBoard: {},
     exportEnabled: false,
