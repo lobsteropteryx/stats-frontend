@@ -3,8 +3,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit';
 import queryFilterSlice from './Filter/Query/queryFilterSlice';
 import localFilterSlice from './Filter/Local/localFilterSlice';
 import Filters from './Filter/Query/Filters';
@@ -21,14 +20,14 @@ import EndDateContainer from './Filter/Local/Date/EndDateContainer';
 import dateSlice from './Filter/Local/Date/dateSlice';
 import LabelSelectContainer from './Filter/Local/Label/LabelSelectContainer';
 
-const rootReducer = combineReducers({
-    queryFilter: queryFilterSlice,
-    localFilter: localFilterSlice,
-    settings: settingsSlice,
-    date: dateSlice
+const store = configureStore({
+    reducer: {
+        queryFilter: queryFilterSlice,
+        localFilter: localFilterSlice,
+        settings: settingsSlice,
+        date: dateSlice
+    }
 });
-
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 
