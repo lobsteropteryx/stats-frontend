@@ -1,4 +1,4 @@
-import moment from "moment"; 
+import dayjs from 'dayjs';
 import { getPlotData } from "../../app/ScatterPlot/selectors";
 
 describe("Scatter plot selector", () => {
@@ -79,7 +79,7 @@ describe("Scatter plot selector", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-01T16:00:00.000Z"),
+                        date: dayjs("2020-01-01T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -89,7 +89,7 @@ describe("Scatter plot selector", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-02T16:00:00.000Z")
+                        date: dayjs("2020-01-02T16:00:00.000Z")
                     }]
                 }]
             }
@@ -137,7 +137,7 @@ describe("Scatter plot selector", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-01T16:00:00.000Z"),
+                        date: dayjs("2020-01-01T16:00:00.000Z"),
                     }]
                 }]
             }
@@ -156,8 +156,8 @@ describe("Scatter plot selector", () => {
 
         const state = { 
             date: {
-                startDate: moment("2020-01-02"),
-                endDate: moment("2020-01-02")
+                startDate: dayjs("2020-01-02"),
+                endDate: dayjs("2020-01-02")
             },
             localFilter: {
                 columns: [{
@@ -185,7 +185,7 @@ describe("Scatter plot selector", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-04T16:00:00.000Z"),
+                        date: dayjs("2020-01-04T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -195,7 +195,7 @@ describe("Scatter plot selector", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-05T16:00:00.000Z")
+                        date: dayjs("2020-01-05T16:00:00.000Z")
                     }]
                 }]
             }
@@ -248,7 +248,7 @@ describe("Scatter plot selector", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-04T16:00:00.000Z"),
+                        date: dayjs("2020-01-04T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -258,7 +258,7 @@ describe("Scatter plot selector", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-05T16:00:00.000Z")
+                        date: dayjs("2020-01-05T16:00:00.000Z")
                     }]
                 }]
             }

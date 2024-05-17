@@ -1,4 +1,4 @@
-import moment from "moment"; 
+import dayjs from "dayjs";
 import { getHistogramData } from "../../app/Histogram/selectors";
 
 describe("Transforming histogram data", () => {
@@ -65,7 +65,7 @@ describe("Transforming histogram data", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-01T00:00:00.000Z"),
+                        date: dayjs("2020-01-01T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -75,7 +75,7 @@ describe("Transforming histogram data", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-02T00:00:00.000Z")
+                        date: dayjs("2020-01-02T00:00:00.000Z")
                     }]
                 }]
             }
@@ -126,7 +126,7 @@ describe("Transforming histogram data", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-01T00:00:00.000Z"),
+                        date: dayjs("2020-01-01T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -136,7 +136,7 @@ describe("Transforming histogram data", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-02T00:00:00.000Z")
+                        date: dayjs("2020-01-02T00:00:00.000Z")
                     }]
                 }, {
                     id: 2,
@@ -151,7 +151,7 @@ describe("Transforming histogram data", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-02T00:00:00.000Z"),
+                        date: dayjs("2020-01-02T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -161,7 +161,7 @@ describe("Transforming histogram data", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-04T00:00:00.000Z")
+                        date: dayjs("2020-01-04T00:00:00.000Z")
                     }]
                 }]
             }
@@ -204,7 +204,7 @@ describe("Transforming histogram data", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-01T00:00:00.000Z"),
+                        date: dayjs("2020-01-01T00:00:00.000Z"),
                     }]
                 }]
             }
@@ -220,8 +220,8 @@ describe("Transforming histogram data", () => {
 
         const state = { 
             date: {
-                startDate: moment("2020-01-01"),
-                endDate: moment("2020-01-02")
+                startDate: dayjs("2020-01-01"),
+                endDate: dayjs("2020-01-02")
             },
             localFilter: {
                 columns: [{
@@ -250,7 +250,7 @@ describe("Transforming histogram data", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-03T00:00:00.000Z"),
+                        date: dayjs("2020-01-03T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -260,7 +260,7 @@ describe("Transforming histogram data", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-04T00:00:00.000Z")
+                        date: dayjs("2020-01-04T00:00:00.000Z")
                     }]
                 }]
             }
@@ -310,7 +310,7 @@ describe("Transforming histogram data", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: moment("2020-01-03T00:00:00.000Z"),
+                        date: dayjs("2020-01-03T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -320,7 +320,7 @@ describe("Transforming histogram data", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: moment("2020-01-04T00:00:00.000Z")
+                        date: dayjs("2020-01-04T00:00:00.000Z")
                     }]
                 }]
             }

@@ -1,6 +1,6 @@
 import { parseTrelloCards } from "../../app/Trello/parser";
 import { Card as TrelloCard, ActionType } from "../../app/Trello/types";
-import moment from 'moment';
+import dayjs from "dayjs";
 
 describe("Parsing cards", () => {
     it("returns an empty list given no cards", () => {
@@ -94,12 +94,12 @@ describe("Parsing cards", () => {
                     type: "cardMoved",
                     startColumn: {id: "0", name: "ToDo"},
                     endColumn: {id: "1", name: "Doing"},
-                    date: moment("2020-04-02T16:00:00.000Z"),
+                    date: dayjs("2020-04-02T16:00:00.000Z"),
                 }, {
                     type: "cardMoved",
                     startColumn: {id: "1", name: "Doing"},
                     endColumn: {id: "2", name: "Done"},
-                    date: moment("2020-04-03T16:00:00.000Z")
+                    date: dayjs("2020-04-03T16:00:00.000Z")
                 }]
             }];
 
@@ -162,7 +162,7 @@ describe("Parsing cards", () => {
                     type: "cardMoved",
                     startColumn: {id: "0", name: "ToDo"},
                     endColumn: {id: "1", name: "Doing"},
-                    date: moment("2020-04-02T16:00:00.000Z"),
+                    date: dayjs("2020-04-02T16:00:00.000Z"),
                 }]
             }, {
                 id: "2",
@@ -172,7 +172,7 @@ describe("Parsing cards", () => {
                     type: "cardMoved",
                     startColumn: {id: "0", name: "ToDo"},
                     endColumn: {id: "1", name: "Doing"},
-                    date: moment("2020-04-03T16:00:00.000Z"),
+                    date: dayjs("2020-04-03T16:00:00.000Z"),
                 }]
             }];
 
@@ -213,7 +213,7 @@ describe("Parsing cards", () => {
                     type: "cardClosed",
                     startColumn: {id: null, name: null},
                     endColumn: {id: "1", name: "List 1"},
-                    date: moment("2020-04-01T16:00:00.000Z"),
+                    date: dayjs("2020-04-01T16:00:00.000Z"),
                 }]
             }];
 
@@ -252,7 +252,7 @@ describe("Parsing cards", () => {
                     type: "cardClosedOnAnotherBoard",
                     startColumn: {id: null, name: null},
                     endColumn: {id: "1", name: "List 1"},
-                    date: moment("2020-04-01T16:00:00.000Z"),
+                    date: dayjs("2020-04-01T16:00:00.000Z"),
                 }]
             }];
 
@@ -291,7 +291,7 @@ describe("Parsing cards", () => {
                     type: "cardReopenedOnAnotherBoard",
                     startColumn: {id: null, name: null},
                     endColumn: {id: "1", name: "List 1"},
-                    date: moment("2020-04-01T16:00:00.000Z"),
+                    date: dayjs("2020-04-01T16:00:00.000Z"),
                 }]
             }];
 
@@ -332,7 +332,7 @@ describe("Parsing cards", () => {
                     type: "cardReopened",
                     startColumn: {id: null, name: null},
                     endColumn: {id: "1", name: "List 1"},
-                    date: moment("2020-04-01T16:00:00.000Z"),
+                    date: dayjs("2020-04-01T16:00:00.000Z"),
                 }]
             }];
 
@@ -369,7 +369,7 @@ describe("Parsing cards", () => {
                 type: "cardCreated",
                 startColumn: {id: null, name: null},
                 endColumn: {id: "1", name: "List 1"},
-                date: moment("2020-04-01T16:00:00.000Z"),
+                date: dayjs("2020-04-01T16:00:00.000Z"),
             }]
         }];
 
@@ -405,7 +405,7 @@ describe("Parsing cards", () => {
                 type: "cardCreated",
                 startColumn: {id: null, name: null},
                 endColumn: {id: "1", name: "List 1"},
-                date: moment("2020-04-01T16:00:00.000Z"),
+                date: dayjs("2020-04-01T16:00:00.000Z"),
             }]
         }];
 
@@ -441,7 +441,7 @@ describe("Parsing cards", () => {
                 type: "cardCreated",
                 startColumn: {id: null, name: null},
                 endColumn: {id: "1", name: "List 1"},
-                date: moment("2020-04-01T16:00:00.000Z"),
+                date: dayjs("2020-04-01T16:00:00.000Z"),
             }]
         }];
 

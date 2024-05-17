@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from "dayjs";;
 import { cardToWorkItem } from "../app/workItem";
 
 describe("Converting cards to Work Items", () => {
@@ -64,7 +64,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-02T16:00:00.000Z"),
+                date: dayjs("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -109,7 +109,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-02T16:00:00.000Z"),
+                date: dayjs("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -118,7 +118,7 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: false,
             duration: null,
-            startDate: moment("2020-04-02T16:00:00.000Z"),
+            startDate: dayjs("2020-04-02T16:00:00.000Z"),
             completionDate: null
         };
 
@@ -154,7 +154,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: moment("2020-04-02T16:00:00.000Z"),
+                date: dayjs("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -199,7 +199,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-02T16:00:00.000Z"),
+                date: dayjs("2020-04-02T16:00:00.000Z"),
             },
             {
                 startColumn: {
@@ -210,7 +210,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: moment("2020-04-03T16:00:00.000Z")
+                date: dayjs("2020-04-03T16:00:00.000Z")
             }
         ]};
 
@@ -218,9 +218,9 @@ describe("Converting cards to Work Items", () => {
             id: "1",
             name: "card",
             isComplete: true,
-            duration: moment.duration(86400000),
-            startDate: moment("2020-04-02T16:00:00.000Z"),
-            completionDate: moment("2020-04-03T16:00:00.000Z")
+            duration: dayjs.duration(86400000),
+            startDate: dayjs("2020-04-02T16:00:00.000Z"),
+            completionDate: dayjs("2020-04-03T16:00:00.000Z")
         };
 
         const actual = cardToWorkItem(card, columns, startId, endId);
@@ -255,7 +255,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: moment("2020-04-03T16:00:00.000Z")
+                date: dayjs("2020-04-03T16:00:00.000Z")
             },
             {
                 startColumn: {
@@ -266,7 +266,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-02T16:00:00.000Z"),
+                date: dayjs("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -274,9 +274,9 @@ describe("Converting cards to Work Items", () => {
             id: "1",
             name: "card",
             isComplete: true,
-            duration: moment.duration(86400000),
-            startDate: moment("2020-04-02T16:00:00.000Z"),
-            completionDate: moment("2020-04-03T16:00:00.000Z")
+            duration: dayjs.duration(86400000),
+            startDate: dayjs("2020-04-02T16:00:00.000Z"),
+            completionDate: dayjs("2020-04-03T16:00:00.000Z")
         };
 
         const actual = cardToWorkItem(card, columns, startId, endId);
@@ -310,7 +310,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-01T16:00:00.000Z"),
+                date: dayjs("2020-04-01T16:00:00.000Z"),
             },
             {
                 startColumn: {
@@ -321,7 +321,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: moment("2020-04-02T16:00:00.000Z")
+                date: dayjs("2020-04-02T16:00:00.000Z")
             },
             {
                 startColumn: {
@@ -332,7 +332,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-03T16:00:00.000Z"),
+                date: dayjs("2020-04-03T16:00:00.000Z"),
             }
         ]};
 
@@ -341,7 +341,7 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: false,
             duration: null,
-            startDate: moment("2020-04-01T16:00:00.000Z"),
+            startDate: dayjs("2020-04-01T16:00:00.000Z"),
             completionDate: null
         };
 
@@ -378,7 +378,7 @@ describe("Converting cards to Work Items", () => {
                     id:"0",
                     name:"ToDo"
                 },
-                date: moment("2020-04-01T16:00:00.000Z"),
+                date: dayjs("2020-04-01T16:00:00.000Z"),
             },
             {
                 type: "cardMoved",
@@ -390,7 +390,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: moment("2020-04-01T16:00:00.000Z"),
+                date: dayjs("2020-04-01T16:00:00.000Z"),
             },
             {
                 type: "cardMoved",
@@ -402,7 +402,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: moment("2020-04-02T16:00:00.000Z")
+                date: dayjs("2020-04-02T16:00:00.000Z")
             },
             {
                 type: "cardMoved",
@@ -414,7 +414,7 @@ describe("Converting cards to Work Items", () => {
                     id: "1",
                     name:"Doing"
                 },
-                date: moment("2020-04-03T16:00:00.000Z"),
+                date: dayjs("2020-04-03T16:00:00.000Z"),
             },
             {
                 type: "cardClosed",
@@ -426,7 +426,7 @@ describe("Converting cards to Work Items", () => {
                     id: "1",
                     name:"Doing"
                 },
-                date: moment("2020-04-04T16:00:00.000Z"),
+                date: dayjs("2020-04-04T16:00:00.000Z"),
             }
         ]};
 
@@ -435,7 +435,7 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: false,
             duration: null,
-            startDate: moment("2020-04-01T16:00:00.000Z"),
+            startDate: dayjs("2020-04-01T16:00:00.000Z"),
             completionDate: null
         };
 

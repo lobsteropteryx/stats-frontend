@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export interface Card {
     id: string,
@@ -26,7 +26,7 @@ export interface Action {
     type: ActionType,
     startColumn: Column,
     endColumn: Column,
-    date: moment.Moment
+    date: dayjs.Dayjs 
 }
 
 export interface Column {

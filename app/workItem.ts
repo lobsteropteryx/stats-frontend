@@ -1,4 +1,6 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 import { wasMovedBack } from './actionFilter';
 import { Card, Column } from './card';
 
@@ -6,9 +8,9 @@ export interface WorkItem {
     id: string,
     name: string,
     isComplete: boolean,
-    startDate: moment.Moment,
-    completionDate: moment.Moment,
-    duration: moment.Duration
+    startDate: dayjs.Dayjs,
+    completionDate: dayjs.Dayjs,
+    duration: duration.Duration
 }
 
 export function cardToWorkItem(card: Card, columns: Column[], startColumn: string, endColumn: string): WorkItem {
@@ -25,11 +27,11 @@ export function cardToWorkItem(card: Card, columns: Column[], startColumn: strin
         isComplete: isComplete,
         startDate: startDate,
         completionDate: isComplete ? endDate : null,
-        duration: isComplete ? moment.duration(endDate.diff(startDate)) : null
+        duration: isComplete ? dayjs.duration(endDate.diff(startDate)) : null
     }
 }
 
-function getDate(card: Card, column: string): moment.Moment {
+function getDate(card: Card, column: string): dayjs.Dayjs {
     return card.actions
     .filter(x => x.endColumn.id === column)
     .map(x => x.date)
