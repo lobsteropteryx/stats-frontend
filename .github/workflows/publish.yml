@@ -1,0 +1,50 @@
+name: Stats-Backend Deployment
+run-name: ${{ github.actor }} is publishing stats-backend 🚀
+on: 
+  push:
+    branches: [main]
+jobs:
+  Publish-Stats-Backend:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      
+      - name: Set up CDK
+        run: npm install -g aws-cdk
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::678966243702:role/stats-backend-deployment
+          role-session-name: stats-backend-deployment
+          aws-region: "us-east-2"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Generate CloudFormation template
+        run: cdk synth
+
+      - name: Deploy
+        run: cdk deploy --require-approval never
+
+      - run: echo "This job's status is ${{ job.status }}."
