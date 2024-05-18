@@ -1,5 +1,7 @@
 dist
 cdk.out
+infra/*.js
+infra/dist
 
 .idea
 

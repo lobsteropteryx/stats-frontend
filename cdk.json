@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/stats-frontend.ts",
+  "app": "npx tsx bin/stats-frontend.ts",
   "watch": {
     "include": [
       "infra/**"
