@@ -17,7 +17,7 @@ const ScatterPlot = (props) => (
             }}
             xFormat="time:%Y-%m-%d"
             yScale={{ type: 'linear', min: 0, max: 'auto' }}
-            yFormat={function(e){return e+" days"}}
+            yFormat={e => `${e} days`}
             enableGridY={true}
             axisBottom={{
                 format: '%b %d',
@@ -44,9 +44,9 @@ const ScatterPlot = (props) => (
                         {node.data.name}
                     </strong>
                     <br />
-                    {`Completed on: ${node.data.formattedX}`}
+                    {`Completed on: ${node.formattedX}`}
                     <br />
-                    {`Duration: ${node.data.formattedY}`}
+                    {`Duration: ${node.formattedY}`}
                 </div>
             )}
         />
