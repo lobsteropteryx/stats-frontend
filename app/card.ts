@@ -24,7 +24,7 @@ export interface Action {
     type: ActionType,
     startColumn: Column,
     endColumn: Column,
-    date: Date
+    date: string 
 }
 
 export interface Column {

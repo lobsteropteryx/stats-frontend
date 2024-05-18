@@ -37,7 +37,7 @@ xdescribe("Transforming WIP data", () => {
                     startDate: new Date("2020-01-01"),
                     isComplete: true,
                     completionDate: new Date("2020-01-02"),
-                    duration: dayjs.duration(1, "days")
+                    duration: 1 
                 }, {
                     id: 2,
                     name: "test2",
@@ -131,7 +131,7 @@ xdescribe("Transforming WIP data", () => {
                         startDate: new Date("2020-01-01"),
                         isComplete: true,
                         completionDate: new Date("2020-01-02"),
-                        duration: dayjs.duration(1, "days")
+                        duration: 1 
                     }]
                 } 
             };
@@ -159,7 +159,7 @@ xdescribe("Transforming WIP data", () => {
                         startDate: new Date("2020-01-31"),
                         isComplete: false,
                         completionDate: new Date("2020-01-02"),
-                        duration: dayjs.duration(1, "days")
+                        duration: 1 
                     }]
                 } 
             };

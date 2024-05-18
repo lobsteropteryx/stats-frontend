@@ -17,7 +17,7 @@ export const getHistogramData = createSelector(
             .filter(card => filterCardByLabel(card, selectedLabels))
             .map(card => cardToWorkItem(card, columns, startColumn, endColumn))
             .filter(action => filterWorkItemByDate(action, startDate, endDate))
-            .map(action => Math.ceil(action.duration.asDays()));
+            .map(action => Math.ceil(action.duration));
     
         const histogram = durations.reduce((bins, x) => {
             bins[x] ? bins[x]++ : bins[x] = 1;

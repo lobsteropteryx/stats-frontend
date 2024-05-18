@@ -24,7 +24,7 @@ function transformDates(card: Card) {
                     type: action.type,
                     startColumn: action.startColumn,
                     endColumn: action.endColumn,
-                    date: new Date(action.date).toLocaleDateString()
+                    date: action.date
                 }
             })
             .sort( (a, b) => { return new Date(a.date).getTime() - new Date(b.date).getTime(); })

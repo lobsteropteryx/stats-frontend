@@ -1,6 +1,4 @@
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
-dayjs.extend(duration);
+import { differenceInDays } from 'date-fns';
 import { wasMovedBack } from './actionFilter';
 import { Card, Column } from './card';
 
@@ -8,9 +6,9 @@ export interface WorkItem {
     id: string,
     name: string,
     isComplete: boolean,
-    startDate: Date,
-    completionDate: Date,
-    duration: duration.Duration
+    startDate: string,
+    completionDate: string,
+    duration: number
 }
 
 export function cardToWorkItem(card: Card, columns: Column[], startColumn: string, endColumn: string): WorkItem {
@@ -25,16 +23,16 @@ export function cardToWorkItem(card: Card, columns: Column[], startColumn: strin
         id: card.id,
         name: card.name,
         isComplete: isComplete,
-        startDate: startDate ? startDate.toDate() : null,
-        completionDate: endDate && isComplete ? endDate.toDate() : null,
-        duration: isComplete ? dayjs.duration(endDate!.diff(startDate)) : null
+        startDate: startDate ? startDate.toISOString() : null,
+        completionDate: endDate && isComplete ? endDate.toISOString() : null,
+        duration: isComplete ? differenceInDays(endDate, startDate) : null 
     }
 }
 
-function getDate(card: Card, column: string): dayjs.Dayjs {
+function getDate(card: Card, column: string): Date {
     return card.actions
     .filter(x => x.endColumn.id === column)
-    .map(x => dayjs(x.date))
-    .sort( (x, y) => x!.diff(y))
+    .map(x => new Date(x.date))
+    .sort( (x, y) => differenceInDays(x, y))
     .shift() || null; 
 }

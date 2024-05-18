@@ -18,7 +18,7 @@ export const getPercentiles = createSelector(
             .filter(card => filterCardByLabel(card, selectedLabels))
             .map(card => cardToWorkItem(card, columns, startColumn, endColumn))
             .filter(card => filterWorkItemByDate(card, startDate, endDate))
-            .map(card => card.duration.asDays());
+            .map(card => card.duration);
         
         return {
             n: durations.length,

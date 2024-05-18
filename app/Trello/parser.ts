@@ -88,7 +88,7 @@ function parseCloseCardAction(trelloAction: TrelloCloseAction): Action {
             id: trelloAction.data.list.id,
             name: trelloAction.data.list.name
         },
-        date: new Date(trelloAction.date)
+        date: trelloAction.date
     }
 }
 
@@ -103,7 +103,7 @@ function parseCloseOnAnotherBoardCardAction(trelloAction: TrelloCloseAction): Ac
             id: trelloAction.data.list.id,
             name: trelloAction.data.list.name
         },
-        date: new Date(trelloAction.date)
+        date: trelloAction.date
     }
 }
 
@@ -118,7 +118,7 @@ function parseReopenCardAction(trelloAction: TrelloCloseAction): Action {
             id: trelloAction.data.list.id,
             name: trelloAction.data.list.name
         },
-        date: new Date(trelloAction.date)
+        date: trelloAction.date
     }
 }
 
@@ -133,7 +133,7 @@ function parseReopenOnAnotherBoardCardAction(trelloAction: TrelloCloseAction): A
             id: trelloAction.data.list.id,
             name: trelloAction.data.list.name
         },
-        date: new Date(trelloAction.date)
+        date: trelloAction.date
     }
 }
 
@@ -148,7 +148,7 @@ function parseUpdateCardAction(trelloAction: TrelloUpdateAction): Action {
             id: trelloAction.data.listAfter.id,
             name: trelloAction.data.listAfter.name
         },
-        date: new Date(trelloAction.date)
+        date: trelloAction.date
     }
 }
 
@@ -163,6 +163,6 @@ function parseCreateCardAction(trelloAction: TrelloCreateAction): Action {
             id: trelloAction.data.list.id,
             name: trelloAction.data.list.name
         },
-        date: new Date(trelloAction.date)
+        date: trelloAction.date
     }
 }

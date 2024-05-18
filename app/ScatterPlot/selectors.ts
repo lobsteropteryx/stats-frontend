@@ -17,7 +17,7 @@ const workItemToChartData = (workItem:WorkItem) => {
         name: workItem.name,
         url: `https://trello.com/c/${workItem.id}`,
         x: format(workItem.completionDate, "yyyy-MM-dd"),
-        y: workItem.duration.asDays().toPrecision(1)
+        y: workItem.duration.toPrecision(1)
     };
 };
 

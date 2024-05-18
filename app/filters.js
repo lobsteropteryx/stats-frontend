@@ -1,9 +1,12 @@
 import { setCards } from "./Filter/Local/localFilterSlice"
 
-export const filterWorkItemByDate = (workItem, startDate, endDate) => {
+export const filterWorkItemByDate = (workItem, startDateString, endDateString) => {
+    const startDate = Date.parse(startDateString);
+    const endDate = Date.parse(endDateString);
+    const completionDate = Date.parse(workItem.completionDate);
     return workItem.completionDate !== null &&
-        (!startDate || workItem.completionDate >= startDate) &&
-        (!endDate || workItem.completionDate <= endDate)
+        (!startDate || completionDate >= startDate) &&
+        (!endDate || completionDate <= endDate)
 };
 
 export const filterCardByLabel = (card, selectedLabels) => {
