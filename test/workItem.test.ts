@@ -1,5 +1,8 @@
-import dayjs from "dayjs";;
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 import { cardToWorkItem } from "../app/workItem";
+import { ActionType, Card } from '../app/card';
 
 describe("Converting cards to Work Items", () => {
     it("returns an incomplete work item, given a card with no actions", () => {
@@ -20,6 +23,7 @@ describe("Converting cards to Work Items", () => {
         const card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: []
         };
 
@@ -54,8 +58,10 @@ describe("Converting cards to Work Items", () => {
         const card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [
             {
+                type: undefined,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -64,7 +70,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z"),
+                date: new Date("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -99,8 +105,10 @@ describe("Converting cards to Work Items", () => {
         const card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [
             {
+                type: undefined,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -109,7 +117,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z"),
+                date: new Date("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -118,7 +126,7 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: false,
             duration: null,
-            startDate: dayjs("2020-04-02T16:00:00.000Z"),
+            startDate: new Date("2020-04-02T16:00:00.000Z"),
             completionDate: null
         };
 
@@ -144,8 +152,10 @@ describe("Converting cards to Work Items", () => {
         const card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [
             {
+                type: undefined,
                 startColumn: {
                     id: "1",
                     name: "Doing"
@@ -154,7 +164,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z"),
+                date: new Date("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -189,8 +199,10 @@ describe("Converting cards to Work Items", () => {
         const card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [
             {
+                type: undefined,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -199,9 +211,10 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z"),
+                date: new Date("2020-04-02T16:00:00.000Z"),
             },
             {
+                type: undefined,
                 startColumn: {
                     id: "1",
                     name: "Doing"
@@ -210,7 +223,7 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: dayjs("2020-04-03T16:00:00.000Z")
+                date: new Date("2020-04-03T16:00:00.000Z")
             }
         ]};
 
@@ -219,8 +232,8 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: true,
             duration: dayjs.duration(86400000),
-            startDate: dayjs("2020-04-02T16:00:00.000Z"),
-            completionDate: dayjs("2020-04-03T16:00:00.000Z")
+            startDate: new Date("2020-04-02T16:00:00.000Z"),
+            completionDate: new Date("2020-04-03T16:00:00.000Z")
         };
 
         const actual = cardToWorkItem(card, columns, startId, endId);
@@ -245,8 +258,10 @@ describe("Converting cards to Work Items", () => {
         const card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [
             {
+                type: undefined,
                 startColumn: {
                     id: "1",
                     name: "Doing"
@@ -255,9 +270,10 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: dayjs("2020-04-03T16:00:00.000Z")
+                date: new Date("2020-04-03T16:00:00.000Z")
             },
             {
+                type: undefined,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -266,7 +282,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z"),
+                date: new Date("2020-04-02T16:00:00.000Z"),
             }
         ]};
 
@@ -275,8 +291,8 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: true,
             duration: dayjs.duration(86400000),
-            startDate: dayjs("2020-04-02T16:00:00.000Z"),
-            completionDate: dayjs("2020-04-03T16:00:00.000Z")
+            startDate: new Date("2020-04-02T16:00:00.000Z"),
+            completionDate: new Date("2020-04-03T16:00:00.000Z")
         };
 
         const actual = cardToWorkItem(card, columns, startId, endId);
@@ -298,10 +314,12 @@ describe("Converting cards to Work Items", () => {
             name: "Done"
         }]
 
-        const card = {
+        const card:Card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [{
+                type: undefined,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -310,9 +328,10 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-01T16:00:00.000Z"),
+                date: new Date("2020-04-01T16:00:00.000Z"),
             },
             {
+                type: undefined,
                 startColumn: {
                     id: "1",
                     name: "Doing"
@@ -321,9 +340,10 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z")
+                date: new Date("2020-04-02T16:00:00.000Z")
             },
             {
+                type: undefined,
                 startColumn: {
                     id: "2",
                     name: "Done"
@@ -332,7 +352,7 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-03T16:00:00.000Z"),
+                date: new Date("2020-04-03T16:00:00.000Z"),
             }
         ]};
 
@@ -341,7 +361,7 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: false,
             duration: null,
-            startDate: dayjs("2020-04-01T16:00:00.000Z"),
+            startDate: new Date("2020-04-01T16:00:00.000Z"),
             completionDate: null
         };
 
@@ -364,12 +384,13 @@ describe("Converting cards to Work Items", () => {
             name: "Done"
         }]
 
-        const card = {
+        const card:Card = {
             id: "1",
             name: "card",
+            labels: [],
             actions: [
             {
-                type: "cardCreated",
+                type: "cardCreated" as ActionType,
                 startColumn: {
                     id: null,
                     name: null 
@@ -378,10 +399,10 @@ describe("Converting cards to Work Items", () => {
                     id:"0",
                     name:"ToDo"
                 },
-                date: dayjs("2020-04-01T16:00:00.000Z"),
+                date: new Date("2020-04-01T16:00:00.000Z"),
             },
             {
-                type: "cardMoved",
+                type: "cardMoved" as ActionType,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -390,10 +411,10 @@ describe("Converting cards to Work Items", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-01T16:00:00.000Z"),
+                date: new Date("2020-04-01T16:00:00.000Z"),
             },
             {
-                type: "cardMoved",
+                type: "cardMoved" as ActionType,
                 startColumn: {
                     id: "1",
                     name: "Doing"
@@ -402,10 +423,10 @@ describe("Converting cards to Work Items", () => {
                     id:"2",
                     name:"Done"
                 },
-                date: dayjs("2020-04-02T16:00:00.000Z")
+                date: new Date("2020-04-02T16:00:00.000Z")
             },
             {
-                type: "cardMoved",
+                type: "cardMoved" as ActionType,
                 startColumn: {
                     id: "2",
                     name: "Done"
@@ -414,10 +435,10 @@ describe("Converting cards to Work Items", () => {
                     id: "1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-03T16:00:00.000Z"),
+                date: new Date("2020-04-03T16:00:00.000Z"),
             },
             {
-                type: "cardClosed",
+                type: "cardClosed" as ActionType,
                 startColumn: {
                     id: null, 
                     name: null 
@@ -426,7 +447,7 @@ describe("Converting cards to Work Items", () => {
                     id: "1",
                     name:"Doing"
                 },
-                date: dayjs("2020-04-04T16:00:00.000Z"),
+                date: new Date("2020-04-04T16:00:00.000Z"),
             }
         ]};
 
@@ -435,7 +456,7 @@ describe("Converting cards to Work Items", () => {
             name: "card",
             isComplete: false,
             duration: null,
-            startDate: dayjs("2020-04-01T16:00:00.000Z"),
+            startDate: new Date("2020-04-01T16:00:00.000Z"),
             completionDate: null
         };
 

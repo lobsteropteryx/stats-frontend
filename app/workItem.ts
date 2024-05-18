@@ -8,8 +8,8 @@ export interface WorkItem {
     id: string,
     name: string,
     isComplete: boolean,
-    startDate: dayjs.Dayjs,
-    completionDate: dayjs.Dayjs,
+    startDate: Date,
+    completionDate: Date,
     duration: duration.Duration
 }
 
@@ -25,9 +25,9 @@ export function cardToWorkItem(card: Card, columns: Column[], startColumn: strin
         id: card.id,
         name: card.name,
         isComplete: isComplete,
-        startDate: startDate,
-        completionDate: isComplete ? endDate : null,
-        duration: isComplete ? dayjs.duration(endDate.diff(startDate)) : null
+        startDate: startDate ? startDate.toDate() : null,
+        completionDate: endDate && isComplete ? endDate.toDate() : null,
+        duration: isComplete ? dayjs.duration(endDate!.diff(startDate)) : null
     }
 }
 
@@ -35,6 +35,6 @@ function getDate(card: Card, column: string): dayjs.Dayjs {
     return card.actions
     .filter(x => x.endColumn.id === column)
     .map(x => dayjs(x.date))
-    .sort( (x, y) => x.diff(y))
+    .sort( (x, y) => x!.diff(y))
     .shift() || null; 
 }

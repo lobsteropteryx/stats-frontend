@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { getPercentiles } from "../../app/Stats/selectors";
 
 describe("Calculating percentiles", () => {
@@ -74,7 +73,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-01T16:00:00.000Z"),
+                        date: new Date("2020-01-01T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -84,7 +83,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-02T16:00:00.000Z")
+                        date: new Date("2020-01-02T16:00:00.000Z")
                     }]
                 }]
             }
@@ -133,7 +132,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-01T16:00:00.000Z"),
+                        date: new Date("2020-01-01T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -143,7 +142,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-02T16:00:00.000Z")
+                        date: new Date("2020-01-02T16:00:00.000Z")
                     }]
                 }, {
                     id: 2,
@@ -158,7 +157,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-02T16:00:00.000Z"),
+                        date: new Date("2020-01-02T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -168,7 +167,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-04T16:00:00.000Z")
+                        date: new Date("2020-01-04T16:00:00.000Z")
                     }] 
                 }]
             }
@@ -220,7 +219,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-01T16:00:00.000Z"),
+                        date: new Date("2020-01-01T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -230,7 +229,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-02T16:00:00.000Z")
+                        date: new Date("2020-01-02T16:00:00.000Z")
                     }]
                 }, {
                     id: 2,
@@ -245,7 +244,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-02T16:00:00.000Z"),
+                        date: new Date("2020-01-02T16:00:00.000Z"),
                     }]
                 }]
             }
@@ -267,8 +266,8 @@ describe("Calculating percentiles", () => {
 
         const state = {
             date: {
-                startDate: dayjs("2020-01-01"),
-                endDate: dayjs("2020-01-02")
+                startDate: new Date("2020-01-01"),
+                endDate: new Date("2020-01-02")
             },
             localFilter: {
                 columns: [{
@@ -297,7 +296,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-01T00:00:00.000Z"),
+                        date: new Date("2020-01-01T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -307,7 +306,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-02T00:00:00.000Z")
+                        date: new Date("2020-01-02T00:00:00.000Z")
                     }]
                 }, {
                     id: 2,
@@ -322,7 +321,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-03T16:00:00.000Z"),
+                        date: new Date("2020-01-03T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -332,7 +331,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-04T16:00:00.000Z")
+                        date: new Date("2020-01-04T16:00:00.000Z")
                     }] 
                 }]
             }
@@ -388,7 +387,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-01T00:00:00.000Z"),
+                        date: new Date("2020-01-01T00:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -398,7 +397,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-02T00:00:00.000Z")
+                        date: new Date("2020-01-02T00:00:00.000Z")
                     }]
                 }, {
                     id: 2,
@@ -417,7 +416,7 @@ describe("Calculating percentiles", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: dayjs("2020-01-03T16:00:00.000Z"),
+                        date: new Date("2020-01-03T16:00:00.000Z"),
                     }, {
                         startColumn: {
                             id: "1",
@@ -427,7 +426,7 @@ describe("Calculating percentiles", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: dayjs("2020-01-04T16:00:00.000Z")
+                        date: new Date("2020-01-04T16:00:00.000Z")
                     }] 
                 }]
             }

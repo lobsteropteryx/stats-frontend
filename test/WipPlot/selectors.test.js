@@ -1,4 +1,3 @@
-import dayjs from "dayjs"; 
 import { getPlotData } from "../../app/WipPlot/selectors";
 
 xdescribe("Transforming WIP data", () => {
@@ -35,9 +34,9 @@ xdescribe("Transforming WIP data", () => {
                 actions: [{
                     id: 1,
                     name: "test",
-                    startDate: dayjs("2020-01-01"),
+                    startDate: new Date("2020-01-01"),
                     isComplete: true,
-                    completionDate: dayjs("2020-01-02"),
+                    completionDate: new Date("2020-01-02"),
                     duration: dayjs.duration(1, "days")
                 }, {
                     id: 2,
@@ -71,7 +70,7 @@ xdescribe("Transforming WIP data", () => {
                     actions: [{
                         id: 1,
                         name: "test",
-                        startDate: dayjs("2020-01-01"),
+                        startDate: new Date("2020-01-01"),
                         isComplete: false,
                         completionDate: null,
                         duration: null
@@ -99,7 +98,7 @@ xdescribe("Transforming WIP data", () => {
                     actions: [{
                         id: 1,
                         name: "test",
-                        startDate: dayjs("2020-01-31"),
+                        startDate: new Date("2020-01-31"),
                         isComplete: false,
                         completionDate: null,
                         duration: null
@@ -129,9 +128,9 @@ xdescribe("Transforming WIP data", () => {
                     actions: [{
                         id: 1,
                         name: "test",
-                        startDate: dayjs("2020-01-01"),
+                        startDate: new Date("2020-01-01"),
                         isComplete: true,
-                        completionDate: dayjs("2020-01-02"),
+                        completionDate: new Date("2020-01-02"),
                         duration: dayjs.duration(1, "days")
                     }]
                 } 
@@ -157,9 +156,9 @@ xdescribe("Transforming WIP data", () => {
                     actions: [{
                         id: 1,
                         name: "test",
-                        startDate: dayjs("2020-01-31"),
+                        startDate: new Date("2020-01-31"),
                         isComplete: false,
-                        completionDate: dayjs("2020-01-02"),
+                        completionDate: new Date("2020-01-02"),
                         duration: dayjs.duration(1, "days")
                     }]
                 } 
