@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { createSelector } from "reselect";
 import { WorkItem, cardToWorkItem } from "../workItem";
 import { filterWorkItemByDate, filterCardByLabel } from "../filters";
+import { ChartData } from "./chartData";
 
 const getCards = state => state.localFilter.cards;
 const getColumns = state => state.localFilter.columns;
@@ -11,13 +12,13 @@ const getEndColumn = state => state.localFilter.endColumn.id;
 const getStartDate = state => state.date.startDate;
 const getEndDate = state => state.date.endDate;
 
-const workItemToChartData = (workItem:WorkItem) => {
+const workItemToChartData = (workItem:WorkItem):ChartData => {
     return {
         id: workItem.id,
         name: workItem.name,
         url: `https://trello.com/c/${workItem.id}`,
         x: format(workItem.completionDate, "yyyy-MM-dd"),
-        y: workItem.duration.toPrecision(1)
+        y: workItem.duration
     };
 };
 

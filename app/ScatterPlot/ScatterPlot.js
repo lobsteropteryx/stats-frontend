@@ -36,7 +36,7 @@ const ScatterPlot = (props) => (
             }}
             tooltip={({ node }) => (
                 <div style={{
-                    color: node.style.color,
+                    color: node.style ? node.style.color : null,
                     background: '#D3D3D3',
                     padding: '12px 16px',
                 }}>

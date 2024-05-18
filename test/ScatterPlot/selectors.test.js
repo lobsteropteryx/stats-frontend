@@ -43,7 +43,7 @@ describe("Scatter plot selector", () => {
                 name: "test",
                 url: "https://trello.com/c/1",
                 x: "2020-01-02",
-                y: "1"
+                y: 1
             }]
         }];
 
@@ -78,7 +78,7 @@ describe("Scatter plot selector", () => {
                             id:"1",
                             name:"Doing"
                         },
-                        date: new Date("2020-01-01T16:00:00.000Z"),
+                        date: "2020-01-01T16:00:00.000Z",
                     }, {
                         startColumn: {
                             id: "1",
@@ -88,7 +88,7 @@ describe("Scatter plot selector", () => {
                             id:"2",
                             name:"Done"
                         },
-                        date: new Date("2020-01-02T16:00:00.000Z")
+                        date: "2020-01-02T16:00:00.000Z"
                     }]
                 }]
             }
