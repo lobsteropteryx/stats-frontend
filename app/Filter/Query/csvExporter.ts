@@ -24,10 +24,10 @@ function transformDates(card: Card) {
                     type: action.type,
                     startColumn: action.startColumn,
                     endColumn: action.endColumn,
-                    date: action.date.toDate()
+                    date: new Date(action.date).toLocaleDateString()
                 }
             })
-            .sort( (a, b) => { return a.date.getTime() - b.date.getTime(); })
+            .sort( (a, b) => { return new Date(a.date).getTime() - new Date(b.date).getTime(); })
     }
 }
 

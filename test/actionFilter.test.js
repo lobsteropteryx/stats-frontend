@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { wasMovedBack } from "../app/actionFilter";
 
 describe("Cards moving backwards", () => {
@@ -20,7 +19,7 @@ describe("Cards moving backwards", () => {
                 id:"1",
                 name:"Doing"
             },
-            date: dayjs("2020-04-02T16:00:00.000Z"),
+            date: new Date("2020-04-02T16:00:00.000Z"),
         };
 
         expect(wasMovedBack(action, columns)).toEqual(false); 
@@ -44,7 +43,7 @@ describe("Cards moving backwards", () => {
                 id:"1",
                 name:"Doing"
             },
-            date: dayjs("2020-04-02T16:00:00.000Z"),
+            date: new Date("2020-04-02T16:00:00.000Z"),
         };
 
         expect(wasMovedBack(action, columns)).toEqual(false); 
@@ -68,7 +67,7 @@ describe("Cards moving backwards", () => {
                 id: "0",
                 name: "ToDo"
             },
-            date: dayjs("2020-04-02T16:00:00.000Z"),
+            date: new Date("2020-04-02T16:00:00.000Z"),
         };
 
         expect(wasMovedBack(action, columns)).toEqual(true); 
@@ -95,7 +94,7 @@ describe("Cards moving backwards", () => {
                 id: "1",
                 name: "Doing"
             },
-            date: dayjs("2020-04-02T16:00:00.000Z"),
+            date: new Date("2020-04-02T16:00:00.000Z"),
         };
 
         expect(wasMovedBack(action, columns)).toEqual(true); 

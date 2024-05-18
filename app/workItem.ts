@@ -34,7 +34,7 @@ export function cardToWorkItem(card: Card, columns: Column[], startColumn: strin
 function getDate(card: Card, column: string): dayjs.Dayjs {
     return card.actions
     .filter(x => x.endColumn.id === column)
-    .map(x => x.date)
+    .map(x => dayjs(x.date))
     .sort( (x, y) => x.diff(y))
     .shift() || null; 
 }

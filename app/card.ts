@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 export interface Card {
     id: string,
     name: string,
@@ -26,7 +24,7 @@ export interface Action {
     type: ActionType,
     startColumn: Column,
     endColumn: Column,
-    date: dayjs.Dayjs 
+    date: Date
 }
 
 export interface Column {
