@@ -1,5 +1,5 @@
-name: Stats-Backend Deployment
-run-name: ${{ github.actor }} is publishing stats-backend 🚀
+name: Stats-Frontend Deployment
+run-name: ${{ github.actor }} is publishing stats-frontend 🚀
 on: 
   push:
     branches: [main]
