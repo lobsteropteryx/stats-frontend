@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
 jobs:
-  Publish-Stats-Backend:
+  Publish-Stats-Frontend:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
