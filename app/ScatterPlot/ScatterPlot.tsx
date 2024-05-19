@@ -1,5 +1,6 @@
 import React from 'react';
 import { ResponsiveScatterPlot } from '@nivo/scatterplot';
+import { ChartData } from 'stats-models';
 
 const ScatterPlot = (props) => (
     <div className="chartContainer" style={{display: props.display}} >
@@ -23,25 +24,22 @@ const ScatterPlot = (props) => (
                 format: '%b %d',
                 tickValues: 'every week',
                 tickRotation: 90,
-                orient: 'bottom',
                 legend: 'Date Completed',
                 legendPosition: 'middle',
                 legendOffset: 60
             }}
             axisLeft={{
-                orient: 'left',
                 legend: 'Days to Complete',
                 legendPosition: 'middle',
                 legendOffset: -60
             }}
             tooltip={({ node }) => (
                 <div style={{
-                    color: node.style ? node.style.color : null,
                     background: '#D3D3D3',
                     padding: '12px 16px',
                 }}>
                     <strong>
-                        {node.data.name}
+                        {(node.data as ChartData).name}
                     </strong>
                     <br />
                     {`Completed on: ${node.formattedX}`}
