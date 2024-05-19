@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setStartColumn } from '../Local/localFilterSlice';
+import { setStartColumn } from './localFilterSlice';
 import List from '../List';
 
 const mapStateToProps = state => {
