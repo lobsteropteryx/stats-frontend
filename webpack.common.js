@@ -10,7 +10,7 @@ module.exports = {
         }
     },
     entry: './app/App.tsx',
-    devtool: 'inline-source-map',
+    // devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js'
