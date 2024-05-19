@@ -3,9 +3,6 @@ import 'babel-polyfill';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import queryFilterSlice from './Filter/Query/queryFilterSlice';
-import localFilterSlice from './Filter/Local/localFilterSlice';
 import Filters from './Filter/Query/Filters';
 import StartColumnsListContainer from './Filter/Local/StartColumnsListContainer';
 import EndColumnsListContainer from './Filter/Local/EndColumnsListContainer'
@@ -13,23 +10,12 @@ import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
 import HistogramContainer from './Histogram/HistogramContainer';
 import StatsContainer from './Stats/StatsContainer';
-import settingsSlice from './Settings/settingsSlice';
 import SettingsContainer from './Settings/SettingsContainer';
 import StartDateContainer from './Filter/Local/Date/StartDateContainer';
 import EndDateContainer from './Filter/Local/Date/EndDateContainer';
-import dateSlice from './Filter/Local/Date/dateSlice';
 import LabelSelectContainer from './Filter/Local/Label/LabelSelectContainer';
+import { store } from './store';
 
-const store = configureStore({
-    reducer: {
-        queryFilter: queryFilterSlice,
-        localFilter: localFilterSlice,
-        settings: settingsSlice,
-        date: dateSlice
-    }
-});
-
-window.store = store;
 
 const App = () => {
     return (

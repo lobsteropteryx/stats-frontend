@@ -9,7 +9,7 @@ module.exports = {
             stream: require.resolve('stream-browserify')
         }
     },
-    entry: './app/App.js',
+    entry: './app/App.tsx',
     devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
