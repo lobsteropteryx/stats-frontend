@@ -1,41 +1,56 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Reducer, createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
 import { parseTrelloCards } from '../../Trello/parser';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../Local/localFilterSlice';
 import { getCsvData } from './csvExporter';
+import { Board } from 'stats-models';
+
+interface QueryFilterState {
+    apiKey:string,
+    token:string,
+    boards:Board[],
+    selectedBoard:Board,
+    exportEnabled:boolean,
+    csvData:Object,
+    isFetching:boolean
+};
+
+const initialState:QueryFilterState = {
+    apiKey: '683c53951940857c57dc075ab2b57ad8',
+    token: '',
+    boards: [],
+    selectedBoard: {id: "", name: ""},
+    exportEnabled: false,
+    csvData: {},
+    isFetching: false
+};
 
 const filterSlice = createSlice({
   name: 'queryFilter',
-  initialState: {
-    apiKey: '683c53951940857c57dc075ab2b57ad8',
-    boards: [],
-    selectedBoard: {},
-    exportEnabled: false,
-    csvData: {}
-  },
+  initialState,
   reducers: {
-    fetchPending: state => {
+    fetchPending: (state:QueryFilterState) => {
         state.isFetching = true;
     },
-    fetchComplete: state => {
+    fetchComplete: (state:QueryFilterState) => {
         state.isFetching = false;
     },
-    enableExport: state => {
+    enableExport: (state:QueryFilterState) => {
         state.exportEnabled = true;
     },
-    disableExport: state => {
+    disableExport: (state:QueryFilterState) => {
         state.exportEnabled = false;
     },
-    setTrelloToken: (state, action) => {
+    setTrelloToken: (state:QueryFilterState, action) => {
         state.token = action.payload;
     },
-    setBoards: (state, action) => {
+    setBoards: (state:QueryFilterState, action) => {
         state.boards = action.payload;
     },
-    selectBoard: (state, action) => {
+    selectBoard: (state:QueryFilterState, action) => {
         state.selectedBoard = action.payload;
     },
-    setCsvData: (state, action) => {
+    setCsvData: (state:QueryFilterState, action) => {
         state.csvData = action.payload;
     }
   }
@@ -89,4 +104,4 @@ export const fetchCardsForBoard = (apiClient, board) => async (dispatch) => {
     dispatch(enableExport());
 }
 
-export default filterSlice.reducer;
+export default filterSlice.reducer
