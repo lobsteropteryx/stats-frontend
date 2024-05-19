@@ -1,7 +1,6 @@
 import { createSelector } from "reselect";
 import percentile from 'percentile';
-import { cardToWorkItem } from "../workItem";
-import { filterWorkItemByDate, filterCardByLabel } from "../filters";
+import { cardToWorkItem, filterWorkItemByDate, filterCardByLabel } from "stats-models";
 
 const getCards = state => state.localFilter.cards;
 const getColumns = state => state.localFilter.columns;
@@ -22,10 +21,10 @@ export const getPercentiles = createSelector(
         
         return {
             n: durations.length,
-            fifty: Math.ceil(percentile(50, durations)) || 0,
-            seventyFive: Math.ceil(percentile(75, durations)) || 0,
-            eightyFive: Math.ceil(percentile(85, durations)) || 0,
-            ninetyFive: Math.ceil(percentile(95, durations)) || 0
+            fifty: Math.ceil(percentile(50, durations) as number) || 0,
+            seventyFive: Math.ceil(percentile(75, durations) as number) || 0,
+            eightyFive: Math.ceil(percentile(85, durations) as number) || 0,
+            ninetyFive: Math.ceil(percentile(95, durations) as number) || 0
         }
     }
 );
