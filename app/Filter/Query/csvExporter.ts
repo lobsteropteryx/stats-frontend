@@ -1,5 +1,5 @@
 import jsonexport from "jsonexport/dist";
-import { Card } from "../../card";
+import { Card } from "stats-models";
 
 export async function getCsvData(cards: Card[], boardName: string) {
     const content = await convertToCsv(cards

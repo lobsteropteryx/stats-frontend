@@ -1,8 +1,6 @@
 import { format } from "date-fns";
 import { createSelector } from "reselect";
-import { WorkItem, cardToWorkItem } from "../workItem";
-import { filterWorkItemByDate, filterCardByLabel } from "../filters";
-import { ChartData } from "./chartData";
+import { ChartData, WorkItem, cardToWorkItem, filterWorkItemByDate, filterCardByLabel } from "stats-models";
 
 const getCards = state => state.localFilter.cards;
 const getColumns = state => state.localFilter.columns;

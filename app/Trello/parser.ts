@@ -7,7 +7,7 @@ import {
     Label as TrelloLabel,
     ActionType as TrelloActionType
 } from "./types";
-import { Card, Action, Label, ActionType } from "../card";
+import { Card, Action, Label, ActionType } from "stats-models";
 
 export function parseTrelloCards(trelloCards: TrelloCard[]) {
     return trelloCards.map(parseTrelloCard);
