@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 import ExportButton from '../ExportButton/ExportButton';
-import spinner from '../../../images/spinner.svg';
+const spinner = require('../../../images/spinner.svg');
 
-const QueryControls = (props) => {
+interface QueryControlsProps {
+    onSubmit:MouseEventHandler,
+    exportEnabled:boolean,
+    exportUrl:string,
+    exportFilename:string,
+    spinnerClass:string
+}
+
+const QueryControls = (props:QueryControlsProps) => {
     return (
         <div className='submitButton'>
             <button onClick={props.onSubmit}>Submit</button>
             <ExportButton 
                 enabled={props.exportEnabled} 
-                content={props.exportContent} 
                 url={props.exportUrl} 
                 filename={props.exportFilename} 
             />

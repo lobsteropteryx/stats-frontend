@@ -24,8 +24,10 @@ describe("Initial state", () => {
         const state = undefined;
         const expectedState = {
             apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
             boards: [],
-            selectedBoard: {},
+            selectedBoard: {id: "", name: ""},
             exportEnabled: false,
             csvData: {}
         };

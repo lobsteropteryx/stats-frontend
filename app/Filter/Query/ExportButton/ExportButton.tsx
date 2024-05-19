@@ -1,7 +1,13 @@
 import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 
-const ExportButton = (props) => {
+interface ExportButtonProps {
+    enabled:boolean,
+    url:string,
+    filename:string
+};
+
+const ExportButton = (props:ExportButtonProps) => {
     const downloadAnchor = useRef(null);
     const exportData = (event) => {
         event.preventDefault();

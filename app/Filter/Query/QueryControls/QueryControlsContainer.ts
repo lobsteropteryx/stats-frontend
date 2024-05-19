@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { ApiClient } from '../../../Trello/ApiClient';
 import { fetchCardsForBoard } from '../queryFilterSlice';
-import { getExportParameters } from '../csvExporter';
 
 import QueryControls from './QueryControls';    
 
