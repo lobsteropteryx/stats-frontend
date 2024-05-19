@@ -1,6 +1,5 @@
 import { createSelector } from "reselect";
-import { cardToWorkItem } from "../workItem";
-import { filterCardByLabel, filterWorkItemByDate } from "../filters";
+import { cardToWorkItem, filterCardByLabel, filterWorkItemByDate } from "stats-models";
 
 const getCards = state => state.localFilter.cards;
 const getColumns = state => state.localFilter.columns;
