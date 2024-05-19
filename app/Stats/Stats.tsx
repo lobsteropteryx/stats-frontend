@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import PropTypes from 'prop-types';
 import StatsRow from './StatsRow';
 
-const Stats = (props) => {
+interface StatsProps {
+    n:number,
+    fifty:number,
+    seventyFive:number,
+    eightyFive:number,
+    ninetyFive:number
+};
+
+const Stats:FunctionComponent<StatsProps> = (props:StatsProps) => {
     return (
         <div className='stats'>
             <table>

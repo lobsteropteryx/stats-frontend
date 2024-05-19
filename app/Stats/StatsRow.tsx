@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import PropTypes from 'prop-types';
 
-const StatsRow = (props) => {
+interface StatsRowProps {
+    percentile:string,
+    value:number
+}
+
+const StatsRow:FunctionComponent<StatsRowProps> = (props:StatsRowProps) => {
     return (
         <tr>
            <th scope='row'>{props.percentile}</th>
