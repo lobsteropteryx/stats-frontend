@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AuthPortal from './AuthPortal';
-import { ApiClient } from '../../Trello/ApiClient';
+import { ApiClient } from '../ApiClient';
 import { setTrelloToken } from '../../Filter/Query/queryFilterSlice';
 import { fetchBoards } from '../../Filter/Query/queryFilterSlice';
 

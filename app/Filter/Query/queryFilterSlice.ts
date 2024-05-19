@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
-import { parseTrelloCards } from '../../Trello/parser';
+import { parseTrelloCards } from '../../Api/parser';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../Local/localFilterSlice';
 import { getCsvData } from './csvExporter';
 import { Board } from 'stats-models';

@@ -1,5 +1,5 @@
-import { parseTrelloCards } from "../../app/Trello/parser";
-import { Card as TrelloCard, ActionType } from "../../app/Trello/types";
+import { parseTrelloCards } from "../../app/Api/parser";
+import { Card as TrelloCard, ActionType } from "../../app/Api/types";
 
 describe("Parsing cards", () => {
     it("returns an empty list given no cards", () => {

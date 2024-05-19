@@ -1,5 +1,5 @@
 import { ConnectedProps, connect } from 'react-redux';
-import { ApiClient } from '../../Trello/ApiClient';
+import { ApiClient } from '../../Api/ApiClient';
 import { changeSelectedBoard } from './queryFilterSlice';
 import { fetchDataForBoard } from './queryFilterSlice';
 import List from '../List';
