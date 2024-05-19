@@ -27,7 +27,7 @@ module.exports = {
                 exclude: [/infra/]
             },
             {
-                test: /\.ts?$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: 'ts-loader',
                 exclude: [/infra/]
