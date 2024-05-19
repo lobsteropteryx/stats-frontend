@@ -4,7 +4,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import Filters from './Filter/Query/Filters';
-import StartColumnsListContainer from './Filter/Local/StartColumnsListContainer.';
+import StartColumnsListContainer from './Filter/Local/StartColumnsListContainer';
 import EndColumnsListContainer from './Filter/Local/EndColumnsListContainer'
 import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';

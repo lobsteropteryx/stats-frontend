@@ -1,4 +1,4 @@
-import { Reducer, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
 import { parseTrelloCards } from '../../Trello/parser';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../Local/localFilterSlice';
@@ -41,16 +41,16 @@ const filterSlice = createSlice({
     disableExport: (state:QueryFilterState) => {
         state.exportEnabled = false;
     },
-    setTrelloToken: (state:QueryFilterState, action) => {
+    setTrelloToken: (state:QueryFilterState, action:PayloadAction<string>) => {
         state.token = action.payload;
     },
-    setBoards: (state:QueryFilterState, action) => {
+    setBoards: (state:QueryFilterState, action:PayloadAction<Board[]>) => {
         state.boards = action.payload;
     },
-    selectBoard: (state:QueryFilterState, action) => {
+    selectBoard: (state:QueryFilterState, action:PayloadAction<Board>) => {
         state.selectedBoard = action.payload;
     },
-    setCsvData: (state:QueryFilterState, action) => {
+    setCsvData: (state:QueryFilterState, action:PayloadAction<Object>) => {
         state.csvData = action.payload;
     }
   }

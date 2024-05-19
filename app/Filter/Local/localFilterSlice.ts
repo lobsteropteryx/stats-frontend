@@ -1,4 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Card, Label } from '../../Trello/types';
+import { Column } from 'aws-cdk-lib/aws-cloudwatch';
+
+interface LocalFilterState {
+  cards:Card[],
+  columns:Column[],
+  startColumn:Column,
+  endColumn:Column,
+  labels:Label[],
+  selectedLabels:Label[]
+};
 
 const filterSlice = createSlice({
   name: 'localFilter',

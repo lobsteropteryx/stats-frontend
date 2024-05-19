@@ -16,6 +16,7 @@ import {
     setCsvData
 } from '../../../app/Filter/Query/queryFilterSlice';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../../../app/Filter/Local/localFilterSlice';
+import { UnknownAction } from 'redux';
 
 const mockStore = configureMockStore([]);
 
@@ -31,14 +32,22 @@ describe("Initial state", () => {
             exportEnabled: false,
             csvData: {}
         };
-        const action = { payload: null, action: "default" };
+        const action:UnknownAction = { type:"unknown", payload: null, action: "default" };
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });
 
 describe("Authentication", () => {
     it("sets the trello token", () => {
-        const state = {};
+        const state = {
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
+        };
         const token = 'abc';
         const action = setTrelloToken(token);
         expect(reducer(state, action)).toEqual({token});
@@ -48,7 +57,13 @@ describe("Authentication", () => {
 describe("Exporting data", () => {
     it("enables exporting data after fetch", () => {
         const state = {
-            exportEnabled: false
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
         };
         const expectedState = {
             exportEnabled: true 
@@ -59,7 +74,13 @@ describe("Exporting data", () => {
     
     it("disables exporting data when changing boards", () => {
         const state = {
-            exportEnabled: true
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: true,
+            csvData: {}
         };
         const expectedState = {
             exportEnabled: false 
@@ -71,14 +92,30 @@ describe("Exporting data", () => {
 
 describe("Showing fetch state", () => {
     it("shows fetch is pending", () => {
-        const state = {};
+        const state = {
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
+        };
         const expectedState = {isFetching: true};
         const action = fetchPending();
         expect(reducer(state, action)).toEqual(expectedState);
     });
     
     it("shows fetch is complete", () => {
-        const state = {};
+        const state = {
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: true,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
+        };
         const expectedState = {isFetching: false};
         const action = fetchComplete();
         expect(reducer(state, action)).toEqual(expectedState);
@@ -87,8 +124,16 @@ describe("Showing fetch state", () => {
 
 describe("Setting boards", () => {
     it("sets the list of boards", () => {
-        const state = {};
-        const boards = [{name: "a board"}];
+        const state = {
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
+        };
+        const boards = [{id: "boardId", name: "a board"}];
         const expectedState = {boards};
         const action = setBoards(boards);
         expect(reducer(state, action)).toEqual(expectedState);
@@ -97,7 +142,15 @@ describe("Setting boards", () => {
 
 describe("Selecting a board", () => {
     it("Sets the board", () => {
-        const state = {};
+        const state = {
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
+        };
         const selectedBoard = {id: 1, name: 'selectedBoard'};
         const expectedState = {
             selectedBoard: selectedBoard
@@ -152,15 +205,24 @@ describe("Fetching data from API", () => {
     });
 
     it("fetches data for board", async () => {
-        const state = {};
+        const state = {
+            apiKey: "683c53951940857c57dc075ab2b57ad8",
+            token: "",
+            isFetching: false,
+            boards: [],
+            selectedBoard: {id: "", name: ""},
+            exportEnabled: false,
+            csvData: {}
+        };
         const columns = [];
         const labels = [];
+        const boardId = "boardId";
 
         const expectedActions = [
             fetchPending(),
             setColumns(columns),
-            setStartColumn(),
-            setEndColumn(),
+            setStartColumn({}),
+            setEndColumn({}),
             setLabels(labels),
             fetchComplete()
         ];
@@ -176,7 +238,7 @@ describe("Fetching data from API", () => {
 
         const store = mockStore(state);
 
-        const actionCreator = fetchDataForBoard(apiClient);
+        const actionCreator = fetchDataForBoard(apiClient, boardId);
         await actionCreator(store.dispatch);
         expect(store.getActions()).toEqual(expectedActions);
     });

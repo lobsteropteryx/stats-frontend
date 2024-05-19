@@ -1,3 +1,4 @@
+import { UnknownAction } from 'redux';
 import reducer from '../../../app/Filter/Local/localFilterSlice';
 import {
     setCards,
@@ -19,14 +20,21 @@ describe("Initial state", () => {
             labels: [],
             selectedLabels: []
         };
-        const action = { payload: null, action: "default" };
+        const action:UnknownAction = { type:"unknown", payload: null, action: "default" };
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });
 
 describe("Setting columns", () => {
     it("sets the list of columns", () => {
-        const state = {};
+        const state = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: [],
+            selectedLabels: []
+        };;
         const columns = [{name: "a list"}];
         const expectedState = {columns};
         const action = setColumns(columns);
@@ -36,7 +44,14 @@ describe("Setting columns", () => {
 
 describe("Setting labels", () => {
     it("sets the list of labels", () => {
-        const state = {};
+        const state = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: [],
+            selectedLabels: []
+        };
         const labels = [{
             id: "1",
             name: "a label"
@@ -49,7 +64,14 @@ describe("Setting labels", () => {
 
 describe("Selecting labels", () => {
     it("sets the list of selected labels", () => {
-        const state = {};
+        const state = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: [],
+            selectedLabels: []
+        }; 
         const selectedLabels = [{
             id: "1",
             name: "a label"
@@ -62,7 +84,14 @@ describe("Selecting labels", () => {
 
 describe("Setting cards", () => {
     it("sets the list of cards", () => {
-        const state = {};
+        const state = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: [],
+            selectedLabels: []
+        }; 
         const cards = [{name: "an action"}];
         const expectedState = {cards};
         const action = setCards(cards);
@@ -72,7 +101,14 @@ describe("Setting cards", () => {
 
 describe("Selecting columns", () => {
     it("Sets the selected start column", () => {
-        const state = {};
+        const state = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: [],
+            selectedLabels: []
+        };
         const selectedColumn = {id: 1, name: 'selectedColumn'};
         const expectedState = {startColumn: {id: 1, name: 'selectedColumn'}};
         const action = setStartColumn(selectedColumn);
@@ -80,7 +116,14 @@ describe("Selecting columns", () => {
     });
 
     it("Sets the selected end column", () => {
-        const state = {};
+        const state = {
+            cards: [],
+            columns: [],
+            startColumn: { id: null, name: null },
+            endColumn: { id: null, name: null },
+            labels: [],
+            selectedLabels: []
+        }; 
         const selectedColumn = {id: 1, name: 'selectedColumn'};
         const expectedState = {endColumn: {id: 1, name: 'selectedColumn'}};
         const action = setEndColumn(selectedColumn);

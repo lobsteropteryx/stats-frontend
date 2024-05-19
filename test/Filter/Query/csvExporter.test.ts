@@ -18,7 +18,7 @@ describe("Converting CSV", () => {
         const boardName = "myBoard";
  
         const cards = [{
-            id: 1,
+            id: "1",
             name: "test",
             labels: [{
                 id: '1',
@@ -62,7 +62,7 @@ describe("Converting CSV", () => {
         const boardName = "myBoard";
  
         const cards = [{
-            id: 1,
+            id: "1",
             name: "test",
             labels: [{
                 id: '1',
