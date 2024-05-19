@@ -1,17 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { StringConcat } from 'aws-cdk-lib';
+
+interface DateState {
+  startDate:string,
+  endDate:string
+};
+
+const initialState:DateState = {
+  startDate: null,
+  endDate: null
+};
 
 const dateSlice = createSlice({
   name: 'date',
-  initialState: {
-    startDate: null,
-    endDate: null
-  },
+  initialState,
   reducers: {
-    setStartDate: (state, action) => {
-        state.startDate = action.payload;
+    setStartDate: (state:DateState, action:PayloadAction<String>) => {
+        state.startDate = action.payload as string;
     },
-    setEndDate: (state, action) => {
-        state.endDate = action.payload;
+    setEndDate: (state:DateState, action:PayloadAction<String>) => {
+        state.endDate = action.payload as string;
     }
   }
 });

@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-const Date = (props) => {
+interface DateProps {
+    label:string,
+    date:Date,
+    onChange:Function
+}
+
+const Date = (props:DateProps) => {
     return (
         <div className='filterControl'>
             <label>{props.label}</label>
             <DatePicker
                 className="dateFilter"
                 selected={props.date}
-                onChange={props.onChange}
+                onChange={(e:Date) => props.onChange(e ? e.toISOString() : null)}
             />
         </div>
     );
