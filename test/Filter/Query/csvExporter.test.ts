@@ -1,4 +1,5 @@
 import { getCsvData } from "../../../app/Filter/Query/csvExporter";
+import { ActionType, Card } from "stats-models";
 
 describe("Converting CSV", () => {
     it("Returns the correct data structure for a single card with one action", async () => {
@@ -10,7 +11,7 @@ describe("Converting CSV", () => {
 
         const expected = {
             content: `id,name,actions.type,actions.startColumn.id,actions.startColumn.name,actions.endColumn.id,actions.endColumn.name,actions.date
-1,test,updateCard,0,ToDo,1,Doing,1/1/2020`,
+1,test,updateCard,0,ToDo,1,Doing,01/01/2020`,
             url: "myUrl",
             filename: "myBoard-2019-05-14.csv"
         };
@@ -26,7 +27,7 @@ describe("Converting CSV", () => {
                 color: 'red'
             }],
             actions: [{
-                type: "updateCard",
+                type: "updateCard" as ActionType,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -35,7 +36,7 @@ describe("Converting CSV", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: new Date("2020-01-01T16:00:00.000Z"),
+                date: "2020-01-01T16:00:00.000Z",
             }]
         }];
 
@@ -53,15 +54,15 @@ describe("Converting CSV", () => {
 
         const expected = {
             content: `id,name,actions.type,actions.startColumn.id,actions.startColumn.name,actions.endColumn.id,actions.endColumn.name,actions.date
-1,test,createCard,,,0,ToDo,1/1/2020
-1,test,updateCard,0,ToDo,1,Doing,1/2/2020`,
+1,test,createCard,,,0,ToDo,01/01/2020
+1,test,updateCard,0,ToDo,1,Doing,01/02/2020`,
             url: "myUrl",
             filename: "myBoard-2019-05-14.csv"
         };
 
         const boardName = "myBoard";
  
-        const cards = [{
+        const cards:Card[] = [{
             id: "1",
             name: "test",
             labels: [{
@@ -70,7 +71,7 @@ describe("Converting CSV", () => {
                 color: 'red'
             }],
             actions: [{
-                type: "createCard",
+                type: "createCard" as ActionType,
                 startColumn: {
                     id: null,
                     name: null 
@@ -79,9 +80,9 @@ describe("Converting CSV", () => {
                     id:"0",
                     name:"ToDo"
                 },
-                date: new Date("2020-01-01T16:00:00.000Z"),
+                date: "2020-01-01T16:00:00.000Z",
             }, {
-                type: "updateCard",
+                type: "updateCard" as ActionType,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -90,7 +91,7 @@ describe("Converting CSV", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: new Date("2020-01-02T16:00:00.000Z"),
+                date: "2020-01-02T16:00:00.000Z",
             }]
         }];
 
@@ -109,15 +110,15 @@ describe("Converting CSV", () => {
         const expected = {
             content: `id,name,actions.type,actions.startColumn.id,actions.startColumn.name,actions.endColumn.id,actions.endColumn.name,actions.date
 1,test,createCard,,,0,ToDo,12/31/2019
-1,test,updateCard,0,ToDo,1,Doing,1/1/2020
-2,test2,createCard,,,0,ToDo,11/1/2019`,
+1,test,updateCard,0,ToDo,1,Doing,01/01/2020
+2,test2,createCard,,,0,ToDo,11/01/2019`,
             url: "myUrl",
             filename: "myBoard-2019-05-14.csv"
         };
 
         const boardName = "myBoard";
  
-        const cards = [{
+        const cards:Card[] = [{
             id: "2",
             name: "test2",
             labels: [{
@@ -126,7 +127,7 @@ describe("Converting CSV", () => {
                 color: 'red'
             }],
             actions: [{
-                type: "createCard",
+                type: "createCard" as ActionType,
                 startColumn: {
                     id: null,
                     name: null 
@@ -135,7 +136,7 @@ describe("Converting CSV", () => {
                     id:"0",
                     name:"ToDo"
                 },
-                date: new Date("2019-11-01T16:00:00.000Z"),
+                date: "2019-11-01T16:00:00.000Z",
             }]
          }, {
             id: "1",
@@ -146,7 +147,7 @@ describe("Converting CSV", () => {
                 color: 'red'
             }],
             actions: [{
-                type: "createCard",
+                type: "createCard" as ActionType,
                 startColumn: {
                     id: null,
                     name: null 
@@ -155,9 +156,9 @@ describe("Converting CSV", () => {
                     id:"0",
                     name:"ToDo"
                 },
-                date: new Date("2019-12-31T16:00:00.000Z"),
+                date: "2019-12-31T16:00:00.000Z",
             }, {
-                type: "updateCard",
+                type: "updateCard" as ActionType,
                 startColumn: {
                     id: "0",
                     name: "ToDo"
@@ -166,7 +167,7 @@ describe("Converting CSV", () => {
                     id:"1",
                     name:"Doing"
                 },
-                date: new Date("2020-01-01T16:00:00.000Z"),
+                date: "2020-01-01T16:00:00.000Z",
             }]
         }];
 

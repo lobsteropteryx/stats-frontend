@@ -22,6 +22,7 @@
     "@types/date-fns": "^2.6.0",
     "@types/jest": "29.5.12",
     "@types/jsonexport": "^3.0.5",
+    "@types/react-redux": "^7.1.33",
     "aws-cdk-lib": "2.141.0",
     "axios-mock-adapter": "^1.18.2",
     "babel-core": "^7.0.0-bridge.0",

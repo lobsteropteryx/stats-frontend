@@ -32,7 +32,7 @@ describe("Initial state", () => {
             exportEnabled: false,
             csvData: {}
         };
-        const action:UnknownAction = { type:"unknown", payload: null, action: "default" };
+        const action = { type:"unknown", payload: null, action: "default" };
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });
@@ -49,8 +49,9 @@ describe("Authentication", () => {
             csvData: {}
         };
         const token = 'abc';
+        const expectedState = {...state, token};
         const action = setTrelloToken(token);
-        expect(reducer(state, action)).toEqual({token});
+        expect(reducer(state, action)).toEqual(expectedState);
     });
 });
 
@@ -65,10 +66,9 @@ describe("Exporting data", () => {
             exportEnabled: false,
             csvData: {}
         };
-        const expectedState = {
-            exportEnabled: true 
-        };
-        const action = enableExport;
+        const exportEnabled = true;
+        const expectedState = {...state, exportEnabled};
+        const action = enableExport();
         expect(reducer(state, action)).toEqual(expectedState);
     });
     
@@ -82,10 +82,9 @@ describe("Exporting data", () => {
             exportEnabled: true,
             csvData: {}
         };
-        const expectedState = {
-            exportEnabled: false 
-        };
-        const action = disableExport;
+        const exportEnabled = false
+        const expectedState = {...state, exportEnabled};
+        const action = disableExport();
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });
@@ -101,7 +100,8 @@ describe("Showing fetch state", () => {
             exportEnabled: false,
             csvData: {}
         };
-        const expectedState = {isFetching: true};
+        const isFetching = true;
+        const expectedState = {...state, isFetching};
         const action = fetchPending();
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -116,7 +116,8 @@ describe("Showing fetch state", () => {
             exportEnabled: false,
             csvData: {}
         };
-        const expectedState = {isFetching: false};
+        const isFetching = false;
+        const expectedState = {...state, isFetching};
         const action = fetchComplete();
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -134,7 +135,7 @@ describe("Setting boards", () => {
             csvData: {}
         };
         const boards = [{id: "boardId", name: "a board"}];
-        const expectedState = {boards};
+        const expectedState = {...state, boards};
         const action = setBoards(boards);
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -151,10 +152,8 @@ describe("Selecting a board", () => {
             exportEnabled: false,
             csvData: {}
         };
-        const selectedBoard = {id: 1, name: 'selectedBoard'};
-        const expectedState = {
-            selectedBoard: selectedBoard
-        };
+        const selectedBoard = {id: '1', name: 'selectedBoard'};
+        const expectedState = {...state, selectedBoard};
         const action = selectBoard(selectedBoard);
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -221,8 +220,8 @@ describe("Fetching data from API", () => {
         const expectedActions = [
             fetchPending(),
             setColumns(columns),
-            setStartColumn({}),
-            setEndColumn({}),
+            setStartColumn(),
+            setEndColumn(),
             setLabels(labels),
             fetchComplete()
         ];

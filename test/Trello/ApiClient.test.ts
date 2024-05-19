@@ -224,7 +224,6 @@ describe('Trello API requests', () => {
                     actions: 'updateCard:idList,updateCard:closed,createCard,moveCardToBoard,copyCard',
                     fields: 'labels,name',
                     filter: 'all',
-                    fields: 'labels,name',
                     limit: 1,
                     sort: '-id'
                 })

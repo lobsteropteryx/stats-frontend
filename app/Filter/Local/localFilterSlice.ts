@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { Card, Label } from '../../Trello/types';
-import { Column } from 'aws-cdk-lib/aws-cloudwatch';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Card, Label, Column } from 'stats-models';
 
 interface LocalFilterState {
   cards:Card[],
@@ -11,33 +10,35 @@ interface LocalFilterState {
   selectedLabels:Label[]
 };
 
+const initialState:LocalFilterState = {
+  cards: [],
+  columns: [],
+  startColumn: { id: null, name: null },
+  endColumn: { id: null, name: null },
+  labels: [],
+  selectedLabels: [] 
+}
+
 const filterSlice = createSlice({
   name: 'localFilter',
-  initialState: {
-    cards: [],
-    columns: [],
-    startColumn: { id: null, name: null },
-    endColumn: { id: null, name: null },
-    labels: [],
-    selectedLabels: []
-  },
+  initialState,
   reducers: {
-    setCards: (state, action) => {
+    setCards: (state:LocalFilterState, action:PayloadAction<Card[]>) => {
         state.cards = action.payload;
     },
-    setColumns: (state, action) => {
+    setColumns: (state:LocalFilterState, action:PayloadAction<Column[]>) => {
         state.columns = action.payload;
     },
-    setStartColumn: (state, action) => {
+    setStartColumn: (state:LocalFilterState, action:PayloadAction<Column>) => {
         state.startColumn = action.payload;
     },
-    setEndColumn: (state, action) => {
+    setEndColumn: (state:LocalFilterState, action:PayloadAction<Column>) => {
         state.endColumn = action.payload;
     },
-    setLabels: (state, action) => {
+    setLabels: (state:LocalFilterState, action:PayloadAction<Label[]>) => {
       state.labels = action.payload;
     },
-    selectLabels: (state, action) => {
+    selectLabels: (state:LocalFilterState, action:PayloadAction<Label[]>) => {
       state.selectedLabels = action.payload;
     }
   }

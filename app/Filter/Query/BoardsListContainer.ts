@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { ConnectedProps, connect } from 'react-redux';
 import { ApiClient } from '../../Trello/ApiClient';
 import { changeSelectedBoard } from './queryFilterSlice';
 import { fetchDataForBoard } from './queryFilterSlice';
@@ -35,10 +35,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     }
 }
 
-const BoardsListContainer = connect(
+const connector = connect(
     mapStateToProps,
     mapDispatchToProps,
     mergeProps
-)(List);
+);
 
-export default BoardsListContainer;
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(List);

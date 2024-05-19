@@ -35,8 +35,8 @@ describe("Setting columns", () => {
             labels: [],
             selectedLabels: []
         };;
-        const columns = [{name: "a list"}];
-        const expectedState = {columns};
+        const columns = [{id: "columnId", name: "a list"}];
+        const expectedState = {...state, columns};
         const action = setColumns(columns);
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -54,9 +54,10 @@ describe("Setting labels", () => {
         };
         const labels = [{
             id: "1",
-            name: "a label"
+            name: "a label",
+            color: "red"
         }];
-        const expectedState = {labels};
+        const expectedState = {...state, labels};
         const action = setLabels(labels);
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -74,9 +75,10 @@ describe("Selecting labels", () => {
         }; 
         const selectedLabels = [{
             id: "1",
-            name: "a label"
+            name: "a label",
+            color: "red"
         }];
-        const expectedState = {selectedLabels};
+        const expectedState = {...state, selectedLabels};
         const action = selectLabels(selectedLabels);
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -92,8 +94,8 @@ describe("Setting cards", () => {
             labels: [],
             selectedLabels: []
         }; 
-        const cards = [{name: "an action"}];
-        const expectedState = {cards};
+        const cards = [{id: "cardId", name: "an action", labels:[], actions: []}];
+        const expectedState = {...state, cards};
         const action = setCards(cards);
         expect(reducer(state, action)).toEqual(expectedState);
     });
@@ -109,9 +111,9 @@ describe("Selecting columns", () => {
             labels: [],
             selectedLabels: []
         };
-        const selectedColumn = {id: 1, name: 'selectedColumn'};
-        const expectedState = {startColumn: {id: 1, name: 'selectedColumn'}};
-        const action = setStartColumn(selectedColumn);
+        const startColumn = {id: '1', name: 'selectedColumn'};
+        const expectedState = {...state, startColumn};
+        const action = setStartColumn(startColumn);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 
@@ -124,9 +126,9 @@ describe("Selecting columns", () => {
             labels: [],
             selectedLabels: []
         }; 
-        const selectedColumn = {id: 1, name: 'selectedColumn'};
-        const expectedState = {endColumn: {id: 1, name: 'selectedColumn'}};
-        const action = setEndColumn(selectedColumn);
+        const endColumn = {id: '1', name: 'selectedColumn'};
+        const expectedState = {...state, endColumn};
+        const action = setEndColumn(endColumn);
         expect(reducer(state, action)).toEqual(expectedState);
     });
 });

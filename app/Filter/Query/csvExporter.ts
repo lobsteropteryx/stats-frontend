@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import jsonexport from "jsonexport/dist";
 import { Card } from "stats-models";
 
@@ -24,7 +25,7 @@ function transformDates(card: Card) {
                     type: action.type,
                     startColumn: action.startColumn,
                     endColumn: action.endColumn,
-                    date: action.date
+                    date: format(action.date, "MM/dd/yyyy")
                 }
             })
             .sort( (a, b) => { return new Date(a.date).getTime() - new Date(b.date).getTime(); })

@@ -38,7 +38,7 @@ const filterSlice = createSlice({
     enableExport: (state:QueryFilterState) => {
         state.exportEnabled = true;
     },
-    disableExport: (state:QueryFilterState) => {
+    disableExport: (state:QueryFilterState, action:PayloadAction<void>) => {
         state.exportEnabled = false;
     },
     setTrelloToken: (state:QueryFilterState, action:PayloadAction<string>) => {
