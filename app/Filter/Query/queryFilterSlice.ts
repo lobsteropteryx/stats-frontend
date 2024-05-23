@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { first, last } from 'lodash';
-import { parseTrelloCards } from '../../Trello/parser';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../Local/localFilterSlice';
 import { getCsvData } from './csvExporter';
 import { Board } from '@lobsteropteryx/stats-models';
@@ -95,8 +94,7 @@ export const fetchDataForBoard = (apiClient, boardId) => async (dispatch) => {
 
 export const fetchCardsForBoard = (apiClient, board) => async (dispatch) => {
     dispatch(fetchPending());
-    const actions = await apiClient.getCardsForBoard(board.id);
-    const cards = parseTrelloCards(actions);
+    const cards = await apiClient.getCardsForBoard(board.id);
     dispatch(setCards(cards));
     const csvData = await getCsvData(cards, board.name);
     dispatch(setCsvData(csvData));

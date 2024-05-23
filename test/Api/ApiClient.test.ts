@@ -1,11 +1,7 @@
 import nock from 'nock';
 
-<<<<<<< Updated upstream:test/Trello/ApiClient.test.ts
-import { ApiClient } from '../../app/Trello/ApiClient';
-=======
-import { ApiClient } from '../../app/Api/ApiClient';
+import { Client as ApiClient } from '../../app/Api/Client';
 import { Board, Card, Column, Label } from '@lobsteropteryx/stats-models';
->>>>>>> Stashed changes:test/Api/ApiClient.test.ts
 
 describe('Stats backend API requests', () => {
     const baseUrl = "https://api.stats.com/";

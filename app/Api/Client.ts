@@ -3,7 +3,7 @@ import { Board, Card, Label, Column } from '@lobsteropteryx/stats-models';
 
 const API_LIMIT = 250;
 
-export class ApiClient {
+export class Client {
     key:string;
     token:string;
     axiosInstance:AxiosInstance;

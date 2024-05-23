@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { ApiClient } from '../../../Trello/ApiClient';
+import { Client as ApiClient } from '../../../Api/Client';
 import { fetchCardsForBoard } from '../queryFilterSlice';
 
 import QueryControls from './QueryControls';    
