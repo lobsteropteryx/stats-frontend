@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const apiClient = new ApiClient(stateProps.apiKey, stateProps.token);
+    const apiClient = new ApiClient(stateProps.baseUrl);
     return {
         label: stateProps.label,
         options: stateProps.options,

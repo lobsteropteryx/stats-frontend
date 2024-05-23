@@ -6,7 +6,6 @@ import reducer, {
     changeSelectedBoard
 } from '../../../app/Filter/Query/queryFilterSlice';
 import {
-    setTrelloToken,
     fetchPending,
     fetchComplete,
     enableExport,
@@ -16,7 +15,6 @@ import {
     setCsvData
 } from '../../../app/Filter/Query/queryFilterSlice';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../../../app/Filter/Local/localFilterSlice';
-import { Column } from '@lobsteropteryx/stats-models';
 
 const mockStore = configureMockStore([]);
 
@@ -24,8 +22,7 @@ describe("Initial state", () => {
     it("sets the proper initial state", () => {
         const state = undefined;
         const expectedState = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://api.stats.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -37,29 +34,10 @@ describe("Initial state", () => {
     });
 });
 
-describe("Authentication", () => {
-    it("sets the trello token", () => {
-        const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
-            isFetching: false,
-            boards: [],
-            selectedBoard: {id: "", name: ""},
-            exportEnabled: false,
-            csvData: {}
-        };
-        const token = 'abc';
-        const expectedState = {...state, token};
-        const action = setTrelloToken(token);
-        expect(reducer(state, action)).toEqual(expectedState);
-    });
-});
-
 describe("Exporting data", () => {
     it("enables exporting data after fetch", () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -74,8 +52,7 @@ describe("Exporting data", () => {
     
     it("disables exporting data when changing boards", () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -92,8 +69,7 @@ describe("Exporting data", () => {
 describe("Showing fetch state", () => {
     it("shows fetch is pending", () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -108,8 +84,7 @@ describe("Showing fetch state", () => {
     
     it("shows fetch is complete", () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: true,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -126,8 +101,7 @@ describe("Showing fetch state", () => {
 describe("Setting boards", () => {
     it("sets the list of boards", () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -144,8 +118,7 @@ describe("Setting boards", () => {
 describe("Selecting a board", () => {
     it("Sets the board", () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},
@@ -205,8 +178,7 @@ describe("Fetching data from API", () => {
 
     it("fetches data for board", async () => {
         const state = {
-            apiKey: "683c53951940857c57dc075ab2b57ad8",
-            token: "",
+            baseUrl: "https://stats.api.com",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},

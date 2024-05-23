@@ -8,9 +8,7 @@ export class Client {
     token:string;
     axiosInstance:AxiosInstance;
     
-    constructor(key, token, baseUrl) {
-        this.key = key;
-        this.token = token;
+    constructor(baseUrl) {
         this.axiosInstance = axios.create({
             baseURL: baseUrl
         });

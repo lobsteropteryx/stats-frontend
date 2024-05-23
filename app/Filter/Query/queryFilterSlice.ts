@@ -5,8 +5,7 @@ import { getCsvData } from './csvExporter';
 import { Board } from '@lobsteropteryx/stats-models';
 
 interface QueryFilterState {
-    apiKey:string,
-    token:string,
+    baseUrl:string,
     boards:Board[],
     selectedBoard:Board,
     exportEnabled:boolean,
@@ -15,8 +14,7 @@ interface QueryFilterState {
 };
 
 const initialState:QueryFilterState = {
-    apiKey: '683c53951940857c57dc075ab2b57ad8',
-    token: '',
+    baseUrl: 'https://api.stats.com',
     boards: [],
     selectedBoard: {id: "", name: ""},
     exportEnabled: false,
@@ -40,9 +38,6 @@ const filterSlice = createSlice({
     disableExport: (state:QueryFilterState, action:PayloadAction<void>) => {
         state.exportEnabled = false;
     },
-    setTrelloToken: (state:QueryFilterState, action:PayloadAction<string>) => {
-        state.token = action.payload;
-    },
     setBoards: (state:QueryFilterState, action:PayloadAction<Board[]>) => {
         state.boards = action.payload;
     },
@@ -60,7 +55,6 @@ export const {
     fetchComplete,
     enableExport,
     disableExport,
-    setTrelloToken,
     setBoards,
     selectBoard,
     setCsvData

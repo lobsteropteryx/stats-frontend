@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import Filters from './Filter/Query/Filters';
 import StartColumnsListContainer from './Filter/Local/StartColumnsListContainer';
 import EndColumnsListContainer from './Filter/Local/EndColumnsListContainer'
-import AuthPortalContainer from './Trello/AuthPortal/AuthPortalContainer';
 import ScatterPlotContainer from './ScatterPlot/ScatterPlotContainer';
 import HistogramContainer from './Histogram/HistogramContainer';
 import StatsContainer from './Stats/StatsContainer';
@@ -20,7 +19,6 @@ import { store } from './store';
 const App = () => {
     return (
         <div className="container">
-            <AuthPortalContainer />
             <div className="wrapper">
                 <div className="filter">
                     <fieldset>

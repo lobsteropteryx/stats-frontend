@@ -6,8 +6,7 @@ import QueryControls from './QueryControls';
 
 const mapStateToProps = state => {
     return {
-        apiKey: state.queryFilter.apiKey,
-        token: state.queryFilter.token,
+        baseUrl: state.queryFilter.baseUrl,
         selectedBoard: state.queryFilter.selectedBoard,
         spinnerClass: state.queryFilter.isFetching ? 'spinner-enabled' : 'spinner-disabled',
         exportEnabled: state.queryFilter.exportEnabled,
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const apiClient = new ApiClient(stateProps.apiKey, stateProps.token);
+    const apiClient = new ApiClient(stateProps.baseUrl);
     return {
         spinnerClass: stateProps.spinnerClass,
         exportEnabled: stateProps.exportEnabled,

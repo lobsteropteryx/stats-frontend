@@ -17,7 +17,7 @@ describe('Stats backend API requests', () => {
             .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
-        const client = new ApiClient('key', 'token', baseUrl);
+        const client = new ApiClient(baseUrl);
 
         console.log(scope.activeMocks);
 
@@ -35,7 +35,7 @@ describe('Stats backend API requests', () => {
             .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
-        const client = new ApiClient('key', 'token', baseUrl);
+        const client = new ApiClient(baseUrl);
 
         return expect(client.getColumnsForBoard("1")).resolves.toEqual(expected);
     });
@@ -52,7 +52,7 @@ describe('Stats backend API requests', () => {
             .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
-        const client = new ApiClient('key', 'token', baseUrl);
+        const client = new ApiClient(baseUrl);
 
         return expect(client.getLabelsForBoard("1")).resolves.toEqual(expected);
     });
@@ -70,7 +70,7 @@ describe('Stats backend API requests', () => {
             .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
-        const client = new ApiClient('key', 'token', baseUrl);
+        const client = new ApiClient(baseUrl);
 
         return expect(client.getCardsForBoard("1")).resolves.toEqual(expected);
     });
