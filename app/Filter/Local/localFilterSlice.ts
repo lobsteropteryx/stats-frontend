@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Card, Label, Column } from 'stats-models';
+import { Card, Label, Column } from '@lobsteropteryx/stats-models';
 
 interface LocalFilterState {
   cards:Card[],

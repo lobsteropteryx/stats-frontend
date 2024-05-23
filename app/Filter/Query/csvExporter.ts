@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import jsonexport from "jsonexport/dist";
-import { Card } from "stats-models";
+import { Card } from "@lobsteropteryx/stats-models";
 
 export async function getCsvData(cards: Card[], boardName: string) {
     const content = await convertToCsv(cards

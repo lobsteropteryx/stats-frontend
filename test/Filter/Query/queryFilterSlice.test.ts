@@ -16,7 +16,7 @@ import {
     setCsvData
 } from '../../../app/Filter/Query/queryFilterSlice';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../../../app/Filter/Local/localFilterSlice';
-import { UnknownAction } from 'redux';
+import { Column } from '@lobsteropteryx/stats-models';
 
 const mockStore = configureMockStore([]);
 
@@ -220,8 +220,8 @@ describe("Fetching data from API", () => {
         const expectedActions = [
             fetchPending(),
             setColumns(columns),
-            setStartColumn(),
-            setEndColumn(),
+            setStartColumn(undefined),
+            setEndColumn(undefined),
             setLabels(labels),
             fetchComplete()
         ];

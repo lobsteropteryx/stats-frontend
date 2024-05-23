@@ -1,6 +1,6 @@
 import React from 'react';
 import { ResponsiveScatterPlot } from '@nivo/scatterplot';
-import { ChartData } from 'stats-models';
+import { ChartData } from '@lobsteropteryx/stats-models';
 
 const ScatterPlot = (props) => (
     <div className="chartContainer" style={{display: props.display}} >

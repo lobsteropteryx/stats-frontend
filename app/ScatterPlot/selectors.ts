@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { createSelector } from "reselect";
-import { ChartData, WorkItem, cardToWorkItem, filterWorkItemByDate, filterCardByLabel } from "stats-models";
+import { ChartData, WorkItem, cardToWorkItem, filterWorkItemByDate, filterCardByLabel } from "@lobsteropteryx/stats-models";
 
 const getCards = state => state.localFilter.cards;
 const getColumns = state => state.localFilter.columns;

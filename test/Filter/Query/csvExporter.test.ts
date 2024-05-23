@@ -1,5 +1,5 @@
 import { getCsvData } from "../../../app/Filter/Query/csvExporter";
-import { ActionType, Card } from "stats-models";
+import { ActionType, Card } from "@lobsteropteryx/stats-models";
 
 describe("Converting CSV", () => {
     it("Returns the correct data structure for a single card with one action", async () => {
