@@ -1,7 +1,12 @@
+*.js
 dist
 cdk.out
 infra/*.js
 infra/dist
+!webpack.common.js
+!webpack.dev.js
+!webpack.prod.js
+!jest.config.js
 
 .idea
 
