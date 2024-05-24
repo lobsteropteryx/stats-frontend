@@ -5,6 +5,7 @@ export class Client {
     #axiosInstance:AxiosInstance;
     
     constructor(baseUrl = `${window.location.host}/api/`) {
+        console.log(baseUrl);
         this.#axiosInstance = axios.create({
             baseURL: baseUrl
         });
