@@ -3,13 +3,13 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 const __dirname = import.meta.dirname;
 
-module.exports = {
-    resolve: {
-        fallback: {
-            os: require.resolve('os-browserify/browser'),
-            stream: require.resolve('stream-browserify')
-        }
-    },
+const config = {
+    // resolve: {
+    //     fallback: {
+    //         os: require.resolve('os-browserify/browser'),
+    //         stream: require.resolve('stream-browserify')
+    //     }
+    // },
     entry: './app/App.tsx',
     devtool: 'inline-source-map',
     output: {
