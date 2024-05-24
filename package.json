@@ -1,7 +1,7 @@
 {
-  "name": "trello-bugtracker",
-  "version": "1.0.0",
-  "description": "web app to count trello bug cards",
+  "name": "@lobsteropteryx/stats-frontend",
+  "version": "0.0.0",
+  "description": "web app to count cards",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --config webpack.dev.js",
