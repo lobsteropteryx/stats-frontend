@@ -1,5 +1,6 @@
 import { getCsvData } from "../../../app/Filter/Query/csvExporter";
 import { ActionType, Card } from "@lobsteropteryx/stats-models";
+import {jest} from '@jest/globals'
 
 describe("Converting CSV", () => {
     it("Returns the correct data structure for a single card with one action", async () => {

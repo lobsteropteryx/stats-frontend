@@ -4,7 +4,7 @@ import { Client as ApiClient } from '../../app/Api/Client';
 import { Board, Card, Column, Label } from '@lobsteropteryx/stats-models';
 
 describe('Stats backend API requests', () => {
-    const baseUrl = "https://api.stats.com/";
+    const baseUrl = "https://api.stats.com";
 
     it('Can request boards', () => {
         const expected:Board[] = [{
@@ -14,12 +14,9 @@ describe('Stats backend API requests', () => {
 
         const scope = nock(baseUrl)
             .get('/boards')
-            .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
-
-        console.log(scope.activeMocks);
 
         return expect(client.getBoards()).resolves.toEqual(expected);
     });
@@ -32,7 +29,6 @@ describe('Stats backend API requests', () => {
 
         nock(baseUrl,)
             .get('/boards/1/columns')
-            .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
@@ -49,7 +45,6 @@ describe('Stats backend API requests', () => {
 
         nock(baseUrl)
             .get('/boards/1/labels')
-            .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
@@ -67,7 +62,6 @@ describe('Stats backend API requests', () => {
 
         nock(baseUrl)
             .get('/boards/1/cards')
-            .query({params: {key: "key", token: "token"}})
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);

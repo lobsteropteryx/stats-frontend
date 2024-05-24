@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { first, last } from 'lodash';
+import { first, last } from 'lodash-es';
 import { setCards, setColumns, setStartColumn, setEndColumn, setLabels, selectLabels } from '../Local/localFilterSlice';
 import { getCsvData } from './csvExporter';
 import { Board } from '@lobsteropteryx/stats-models';
