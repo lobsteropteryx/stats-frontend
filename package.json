@@ -6,6 +6,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "scripts": {
     "dev": "webpack-dev-server --hot --config webpack.dev.js",
     "stats": "webpack --config webpack.prod.js --json > stats.json",
@@ -23,7 +24,6 @@
     "@lobsteropteryx:registry": "https://npm.pkg.github.com/"
   },
   "license": "ISC",
-  "module": "es6",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/plugin-transform-runtime": "^7.11.0",
