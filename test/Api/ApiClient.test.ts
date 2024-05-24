@@ -17,10 +17,9 @@ describe('Stats backend API requests', () => {
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
-
         return expect(client.getBoards()).resolves.toEqual(expected);
     });
-    
+
     it('Can request columns for a board', () => {
         const expected:Column[] = [{
             id: 'columnId',
