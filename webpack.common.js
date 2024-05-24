@@ -1,7 +1,8 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CleanWebpackPlugin from "clean-webpack-plugin"
+import TerserPlugin from "terser-webpack-plugin";
+const __dirname = import.meta.dirname;
 
 module.exports = {
     resolve: {
@@ -67,3 +68,5 @@ module.exports = {
         ],
     }
 };
+
+export default config;
