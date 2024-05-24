@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { StringConcat } from 'aws-cdk-lib';
 
 interface DateState {
   startDate:string,

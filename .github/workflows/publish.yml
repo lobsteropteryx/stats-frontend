@@ -18,13 +18,6 @@ jobs:
           with:
             node-version: "20"
             registry-url: 'https://npm.pkg.github.com'
-        - uses: aws-actions/configure-aws-credentials@v4
-          with:
-            role-to-assume: arn:aws:iam::678966243702:role/stats-backend-deployment
-            role-session-name: stats-backend-deployment
-            aws-region: "us-east-2"
         - run: npm ci
         - run: npm run build
         - run: npm test
-        - run: npm run synth
-        - run: npm run deploy
