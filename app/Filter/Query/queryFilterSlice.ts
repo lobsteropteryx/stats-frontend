@@ -14,7 +14,7 @@ interface QueryFilterState {
 };
 
 const initialState:QueryFilterState = {
-    baseUrl: 'https://api.stats.com',
+    baseUrl: `${window.location.host}/api/`,
     boards: [],
     selectedBoard: {id: "", name: ""},
     exportEnabled: false,
