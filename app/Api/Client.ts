@@ -4,7 +4,7 @@ import { Board, Card, Label, Column } from '@lobsteropteryx/stats-models';
 export class Client {
     #axiosInstance:AxiosInstance;
     
-    constructor(baseUrl = `${window.location.host}/api/`) {
+    constructor(baseUrl = `${window.location.origin}/api/`) {
         console.log(baseUrl);
         this.#axiosInstance = axios.create({
             baseURL: baseUrl

@@ -22,7 +22,7 @@ describe("Initial state", () => {
     it("sets the proper initial state", () => {
         const state = undefined;
         const expectedState = {
-            baseUrl: "https://api.stats.com",
+            baseUrl: "http://localhost/api/",
             isFetching: false,
             boards: [],
             selectedBoard: {id: "", name: ""},

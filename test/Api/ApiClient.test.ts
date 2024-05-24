@@ -4,7 +4,7 @@ import { Client as ApiClient } from '../../app/Api/Client';
 import { Board, Card, Column, Label } from '@lobsteropteryx/stats-models';
 
 describe('Stats backend API requests', () => {
-    const baseUrl = "https://api.stats.com";
+    const baseUrl = "http://localhost/api";
 
     it('Can request boards', () => {
         const expected:Board[] = [{

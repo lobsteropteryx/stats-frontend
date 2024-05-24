@@ -14,7 +14,7 @@ interface QueryFilterState {
 };
 
 const initialState:QueryFilterState = {
-    baseUrl: `${window.location.host}/api/`,
+    baseUrl: `${window?.location?.origin}/api/`,
     boards: [],
     selectedBoard: {id: "", name: ""},
     exportEnabled: false,
