@@ -5,8 +5,8 @@ const config: JestConfigWithTsJest = {
   extensionsToTreatAsEsm: ['.ts'],
   verbose: true,
   preset: 'ts-jest/presets/default-esm',
-  testEnvironment: 'node',
-  transform: {
+  testEnvironment: 'jsdom',
+  transform: { 
     '^.+\\.tsx?$': ['ts-jest', { useESM: true }]
   },
   testPathIgnorePatterns: ['./dist']
