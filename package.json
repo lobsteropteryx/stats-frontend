@@ -1,6 +1,6 @@
 {
   "name": "@lobsteropteryx/stats-frontend",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "web app to count cards",
   "main": "index.js",
   "files": [
