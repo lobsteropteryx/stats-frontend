@@ -20,7 +20,6 @@
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
-    "@types/date-fns": "^2.6.0",
     "@types/jest": "29.5.12",
     "@types/jsonexport": "^3.0.5",
     "@types/react-redux": "^7.1.33",
