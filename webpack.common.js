@@ -1,6 +1,5 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import CleanWebpackPlugin from "clean-webpack-plugin"
 import TerserPlugin from "terser-webpack-plugin";
 const __dirname = import.meta.dirname;
 
@@ -47,7 +46,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Development',
             template: 'index.html'
