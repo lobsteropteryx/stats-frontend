@@ -10,7 +10,7 @@
     "cdk": "cdk",
     "build-infra": "tsc infra/*.ts",
     "synth": "cdk synth",
-    "deploy": "cdk deploy"
+    "deploy": "cdk deploy --require-approval never"
   },
   "author": "Ian Firkin",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "@types/jsonexport": "^3.0.5",
     "@types/react-redux": "^7.1.33",
     "@types/redux-mock-store": "^1.0.6",
+    "aws-cdk": "^2.142.1",
     "aws-cdk-lib": "2.141.0",
     "axios-mock-adapter": "^1.18.2",
     "babel-core": "^7.0.0-bridge.0",
