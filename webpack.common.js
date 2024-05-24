@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+    mode: 'production',
     resolve: {
         fallback: {
             os: require.resolve('os-browserify/browser'),
@@ -13,7 +15,7 @@ module.exports = {
     // devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        filename: 'index.bundle.js'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json']
@@ -34,7 +36,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.svg$/,
@@ -50,5 +52,19 @@ module.exports = {
             title: 'Development',
             template: 'index.html'
         })
-    ]
+    ],
+    optimization: {
+        usedExports: true,
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    compress: {
+                        unused: true,
+                        dead_code: true,
+                    },
+                },
+            }),
+        ],
+    }
 };

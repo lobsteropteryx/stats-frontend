@@ -1,8 +1,6 @@
 *.js
 dist
-cdk.out
-infra/*.js
-infra/dist
+stats.json
 !webpack.common.js
 !webpack.dev.js
 !webpack.prod.js
