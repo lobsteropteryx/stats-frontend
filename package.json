@@ -14,7 +14,15 @@
     "pub": "npm publish"
   },
   "author": "Ian Firkin",
-  "license": "MIT",
+  "homepage": "https://github.com/lobsteropteryx/stats-frontend",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobsteropteryx/stats-frontend.git"
+  },
+  "publishConfig": {
+    "@lobsteropteryx:registry": "https://npm.pkg.github.com/"
+  },
+  "license": "ISC",
   "module": "es6",
   "devDependencies": {
     "@babel/core": "^7.11.1",
