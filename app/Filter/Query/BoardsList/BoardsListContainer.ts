@@ -1,8 +1,8 @@
 import { ConnectedProps, connect } from 'react-redux';
-import { Client as ApiClient } from '../../Api/Client';
-import { changeSelectedBoard } from './queryFilterSlice';
-import { fetchDataForBoard } from './queryFilterSlice';
-import List from '../List';
+import { Client as ApiClient } from '../../../Api/Client';
+import { changeSelectedBoard } from '../queryFilterSlice';
+import { fetchDataForBoard } from '../queryFilterSlice';
+import BoardsList from './BoardsList';
 
 const mapStateToProps = state => {
     return {
@@ -43,4 +43,4 @@ const connector = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default connector(List);
+export default connector(BoardsList);

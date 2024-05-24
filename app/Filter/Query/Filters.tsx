@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardsListContainer from './BoardsListContainer';
+import BoardsListContainer from './BoardsList/BoardsListContainer';
 import QueryControlsContainer from './QueryControls/QueryControlsContainer';
 
 const Filters = () => {

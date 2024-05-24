@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (event, apiClient, selectedBoard) => {
             dispatch(fetchCardsForBoard(apiClient, selectedBoard));
-        }
+        },
+        
     }
 };
 
