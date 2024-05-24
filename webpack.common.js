@@ -23,15 +23,13 @@ const config = {
         rules: [
             {
                 test: /\.js?$/,
-                exclude: /(node_modules)/,
+                exclude: [/node_modules/],
                 use: 'babel-loader',
-                exclude: [/infra/]
             },
             {
                 test: /\.tsx?$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/],
                 use: 'ts-loader',
-                exclude: [/infra/]
             },
             {
                 test: /\.css$/,
