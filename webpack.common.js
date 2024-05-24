@@ -55,10 +55,7 @@ const config = {
         minimizer: [
             new TerserPlugin({
                 terserOptions: {
-                    compress: {
-                        unused: true,
-                        dead_code: true,
-                    },
+                    compress: true
                 },
             }),
         ],
