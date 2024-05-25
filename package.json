@@ -11,7 +11,7 @@
     "dev": "webpack-dev-server --hot --config webpack.dev.js",
     "stats": "webpack --config webpack.prod.js --json > stats.json",
     "analyze": "NODE_ENV=production node webpack.analyze.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "rm -rf dist && webpack --config webpack.prod.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "pub": "npm publish"
   },
