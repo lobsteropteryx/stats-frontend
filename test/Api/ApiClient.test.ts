@@ -1,12 +1,11 @@
 import nock from 'nock';
-
 import { Client as ApiClient } from '../../app/Api/Client';
 import { Board, Card, Column, Label } from '@lobsteropteryx/stats-models';
 
 describe('Stats backend API requests', () => {
     const baseUrl = "http://localhost/api";
 
-    it('Can request boards', () => {
+    it('Can request boards', async () => {
         const expected:Board[] = [{
             id: 'boardId',
             name: 'myBoard'
@@ -17,10 +16,10 @@ describe('Stats backend API requests', () => {
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
-        return expect(client.getBoards()).resolves.toEqual(expected);
+        expect(await client.getBoards()).toEqual(expected);
     });
 
-    it('Can request columns for a board', () => {
+    it('Can request columns for a board', async () => {
         const expected:Column[] = [{
             id: 'columnId',
             name: 'myColumn'
@@ -32,10 +31,10 @@ describe('Stats backend API requests', () => {
 
         const client = new ApiClient(baseUrl);
 
-        return expect(client.getColumnsForBoard("1")).resolves.toEqual(expected);
+        expect(await client.getColumnsForBoard("1")).toEqual(expected);
     });
 
-    it('Can request labels for a board', () => {
+    it('Can request labels for a board', async () => {
         const expected:Label[] = [{
             id: 'labelId',
             name: 'labelName',
@@ -48,10 +47,10 @@ describe('Stats backend API requests', () => {
 
         const client = new ApiClient(baseUrl);
 
-        return expect(client.getLabelsForBoard("1")).resolves.toEqual(expected);
+        expect(await client.getLabelsForBoard("1")).toEqual(expected);
     });
     
-    it('Can request cards for a board', () => {
+    it('Can request cards for a board', async () => {
         const expected:Card[] = [{
             id: 'cardId',
             name: 'cardName',
@@ -65,6 +64,6 @@ describe('Stats backend API requests', () => {
 
         const client = new ApiClient(baseUrl);
 
-        return expect(client.getCardsForBoard("1")).resolves.toEqual(expected);
+        expect(await client.getCardsForBoard("1")).toEqual(expected);
     });
 });

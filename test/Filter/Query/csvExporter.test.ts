@@ -1,13 +1,13 @@
+import { vi } from 'vitest';
 import { getCsvData } from "../../../app/Filter/Query/csvExporter";
 import { ActionType, Card } from "@lobsteropteryx/stats-models";
-import {jest} from '@jest/globals'
 
 describe("Converting CSV", () => {
     it("Returns the correct data structure for a single card with one action", async () => {
 
-        global.URL.createObjectURL = jest.fn(() => "myUrl");
+        global.URL.createObjectURL = vi.fn(() => "myUrl");
 
-        jest.spyOn(global.Date.prototype, 'toISOString')
+        vi.spyOn(global.Date.prototype, 'toISOString')
             .mockImplementationOnce(() => '2019-05-14');
 
         const expected = {
@@ -48,9 +48,9 @@ describe("Converting CSV", () => {
     
     it("Returns the correct data structure for a single card with two actions", async () => {
 
-        global.URL.createObjectURL = jest.fn(() => "myUrl");
+        global.URL.createObjectURL = vi.fn(() => "myUrl");
 
-        jest.spyOn(global.Date.prototype, 'toISOString')
+        vi.spyOn(global.Date.prototype, 'toISOString')
             .mockImplementationOnce(() => '2019-05-14');
 
         const expected = {
@@ -103,9 +103,9 @@ describe("Converting CSV", () => {
 
     it("Sorts data by card id and date", async () => {
 
-        global.URL.createObjectURL = jest.fn(() => "myUrl");
+        global.URL.createObjectURL = vi.fn(() => "myUrl");
 
-        jest.spyOn(global.Date.prototype, 'toISOString')
+        vi.spyOn(global.Date.prototype, 'toISOString')
             .mockImplementationOnce(() => '2019-05-14');
 
         const expected = {
