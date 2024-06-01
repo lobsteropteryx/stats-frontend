@@ -1,37 +1,54 @@
 import axios, { AxiosInstance } from 'axios';
+import getAuthToken from './Auth';
 import { Board, Card, Label, Column } from '@lobsteropteryx/stats-models';
 
 export class Client {
-    #axiosInstance:AxiosInstance;
-    
+    #axiosInstance: AxiosInstance;
+
     constructor(baseUrl = `${window.location.origin}/api/`) {
-        console.log(baseUrl);
         this.#axiosInstance = axios.create({
-            baseURL: baseUrl
+            baseURL: baseUrl,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Allow-Headers": "Authorization"
+            }
         });
     }
 
-    getBoards():Promise<Board[]> {
+    async getBoards(): Promise<Board[]> {
+        const token = await getAuthToken();
         return this.#axiosInstance
-            .get(`/boards`, {})
-            .then(response => response.data);
-    }
-    
-    getColumnsForBoard(boardId:string):Promise<Column[]> {
-        return this.#axiosInstance
-            .get(`/boards/${boardId}/columns`, {})
+            .get('/boards', {
+                headers: { Authorization: token }
+            })
             .then(response => response.data);
     }
 
-    getLabelsForBoard(boardId:string):Promise<Label[]> {
+    async getColumnsForBoard(boardId: string): Promise<Column[]> {
+        const token = await getAuthToken();
         return this.#axiosInstance
-            .get(`/boards/${boardId}/labels`, {})
+            .get(`/boards/${boardId}/columns`, {
+                headers: { Authorization: token }
+            })
             .then(response => response.data);
     }
-    
-    getCardsForBoard(boardId:string):Promise<Card[]> {
+
+    async getLabelsForBoard(boardId: string): Promise<Label[]> {
+        const token = await getAuthToken();
         return this.#axiosInstance
-            .get(`/boards/${boardId}/cards`, {})
+            .get(`/boards/${boardId}/labels`, {
+                headers: { Authorization: token }
+            })
+            .then(response => response.data);
+    }
+
+    async getCardsForBoard(boardId: string): Promise<Card[]> {
+        const token = await getAuthToken();
+        return this.#axiosInstance
+            .get(`/boards/${boardId}/cards`, {
+                headers: { Authorization: token }
+            })
             .then(response => response.data);
     }
 }
