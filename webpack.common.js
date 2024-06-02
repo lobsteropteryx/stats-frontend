@@ -9,6 +9,7 @@ const config = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.bundle.js'
     },
+    devtool: 'inline-source-map',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json']
     },
