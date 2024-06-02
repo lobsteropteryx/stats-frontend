@@ -13,9 +13,7 @@ describe('Stats backend API requests', () => {
 
     vi.mock('../../app/Api/Auth', () => {
         return {
-            default: () => {
-                { getAuthToken: vi.fn(() => "token") }
-            }
+            getAuthToken: vi.fn(() => "token")
         };
     });
 

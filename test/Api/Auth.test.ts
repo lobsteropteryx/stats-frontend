@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import getAuthToken from "../../app/Api/Auth";
+import { getAuthToken } from "../../app/Api/Auth";
 
 describe('Getting auth tokens', () => {
 
