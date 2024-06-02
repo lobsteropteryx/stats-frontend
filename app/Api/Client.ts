@@ -8,35 +8,27 @@ export class Client {
         this.#baseUrl = baseUrl;
     }
 
-    async getBoards(): Promise<Board[]> {
+    async #getData(url: string): Promise<any[]> {
         const token = await getAuthToken();
-        const response = await fetch(`${this.#baseUrl}/boards`, {
+        const response = await fetch(`${url}`, {
             headers: { Authorization: token }
         })
         return await response.json();
+    }
+
+    async getBoards(): Promise<Board[]> {
+        return this.#getData(`${this.#baseUrl}/boards`);
     }
 
     async getColumnsForBoard(boardId: string): Promise<Column[]> {
-        const token = await getAuthToken();
-        const response = await fetch(`${this.#baseUrl}/boards/${boardId}/columns`, {
-            headers: { Authorization: token }
-        })
-        return await response.json();
+        return this.#getData(`${this.#baseUrl}/boards/${boardId}/columns`)
     }
 
     async getLabelsForBoard(boardId: string): Promise<Label[]> {
-        const token = await getAuthToken();
-        const response = await fetch(`${this.#baseUrl}/boards/${boardId}/labels`, {
-            headers: { Authorization: token }
-        })
-        return await response.json();
+        return this.#getData(`${this.#baseUrl}/boards/${boardId}/labels`)
     }
 
     async getCardsForBoard(boardId: string): Promise<Card[]> {
-        const token = await getAuthToken();
-        const response = await fetch(`${this.#baseUrl}/boards/${boardId}/cards`, {
-            headers: { Authorization: token }
-        })
-        return await response.json();
+        return this.#getData(`${this.#baseUrl}/boards/${boardId}/cards`)
     }
 }
