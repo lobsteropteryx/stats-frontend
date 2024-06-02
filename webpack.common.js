@@ -4,14 +4,7 @@ import TerserPlugin from "terser-webpack-plugin";
 const __dirname = import.meta.dirname;
 
 const config = {
-    // resolve: {
-    //     fallback: {
-    //         os: require.resolve('os-browserify/browser'),
-    //         stream: require.resolve('stream-browserify')
-    //     }
-    // },
     entry: './app/App.tsx',
-    // devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.bundle.js'
