@@ -5,17 +5,7 @@ import { Board, Card, Column, Label } from '@lobsteropteryx/stats-models';
 
 describe('Stats backend API requests', () => {
 
-    afterEach(() => {
-        vi.restoreAllMocks();
-    });
-
     const baseUrl = "http://localhost/api";
-
-    vi.mock('../../app/Api/Auth', () => {
-        return {
-            getAuthToken: vi.fn(() => "token")
-        };
-    });
 
     it('Can request boards', async () => {
         const expected: Board[] = [{
@@ -23,11 +13,7 @@ describe('Stats backend API requests', () => {
             name: 'myBoard'
         }];
 
-        const scope = nock(baseUrl, {
-            reqheaders: {
-                'Authorization': 'token'
-            } 
-        })
+        const scope = nock(baseUrl, {})
             .get('/boards')
             .reply(200, expected);
 
@@ -41,16 +27,11 @@ describe('Stats backend API requests', () => {
             name: 'myColumn'
         }];
 
-        const scope = nock(baseUrl, {
-            reqheaders: {
-                'Authorization': 'token'
-            }
-        })
+        const scope = nock(baseUrl, {})
             .get('/boards/1/columns')
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
-
         expect(await client.getColumnsForBoard("1")).toEqual(expected);
     });
 
@@ -61,16 +42,11 @@ describe('Stats backend API requests', () => {
             color: 'red'
         }];
 
-        const scope = nock(baseUrl, {
-            reqheaders: {
-                'Authorization': 'token'
-            }
-        })
+        const scope = nock(baseUrl, {})
             .get('/boards/1/labels')
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
-
         expect(await client.getLabelsForBoard("1")).toEqual(expected);
     });
 
@@ -82,16 +58,11 @@ describe('Stats backend API requests', () => {
             actions: []
         }];
 
-        const scope = nock(baseUrl, {
-            reqheaders: {
-                'Authorization': 'token'
-            }
-        })
+        const scope = nock(baseUrl, {})
             .get('/boards/1/cards')
             .reply(200, expected);
 
         const client = new ApiClient(baseUrl);
-
         expect(await client.getCardsForBoard("1")).toEqual(expected);
     });
 });

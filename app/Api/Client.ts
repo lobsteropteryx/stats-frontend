@@ -1,4 +1,3 @@
-import { getAuthToken } from './Auth';
 import { Board, Card, Label, Column } from '@lobsteropteryx/stats-models';
 
 export class Client {
@@ -9,10 +8,7 @@ export class Client {
     }
 
     async #getData(url: string): Promise<any[]> {
-        const token = await getAuthToken();
-        const response = await fetch(`${url}`, {
-            headers: { Authorization: token }
-        })
+        const response = await fetch(`${url}`, {})
         return await response.json();
     }
 
